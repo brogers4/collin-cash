@@ -10,10 +10,10 @@ This app leverages the Ionic Framework, Firebase, and Eaton's PX Blue 2.0 design
 
 The following tools are pre-requisites and should be installed globally:
 
-    - npm
-    - firebase-tools
-    - ionic
-    - gulp
+- npm
+- firebase-tools
+- ionic
+- gulp
 
 ### Install NPM packages
 
