@@ -1,0 +1,42 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding ion-fixed no-bounce class="medium-bg">
+  <div ion-fixed class="login-container">
+    <ion-card class="deep-shadow">
+      <ion-card-header class="login-header">
+        Project Leapfrog
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+        <div class="card-footer">
+          <button ion-button block (click)="signIn()">SIGN IN</button>
+          <button ion-button block outline (click)="signUp()">SIGN UP</button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div class="login-footer">
+      <img src="../../assets/imgs/etn_pbw_logo_white.png">
+    </div>
+  </div>
+  
+</ion-content>
