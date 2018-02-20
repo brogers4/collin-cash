@@ -41,16 +41,15 @@ $colors: (
   dark:       #222
 );
 
-$eaton: (
-  eaton-blue: #1070b9,
-  dark-gray: #424a52
-);
+// @import "eaton-theme";
+@import "eaton-ionic-theme";
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$label-ios-text-color-focused: color($colors,primary);
+$text-input-ios-show-focus-highlight: true;
 
 
 
