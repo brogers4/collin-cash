@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
@@ -15,7 +16,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -23,7 +24,8 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public menu: MenuController
+    public menu: MenuController,
+    public afAuth: AngularFireAuth
   ) {
     this.initializeApp();
 
@@ -32,6 +34,20 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage }
     ];
+
+    const authObserver = afAuth.authState.subscribe( user => {
+      if(user){
+        // user is logged in
+        console.log("Firebase user is logged in:",user);
+        this.rootPage = HomePage;
+        authObserver.unsubscribe();
+      } else {
+        // user is logged out
+        console.log("Firebase user is logged out.");
+        this.rootPage = LoginPage;
+        authObserver.unsubscribe();
+      }
+    });
 
   }
 
@@ -48,5 +64,15 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+    this.afAuth.auth.signOut().then(function(error){
+      if(error){
+        console.log("Error signing out:",error);
+      } else {
+        this.nav.setRoot(LoginPage);
+      }
+    }.bind(this));
   }
 }

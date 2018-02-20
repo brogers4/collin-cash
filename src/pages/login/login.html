@@ -21,13 +21,14 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item>
-          <ion-label floating>Username</ion-label>
-          <ion-input type="text"></ion-input>
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
+        <div class="login-error">{{errorMessage}}</div>
         <div class="card-footer">
           <button ion-button block (click)="signIn()">SIGN IN</button>
           <button ion-button block outline (click)="signUp()">SIGN UP</button>

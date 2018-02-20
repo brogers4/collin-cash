@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
 
@@ -17,10 +19,15 @@ import { SignupPage } from '../signup/signup';
 })
 export class LoginPage {
 
+  email: string;
+  password: string;
+  errorMessage: string;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public menu: MenuController
+    public menu: MenuController,
+    public afAuth: AngularFireAuth
   ) {
   }
 
@@ -36,7 +43,17 @@ export class LoginPage {
 
   signIn() {
     console.log("Signing in...");
-    this.navCtrl.setRoot(HomePage);
+    this.afAuth.auth.signInWithEmailAndPassword(this.email,this.password).then(
+      user => {
+        console.log("Successfully signed in:",user);
+        this.navCtrl.setRoot(HomePage);
+      }, error => {
+        console.log("Error signing in:",error);
+        if(error.code === "auth/wrong-password" || error.code === "auth/user-not-found"){
+          this.errorMessage = 'Invalid username or password. Please try again.';
+        }
+      }
+    )
   }
 
   signUp() {
