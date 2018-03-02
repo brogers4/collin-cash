@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,4 +9,12 @@
 
 <ion-content padding>
   <h3>Welcome to Project Leapfrog</h3>
+  <mat-menu #homeMenu="matMenu">
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="homeMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 </ion-content>

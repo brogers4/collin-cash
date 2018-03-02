@@ -18,3 +18,21 @@
 .split-pane-visible > .split-pane-side.main-menu {
     max-width: 275px;
 }
+
+.main-menu {
+    .toolbar-content {
+        display: flex;
+        justify-content: center;
+        .menu-logo {
+            height: 44px;
+        }
+    }
+}
+
+
+
+ion-content:not(.content-ios){
+    .scroll-content {
+        overflow-y: auto;
+    }
+}
