@@ -3,7 +3,8 @@ import { IonicModule } from 'ionic-angular';
 import { 
 	MatMenuModule,
 	MatButtonModule,
-	MatListModule
+	MatListModule,
+	MatIconModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-header';
@@ -14,13 +15,15 @@ import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-head
 		BrowserAnimationsModule,
 		MatMenuModule,
 		MatButtonModule,
-		MatListModule
+		MatListModule,
+		MatIconModule
 	],
 	exports: [
 		EtnAccountHeaderComponent,
 		MatMenuModule,
 		MatButtonModule,
-		MatListModule
+		MatListModule,
+		MatIconModule
 	]
 })
 export class ComponentsModule {}

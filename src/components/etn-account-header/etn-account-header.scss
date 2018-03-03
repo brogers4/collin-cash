@@ -16,5 +16,14 @@ etn-account-header {
             border-radius: 50%;
             margin-bottom: 8px;
         }
+        .account-contents {
+            position: relative;
+            .account-more-button {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                font-size: 18px;
+            }
+        }
     }
 }
