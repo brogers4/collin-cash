@@ -18,7 +18,7 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, icon: string, component: any}>;
 
   constructor(
     public platform: Platform, 
@@ -31,8 +31,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Home', icon: 'home', component: HomePage },
+      { title: 'List', icon: 'list', component: ListPage }
     ];
 
     const authObserver = afAuth.authState.subscribe( user => {
@@ -64,6 +64,11 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  isActive(page) {
+    if(!this.nav.getActive()) return false;
+    return (this.nav.getActive().component === page.component);
   }
 
   logout() {
