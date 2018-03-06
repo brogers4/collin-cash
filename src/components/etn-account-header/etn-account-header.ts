@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 /**
  * Generated class for the EtnAccountHeaderComponent component.
@@ -11,12 +11,15 @@ import { Component } from '@angular/core';
   templateUrl: 'etn-account-header.html'
 })
 export class EtnAccountHeaderComponent {
-
-  text: string;
+  @Output() onLogout: EventEmitter<any> = new EventEmitter();
+  @Input() user: any;
 
   constructor() {
     console.log('Hello EtnAccountHeaderComponent Component');
-    this.text = 'Hello World';
+  }
+
+  logoutClicked() {
+    this.onLogout.emit();
   }
 
 }

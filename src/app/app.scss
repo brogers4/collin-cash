@@ -72,8 +72,23 @@
     }
 }
 
+// Global override for overflow when not on iOS. Note: with overflow
+// set to auto, bounce-back feature will not work.
 ion-content:not(.content-ios){
     .scroll-content {
         overflow-y: auto;
+    }
+}
+
+// Global override if you want to use Ionic Icon within material menu
+.mat-menu-panel {
+    .mat-menu-content {
+        .mat-menu-item {
+            ion-icon {
+                vertical-align: middle;
+                margin-right: 12px;
+                font-size: 1.5em;
+            }
+        }
     }
 }

@@ -20,6 +20,8 @@ export class MyApp {
 
   pages: Array<{title: string, icon: string, component: any}>;
 
+  user: any;
+
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
@@ -39,6 +41,7 @@ export class MyApp {
       if(user){
         // user is logged in
         console.log("Firebase user is logged in:",user);
+        this.user = user;
         this.rootPage = HomePage;
         authObserver.unsubscribe();
       } else {

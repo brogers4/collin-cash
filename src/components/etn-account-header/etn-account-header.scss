@@ -16,13 +16,20 @@ etn-account-header {
             background-color: color($colors,light-gray);
             border-radius: 50%;
             margin-bottom: 8px;
+            background-size: cover;
+            &.account-avatar-empty {
+                // background-color: color($colors,med-gray);
+                background: linear-gradient(color($colors,light-gray),color($colors,med-gray));
+            }
         }
         .account-contents {
             position: relative;
+            display: flex;
+            align-items: center;
+            .account-info {
+                flex: 1 0 auto;
+            }
             .account-more-button {
-                position: absolute;
-                right: 0;
-                bottom: 0;
                 font-size: 18px;
             }
         }
