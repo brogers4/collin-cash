@@ -4,15 +4,56 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Register for a New Account</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
-<ion-content padding>
+<ion-content>
+  
+  <div class="register-container" ion-fixed>
+    <div class="register-header">
+
+    </div>
+    <div class="register-form">
+      <h1>Register a new account</h1>
+      <mat-horizontal-stepper class="register-stepper">
+        <mat-step label="Step 1">
+          <div class="step-contents">
+            Content 1
+          </div>
+          <div class="step-buttons">
+            <div class="spacer"></div>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </mat-step>
+        <mat-step label="Step 2">
+          <div class="step-contents">
+            Content 2
+          </div>
+          <div class="step-buttons">
+              <button mat-button matStepperPrevious type="button">Previous</button>
+              <div class="spacer"></div>
+              <button mat-button matStepperNext type="button">Next</button>
+            </div>
+        </mat-step>
+        <mat-step label="Step 3">
+          <div class="step-contents">
+            Content 3
+          </div>
+          <div class="step-buttons">
+            <button mat-button matStepperPrevious type="button">Previous</button>
+            <div class="spacer"></div>
+            <button mat-raised-button color="primary" type="button">Submit</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+  
 
 </ion-content>

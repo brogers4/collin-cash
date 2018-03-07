@@ -8,7 +8,8 @@ import {
   MatIconModule,
   MatMenuModule,
 	MatButtonModule,
-	MatListModule
+  MatListModule,
+  MatStepperModule
 } from '@angular/material';
 
 import { environment } from '../environments/environment.dev';
@@ -39,7 +40,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ComponentsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    MatStepperModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
