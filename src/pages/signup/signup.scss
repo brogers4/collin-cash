@@ -9,6 +9,8 @@ page-signup {
             background: linear-gradient(color($colors,primary),color($colors,primary-dark));
         }
         .register-form {
+            box-sizing: border-box;
+            padding: 24px;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -43,6 +45,16 @@ page-signup {
                         flex: 1 0;
                     }
                 }
+            }
+        }
+    }
+}
+
+@include respond-to(small){
+    page-signup {
+        .register-container {
+            .register-header {
+                display: none;
             }
         }
     }

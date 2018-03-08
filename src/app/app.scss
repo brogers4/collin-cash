@@ -22,8 +22,13 @@
         ion-header {
             display: flex;
             justify-content: center;
-            .menu-logo {
-                height: 52px;
+            .menu-container {
+                height: 56px;
+                display: flex;
+                align-items: center;
+                .menu-logo {
+                    max-height: 52px;
+                }
             }
         }
         ion-list button {
@@ -68,6 +73,15 @@
         }
         &:last-child {
             border-bottom: 1px solid color($colors,medium);
+        }
+    }
+}
+
+@include respond-to(medium) {
+    .split-pane-visible {
+        .split-pane-side.main-menu {
+            max-width: 50px;
+            min-width: 50px;
         }
     }
 }
