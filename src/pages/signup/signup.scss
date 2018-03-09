@@ -6,7 +6,54 @@ page-signup {
         .register-header {
             flex: 1;
             background-color: color($colors,primary);
-            background: linear-gradient(color($colors,primary),color($colors,primary-dark));
+            background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
+            background-size: 36px 36px, cover;
+            background-position: 8px 8px, 0 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .logo-container {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .logo {
+                    width: 50%;
+                    height: auto;
+                    min-width: 180px;
+                    max-width: 240px;
+                }
+            }
+            .spacer {
+                flex: 1;
+            }
+            .cybersecurity {
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .cybersecurity-logo {
+                    width: 60px;
+                    height: 60px;
+                }
+                .cybersecurity-tag {
+                    margin: 8px;
+                    color: white;
+                    font-size: 0.7em;
+                }
+            }
+            .register-terms {
+                text-align: center;
+                color: white;
+                max-width: 300px;
+                font-size: 0.8em;
+                align-self: center;
+                padding: 24px;
+                a {
+                    color: white;
+                }
+            }
         }
         .register-form {
             box-sizing: border-box;
@@ -53,6 +100,28 @@ page-signup {
                                     }
                                 }
                             }
+                            .summary-item {
+                                height: 50px;
+                                padding: 5px;
+                                display: flex;
+                                align-items: center;
+                                .summary-label {
+                                    display: inline-block;
+                                    font-weight: 800;
+                                    min-width: 100px;
+                                }
+                                .summary-value {
+                                    img {
+                                        height: 40px;
+                                        width: 40px;
+                                        background-color: color($colors,light-gray);
+                                        border-radius: 50%;
+                                        margin-bottom: 8px;
+                                        background-size: cover;
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }

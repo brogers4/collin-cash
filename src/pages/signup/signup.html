@@ -17,7 +17,17 @@
   
   <div class="register-container" ion-fixed>
     <div class="register-header">
-
+      <div class="logo-container">
+        <img class="logo" src="../../assets/imgs/etn_pbw_logo_white.png">
+      </div>
+      <div class="spacer"></div>
+      <div class="cybersecurity">
+        <img class="cybersecurity-logo" src="../../assets/imgs/cybersecurity_logo.svg">
+        <div class="cybersecurity-tag">CYBERSECURITY CERTIFIED</div>
+      </div>
+      <div class="register-terms">
+        By registering, you agree to our<br><a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+      </div>
     </div>
     <div class="register-form">
       <h1>Register a new account</h1>
@@ -28,17 +38,17 @@
             <ion-item>
               <ion-icon name="mail" item-start></ion-icon>
               <ion-label floating>E-mail</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" [(ngModel)]="email"></ion-input>
             </ion-item>
             <ion-item>
               <ion-icon name="key" item-start></ion-icon>
               <ion-label floating>Password</ion-label>
-              <ion-input type="password"></ion-input>
+              <ion-input type="password" [(ngModel)]="password"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-icon name="blank" item-start></ion-icon>
                 <ion-label floating>Confirm Password</ion-label>
-                <ion-input type="password"></ion-input>
+                <ion-input type="password" [(ngModel)]="confirmPassword"></ion-input>
               </ion-item>
           </div>
           <div class="step-buttons">
@@ -54,7 +64,17 @@
         </mat-step>
         <mat-step label="Account Info">
           <div class="step-contents">
-            Content 2
+            <div class="step-instructions">Please enter your profile details.</div>
+            <ion-item>
+              <ion-icon name="person" item-start></ion-icon>
+              <ion-label floating>Name</ion-label>
+              <ion-input type="text" [(ngModel)]="displayName"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="image" item-start></ion-icon>
+              <ion-label floating>Profile Image</ion-label>
+              <ion-input type="text" [(ngModel)]="profileImageURL"></ion-input>
+            </ion-item>
           </div>
           <div class="step-buttons">
               <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
@@ -70,7 +90,18 @@
         </mat-step>
         <mat-step label="Review & Submit">
           <div class="step-contents">
-            Content 3
+            <div class="step-instructions">
+              Please review your account details and select SUBMIT if accurate.
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">E-mail:</span><span class="summary-value">{{email}}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Name:</span><span class="summary-value">{{displayName}}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Profile Image:</span><span class="summary-value"><img src="{{profileImageURL}}"></span>
+            </div>
           </div>
           <div class="step-buttons">
             <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
@@ -79,7 +110,7 @@
             </button>
             <div class="spacer"></div>
             <button ion-button type="button" color="primary">
-              Complete
+              Submit
             </button>
           </div>
         </mat-step>
