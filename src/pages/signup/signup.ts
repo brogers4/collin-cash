@@ -37,4 +37,8 @@ export class SignupPage {
     this.menu.enable(true);
   }
 
+  cancelSignup() {
+    this.navCtrl.pop(null)
+  }
+
 }

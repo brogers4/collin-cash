@@ -36,6 +36,23 @@ page-signup {
                         flex-direction: column;
                         .step-contents {
                             flex: 1 0;
+                            .step-instructions {
+                                color: color($colors,med-gray);
+                                font-style: italic;
+                                margin-top: 12px;
+                            }
+                            ion-item {
+                                ion-icon {
+                                    align-self: flex-end;
+                                    margin-bottom: 0;
+                                    color: color($colors,med-gray);
+                                }
+                                &.item-input-has-focus {
+                                    ion-icon {
+                                        color: color($colors,primary);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -55,6 +72,18 @@ page-signup {
         .register-container {
             .register-header {
                 display: none;
+            }
+            .register-form {
+                padding: 12px;
+                max-width: 100%;
+                h1 {
+                    font-size: 6vw;
+                }
+                mat-horizontal-stepper {
+                    .mat-horizontal-stepper-header-container {
+                        display: none;
+                    }
+                }
             }
         }
     }

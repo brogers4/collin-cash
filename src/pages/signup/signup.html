@@ -22,13 +22,34 @@
     <div class="register-form">
       <h1>Register a new account</h1>
       <mat-horizontal-stepper class="register-stepper">
-        <mat-step label="Username & Password">
+        <mat-step label="E-mail & Password">
           <div class="step-contents">
-            Content 1
+            <div class="step-instructions">Please enter a valid e-mail and password for your account.</div>
+            <ion-item>
+              <ion-icon name="mail" item-start></ion-icon>
+              <ion-label floating>E-mail</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="key" item-start></ion-icon>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="blank" item-start></ion-icon>
+                <ion-label floating>Confirm Password</ion-label>
+                <ion-input type="password"></ion-input>
+              </ion-item>
           </div>
           <div class="step-buttons">
+            <button ion-button type="button" (click)="cancelSignup()" color="danger" clear>
+              Cancel
+            </button>
             <div class="spacer"></div>
-            <button mat-button matStepperNext type="button">Next</button>
+            <button ion-button matStepperNext type="button" color="primary" icon-right clear>
+              Next
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
           </div>
         </mat-step>
         <mat-step label="Account Info">
@@ -36,9 +57,15 @@
             Content 2
           </div>
           <div class="step-buttons">
-              <button mat-button matStepperPrevious type="button">Previous</button>
+              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
+                <ion-icon name="arrow-back"></ion-icon>
+                Previous
+              </button>
               <div class="spacer"></div>
-              <button mat-button matStepperNext type="button">Next</button>
+              <button ion-button matStepperNext type="button" color="primary" icon-right clear>
+                Next
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
             </div>
         </mat-step>
         <mat-step label="Review & Submit">
@@ -46,9 +73,14 @@
             Content 3
           </div>
           <div class="step-buttons">
-            <button mat-button matStepperPrevious type="button">Previous</button>
+            <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
+              <ion-icon name="arrow-back"></ion-icon>
+              Previous
+            </button>
             <div class="spacer"></div>
-            <button mat-raised-button color="primary" type="button">Submit</button>
+            <button ion-button type="button" color="primary">
+              Complete
+            </button>
           </div>
         </mat-step>
       </mat-horizontal-stepper>
