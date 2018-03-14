@@ -33,15 +33,6 @@ page-signup {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                .cybersecurity-logo {
-                    width: 60px;
-                    height: 60px;
-                }
-                .cybersecurity-tag {
-                    margin: 8px;
-                    color: white;
-                    font-size: 0.7em;
-                }
             }
             .register-terms {
                 text-align: center;
@@ -81,6 +72,11 @@ page-signup {
                         right: 24px;
                         display: flex;
                         flex-direction: column;
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                            flex: 1 0;
+                        }
                         .step-contents {
                             flex: 1 0;
                             .step-instructions {

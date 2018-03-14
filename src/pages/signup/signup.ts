@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { LoginPage } from '../login/login';
@@ -19,12 +20,29 @@ import { HomePage } from '../home/home';
 })
 export class SignupPage {
 
+  private registerEmailAndPassword : FormGroup;
+  private profileDetails : FormGroup;
+  private summary: FormGroup;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private formBuilder: FormBuilder
   ) {
+    this.registerEmailAndPassword = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    });
+    this.profileDetails = this.formBuilder.group({
+      displayName: ['', Validators.required],
+      profileImageURL: ['', Validators.required]
+    });
+    this.summary = this.formBuilder.group({
+
+    });
   }
 
   ionViewWillEnter() {
@@ -39,6 +57,10 @@ export class SignupPage {
 
   cancelSignup() {
     this.navCtrl.pop(null)
+  }
+
+  submitRegistration() {
+    console.log("Submitting Registration!");
   }
 
 }
