@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+import { CustomValidation } from '../../models/custom-validation';
 
 /**
  * Generated class for the SignupPage page.
@@ -20,9 +21,9 @@ import { HomePage } from '../home/home';
 })
 export class SignupPage {
 
-  private registerEmailAndPassword : FormGroup;
-  private profileDetails : FormGroup;
-  private summary: FormGroup;
+  private emailForm : FormGroup;
+  private profileForm : FormGroup;
+  private summaryForm: FormGroup;
 
   constructor(
     public navCtrl: NavController, 
@@ -31,18 +32,24 @@ export class SignupPage {
     public afAuth: AngularFireAuth,
     private formBuilder: FormBuilder
   ) {
-    this.registerEmailAndPassword = this.formBuilder.group({
-      email: ['', Validators.required],
+    this.emailForm = this.formBuilder.group({
+      email: ['', [Validators.required,Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
+    }, {
+      validator: CustomValidation.confirmPasswordValidator
     });
-    this.profileDetails = this.formBuilder.group({
+    this.profileForm = this.formBuilder.group({
       displayName: ['', Validators.required],
       profileImageURL: ['', Validators.required]
     });
-    this.summary = this.formBuilder.group({
+    this.summaryForm = this.formBuilder.group({
 
     });
+  }
+
+  confirmPasswordValidator(group: FormControl) {
+    return (group.value.password === group.value.confirmPassword) ? { 'confirmPassword': true } : null;
   }
 
   ionViewWillEnter() {

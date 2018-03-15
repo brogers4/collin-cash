@@ -6,7 +6,7 @@ page-signup {
         .register-header {
             flex: 1;
             background-color: color($colors,primary);
-            background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
+            background: $primary-background;
             background-size: 36px 36px, cover;
             background-position: 8px 8px, 0 0;
             display: flex;
