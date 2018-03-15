@@ -1,8 +1,4 @@
 page-login {
-    
-    .medium-bg {
-        background-color: color($colors,dark-gray);
-    }
     .no-padding {
         padding: 0;
     }
@@ -10,6 +6,10 @@ page-login {
         margin: 0;
     }
     ion-content {
+        background-color: color($colors,primary);
+        background: $primary-background;
+        background-size: 36px 36px, cover;
+        background-position: 8px 8px, 0 0;
         .fixed-content {
             display: flex;
             justify-content: center;
@@ -21,8 +21,35 @@ page-login {
             width: 100%;
             height: 100%;
             padding: 24px;
-            max-width: 375px;
+            max-width: 600px;
+            ion-card {
+                padding: 24px 96px 24px 96px;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                ion-card-header {
+                    &.login-header {
+                        max-width: 240px;
+                        align-self: center;
+                    }
+                }
+                ion-card-content {
+                    .login-error {
+                        color: color($colors,danger);
+                        height: 48px;
+                        margin-top: 8px;
+                        overflow: hidden;
+                        // white-space: nowrap;
+                        // text-overflow: ellipsis;
+                    }
+                    .card-footer {
+                        margin-top: 12px;
+                    }
+                }
+            }
+
             .login-footer {
+                display: none;
                 padding: 24px 48px 0 48px;
             }
         }
@@ -38,31 +65,21 @@ page-login {
             }
         }
     }
-    ion-card {
-        &.deep-shadow {
-            box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
-        }
-    }
-    ion-card-header {
-        &.login-header {
-            background-color: color($colors,primary);
-            color: white;
-            font-size: 1.8em;
-            line-height: 2em;
-            font-weight: 200;
-        }
-    }
-    ion-card-content {
-        .login-error {
-            color: color($colors,danger);
-            height: 48px;
-            margin-top: 8px;
-            overflow: hidden;
-            // white-space: nowrap;
-            // text-overflow: ellipsis;
-        }
-        .card-footer {
-            margin-top: 12px;
+
+}
+
+@include respond-to(small){
+    page-login {
+        ion-content {
+            .login-container {
+                ion-card {
+                    padding: 0;
+                    align-items: stretch;
+                    ion-card-content {
+                        min-width: 0;
+                    }
+                }
+            }
         }
     }
 }

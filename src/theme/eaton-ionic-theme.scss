@@ -51,10 +51,10 @@ $dark-theme-red:   mat-dark-theme($dark-primary, $red-primary, $dark-warn);
 
 // Ionic color overrides.
 $colors: (
-  primary:    color($eaton-blue,400),
-  primary-contrast: color($eaton-blue,contrast,400),
+  primary:    color($eaton-blue,500),
+  primary-contrast: color($eaton-blue,contrast,500),
   primary-light: color($eaton-blue,300),
-  primary-dark: color($eaton-blue,900),
+  primary-dark: color($eaton-blue,700),
   secondary:  color($eaton-green,A700),
   danger:     color($eaton-red,A700),
   light:      #f4f4f4,
@@ -64,3 +64,5 @@ $colors: (
   med-gray:   color($eaton-gray,400),
   dark-gray:  color($eaton-gray,600)
 );
+
+$primary-background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
