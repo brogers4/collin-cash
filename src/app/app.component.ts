@@ -43,12 +43,12 @@ export class MyApp {
         console.log("Firebase user is logged in:",user);
         this.user = user;
         this.rootPage = HomePage;
-        authObserver.unsubscribe();
+        // authObserver.unsubscribe();
       } else {
         // user is logged out
         console.log("Firebase user is logged out.");
         this.rootPage = LoginPage;
-        authObserver.unsubscribe();
+        // authObserver.unsubscribe();
       }
     });
 
