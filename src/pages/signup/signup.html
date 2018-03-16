@@ -79,12 +79,12 @@
               </ion-item>
             </div>
             <div class="step-buttons">
-              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear [disabled]="!profileForm.valid">
+              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
                 <ion-icon name="arrow-back"></ion-icon>
                 Previous
               </button>
               <div class="spacer"></div>
-              <button ion-button matStepperNext type="submit" color="primary" icon-right clear disabled>
+              <button ion-button matStepperNext type="submit" color="primary" icon-right clear [disabled]="!profileForm.valid">
                 Next
                 <ion-icon name="arrow-forward"></ion-icon>
               </button>
@@ -108,12 +108,12 @@
               </div>
             </div>
             <div class="step-buttons">
-              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear [disabled]="!summaryForm.valid">
+              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
                 <ion-icon name="arrow-back"></ion-icon>
                 Previous
               </button>
               <div class="spacer"></div>
-              <button ion-button type="submit" color="primary" disabled>
+              <button ion-button type="submit" color="primary" [disabled]="!summaryForm.valid">
                 Submit
               </button>
             </div>

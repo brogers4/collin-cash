@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -30,14 +30,15 @@ export class SignupPage {
     public navParams: NavParams,
     public menu: MenuController,
     public afAuth: AngularFireAuth,
+    public alertCtrl: AlertController,
     private formBuilder: FormBuilder
   ) {
     this.emailForm = this.formBuilder.group({
       email: ['', [Validators.required,Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required,CustomValidation.strongPassword]],
       confirmPassword: ['', Validators.required]
     }, {
-      validator: CustomValidation.confirmPasswordValidator
+      validator: CustomValidation.passwordMatch
     });
     this.profileForm = this.formBuilder.group({
       displayName: ['', Validators.required],
@@ -46,10 +47,6 @@ export class SignupPage {
     this.summaryForm = this.formBuilder.group({
 
     });
-  }
-
-  confirmPasswordValidator(group: FormControl) {
-    return (group.value.password === group.value.confirmPassword) ? { 'confirmPassword': true } : null;
   }
 
   ionViewWillEnter() {
@@ -67,6 +64,52 @@ export class SignupPage {
   }
 
   submitRegistration() {
+    if(this.emailForm.valid && this.profileForm.valid){
+      this.afAuth.auth.createUserWithEmailAndPassword(this.emailForm.value.email,this.emailForm.value.password).then(
+        user => {
+          console.log("Successfully created user.");
+          user.updateProfile({
+            displayName: this.profileForm.value.displayName,
+            photoURL: this.profileForm.value.profileImageURL
+          }).then(
+            () => {
+              console.log("Successfully updated user profile.");
+              let alert = this.alertCtrl.create({
+                title: 'Success!',
+                subTitle: 'User account and profile created successfully.',
+                buttons: [{
+                  text: 'OK',
+                  handler: data => {
+                    this.navCtrl.setRoot(HomePage);
+                  }
+                }]
+              });
+              alert.present();
+            }, error => {
+              console.log("Error updating user profile:",error);
+              let alert = this.alertCtrl.create({
+                subTitle: 'Your user account was created successfully, but there were issues updating your profile. Please try updating your profile again within the app.',
+                buttons: [{
+                  text: 'OK',
+                  handler: data => {
+                    this.navCtrl.setRoot(HomePage);
+                  }
+                }]
+              });
+              alert.present();
+            }
+          )
+        }, error => {
+          console.log("Error creating user:",error);
+          let alert = this.alertCtrl.create({
+            title: 'Error',
+            subTitle: 'There was an error creating your account: '+error,
+            buttons: ['OK']
+          });
+          alert.present();
+        }
+      )
+    }
     console.log("Submitting Registration!");
   }
 
