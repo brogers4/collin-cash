@@ -22,8 +22,13 @@
         ion-header {
             display: flex;
             justify-content: center;
-            .menu-logo {
-                height: 52px;
+            .menu-container {
+                height: 56px;
+                display: flex;
+                align-items: center;
+                .menu-logo {
+                    max-height: 52px;
+                }
             }
         }
         ion-list button {
@@ -72,6 +77,15 @@
     }
 }
 
+@include respond-to(medium) {
+    .split-pane-visible {
+        .split-pane-side.main-menu {
+            max-width: 50px;
+            min-width: 50px;
+        }
+    }
+}
+
 // Global override for overflow when not on iOS. Note: with overflow
 // set to auto, bounce-back feature will not work.
 ion-content:not(.content-ios){
@@ -90,5 +104,14 @@ ion-content:not(.content-ios){
                 font-size: 1.5em;
             }
         }
+    }
+}
+
+ion-card {
+    &.deep-shadow {
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+    }
+    &.no-shadow {
+        box-shadow: none;
     }
 }

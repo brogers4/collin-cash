@@ -4,15 +4,124 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<!-- <ion-header>
 
-  <ion-navbar>
-    <ion-title>signup</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Register for a New Account</ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
-<ion-content padding>
+<ion-content>
+  
+  <div class="register-container" ion-fixed>
+    <div class="register-header">
+      <div class="logo-container">
+        <img class="logo" src="../../assets/imgs/etn_pbw_logo_white.png">
+      </div>
+      <div class="spacer"></div>
+      <div class="cybersecurity">
+        <img class="cybersecurity-logo" src="../../assets/imgs/cybersecurity_icon.svg">
+      </div>
+      <div class="register-terms">
+        By registering, you agree to our<br><a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+      </div>
+    </div>
+    <div class="register-form">
+      <h1>Register a new account</h1>
+      <mat-horizontal-stepper class="register-stepper" linear>
+        <mat-step label="E-mail & Password" [stepControl]="emailForm">
+          <form [formGroup]="emailForm">
+            <div class="step-contents">
+              <div class="step-instructions">Please enter a valid e-mail and password for your account.</div>
+              <ion-item>
+                <ion-icon name="mail" item-start></ion-icon>
+                <ion-label floating>E-mail</ion-label>
+                <ion-input type="text" formControlName="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="key" item-start></ion-icon>
+                <ion-label floating>Password</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="blank" item-start></ion-icon>
+                <ion-label floating>Confirm Password</ion-label>
+                <ion-input type="password" formControlName="confirmPassword"></ion-input>
+              </ion-item>
+            </div>
+            <div class="step-buttons">
+              <button ion-button type="button" (click)="cancelSignup()" color="danger" clear>
+                Cancel
+              </button>
+              <div class="spacer"></div>
+              <button ion-button matStepperNext type="submit" color="primary" icon-right clear [disabled]="!emailForm.valid">
+                Next
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step label="Account Info" [stepControl]="profileForm">
+          <form [formGroup]="profileForm">
+            <div class="step-contents">
+              <div class="step-instructions">Please enter your profile details.</div>
+              <ion-item>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-label floating>Name</ion-label>
+                <ion-input type="text" formControlName="displayName"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="image" item-start></ion-icon>
+                <ion-label floating>Profile Image</ion-label>
+                <ion-input type="text" formControlName="profileImageURL"></ion-input>
+              </ion-item>
+            </div>
+            <div class="step-buttons">
+              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
+                <ion-icon name="arrow-back"></ion-icon>
+                Previous
+              </button>
+              <div class="spacer"></div>
+              <button ion-button matStepperNext type="submit" color="primary" icon-right clear [disabled]="!profileForm.valid">
+                Next
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step label="Review & Submit" [stepControl]="summaryForm">
+          <form [formGroup]="summaryForm" (ngSubmit)="submitRegistration()">
+            <div class="step-contents">
+              <div class="step-instructions">
+                Please review your account details and select SUBMIT if accurate.
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">E-mail:</span><span class="summary-value">{{emailForm.value.email}}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Name:</span><span class="summary-value">{{profileForm.value.displayName}}</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Profile Image:</span><span class="summary-value"><img *ngIf="profileForm && profileForm.value && profileForm.value.profileImageURL" src="{{profileForm.value.profileImageURL}}"></span>
+              </div>
+            </div>
+            <div class="step-buttons">
+              <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
+                <ion-icon name="arrow-back"></ion-icon>
+                Previous
+              </button>
+              <div class="spacer"></div>
+              <button ion-button type="submit" color="primary" [disabled]="!summaryForm.valid">
+                Submit
+              </button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </div>
+  </div>
+  
 
 </ion-content>

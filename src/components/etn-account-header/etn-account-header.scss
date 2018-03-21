@@ -35,3 +35,22 @@ etn-account-header {
         }
     }
 }
+
+@include respond-to(medium) {
+    etn-account-header {
+        .account-container {
+            min-height: 0;
+            height: 60px;
+            padding: 0;
+            align-items: center;
+            .account-avatar {
+                height: 40px;
+                width: 40px;
+                margin-bottom: 0;
+            }
+            .account-contents {
+                display: none;
+            }
+        }
+    }
+}
