@@ -8,8 +8,10 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-header';
+import { EtnSimpleIndicatorComponent } from './etn-simple-indicator/etn-simple-indicator';
 @NgModule({
-	declarations: [EtnAccountHeaderComponent],
+	declarations: [EtnAccountHeaderComponent,
+    EtnSimpleIndicatorComponent],
 	imports: [
 		IonicModule,
 		BrowserAnimationsModule,
@@ -23,7 +25,8 @@ import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-head
 		MatMenuModule,
 		MatButtonModule,
 		MatListModule,
-		MatIconModule
+		MatIconModule,
+    EtnSimpleIndicatorComponent
 	]
 })
 export class ComponentsModule {}

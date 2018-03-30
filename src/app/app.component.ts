@@ -6,6 +6,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { DevicesPage } from '../pages/devices/devices';
+import { EventsPage } from '../pages/events/events';
+import { SitesPage } from '../pages/sites/sites';
+import { EnergyPage } from '../pages/energy/energy';
 
 import { ListPage } from '../pages/list/list';
 
@@ -34,6 +38,10 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', icon: 'home', component: HomePage },
+      { title: 'Devices', icon: 'apps', component: DevicesPage },
+      { title: 'Events', icon: 'pulse', component: EventsPage },
+      { title: 'Energy', icon: 'stats', component: EnergyPage },
+      { title: 'Sites', icon: 'pin', component: SitesPage },
       { title: 'List', icon: 'list', component: ListPage }
     ];
 

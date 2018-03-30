@@ -21,6 +21,10 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { DevicesPage } from '../pages/devices/devices';
+import { EventsPage } from '../pages/events/events';
+import { SitesPage } from '../pages/sites/sites';
+import { EnergyPage } from '../pages/energy/energy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +35,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SignupPage,
     HomePage,
-    ListPage
+    ListPage,
+    DevicesPage,
+    EventsPage,
+    SitesPage,
+    EnergyPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LoginPage,
     SignupPage,
     HomePage,
-    ListPage
+    ListPage,
+    DevicesPage,
+    EventsPage,
+    SitesPage,
+    EnergyPage
   ],
   providers: [
     StatusBar,
