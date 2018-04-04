@@ -1,0 +1,112 @@
+$etn-event-timeline-line-color: color($colors,medium);
+$etn-event-timeline-icon-color: color($colors,med-gray);
+$etn-event-timeline-icon-warning-color: color($colors,warning);
+$etn-event-timeline-icon-danger-color: color($colors,danger);
+$etn-event-timeline-warning-color: darken(color($colors,warning),20%);
+$etn-event-timeline-danger-color: darken(color($colors,danger),10%);
+$etn-event-timeline-bubble-color: color($colors,light);
+$etn-event-timeline-subtitle-color: color($colors,dark);
+$etn-event-timeline-timestamp-color: color($colors,dark-gray);
+
+etn-event-timeline {
+    margin: 10px;
+    ul {
+        position: relative;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        border-left: 2px solid $etn-event-timeline-line-color;
+        margin-left: 18px;
+        padding: 10px 0 10px 10px;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: $etn-event-timeline-line-color;
+        }
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -9px;
+            bottom: -1px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid $etn-event-timeline-line-color;
+        }
+        li {
+            margin: 10px 0;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            .etn-event-timeline-icon-container {
+                position: relative;
+                margin-right: -29px;
+                left: -29px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background-color: $etn-event-timeline-icon-color;
+                color: white;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.3em;
+                padding: 1px 0 0 1px;
+                &[eventType="warning"] {
+                    background-color: $etn-event-timeline-icon-warning-color
+                }
+                &[eventType="danger"] {
+                    background-color: $etn-event-timeline-icon-danger-color
+                }
+            }
+            .etn-event-timeline-bubble-container {
+                position: relative;
+                display: inline-block;
+                vertical-align: top;
+                flex: 1 0 auto;
+                margin-left: 15px;
+                min-width: 100px;
+                min-height: 20px;
+                background-color: $etn-event-timeline-bubble-color;
+                border-radius: 2px;
+                padding: 4px 8px;
+                font-size: 0.8em;
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 12px;
+                    left: -9px;
+                    width: 0;
+                    height: 0;
+                    border-top: 5px solid transparent;
+                    border-bottom: 5px solid transparent;
+                    border-right: 10px solid $etn-event-timeline-bubble-color;
+                }
+                .etn-event-timeline-title {
+                    font-weight: 600;
+                    &[eventType="warning"] {
+                        color: $etn-event-timeline-warning-color;
+                    }
+                    &[eventType="danger"] {
+                        color: $etn-event-timeline-danger-color;
+                    }
+                }
+                .etn-event-timeline-subtitle {
+                    color: $etn-event-timeline-subtitle-color;
+                }
+                .etn-event-timeline-timestamp {
+                    color: $etn-event-timeline-timestamp-color;
+                }
+            }
+        }
+    }
+}
