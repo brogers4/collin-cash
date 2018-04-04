@@ -9,9 +9,13 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-header';
 import { EtnSimpleIndicatorComponent } from './etn-simple-indicator/etn-simple-indicator';
+import { EtnEventTimelineComponent } from './etn-event-timeline/etn-event-timeline';
 @NgModule({
-	declarations: [EtnAccountHeaderComponent,
-    EtnSimpleIndicatorComponent],
+	declarations: [
+		EtnAccountHeaderComponent,
+		EtnSimpleIndicatorComponent,
+    	EtnEventTimelineComponent
+	],
 	imports: [
 		IonicModule,
 		BrowserAnimationsModule,
@@ -26,7 +30,8 @@ import { EtnSimpleIndicatorComponent } from './etn-simple-indicator/etn-simple-i
 		MatButtonModule,
 		MatListModule,
 		MatIconModule,
-    EtnSimpleIndicatorComponent
+    	EtnSimpleIndicatorComponent,
+    	EtnEventTimelineComponent
 	]
 })
 export class ComponentsModule {}

@@ -1,3 +1,36 @@
 page-home {
-
+    ion-grid {
+        ion-row {
+            ion-col {
+                &.row-header {
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 1.2em;
+                    background-color: color($colors,light);
+                    color: color($colors,dark);
+                }
+                etn-simple-indicator {
+                    height: 100%;
+                }
+                etn-event-timeline {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    etn-simple-indicator {
+        .etn-simple-indicator-container {
+            background-color: color($colors,light-gray);
+        }
+        &.online-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,primary);
+            }
+        }
+        &.offline-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,dark);
+            }
+        }
+    }
 }

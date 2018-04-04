@@ -10,18 +10,40 @@
 <ion-content padding>
   
   <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
+    <ion-row>
+      <ion-col col-md-9 col-12>
+        <ion-row justify-content-center>
+          <ion-col class="row-header">
             System Summary
-          </ion-card-header>
-          <ion-card-content>
-            Devices Online: 7
-          </ion-card-content>
-        </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-col col-auto>
+            <etn-simple-indicator class="online-indicator" value="3" unit="device" pluralUnits="devices" label="Online"></etn-simple-indicator>
+          </ion-col>
+          <ion-col col-auto>
+            <etn-simple-indicator class="offline-indicator" value="0" unit="device" pluralUnits="devices" label="Offline"></etn-simple-indicator>
+          </ion-col>
+          <ion-col col-auto>
+            <etn-simple-indicator class="fault-indicator" value="2" unit="breaker" pluralUnits="breakers" label="Faults"></etn-simple-indicator>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-md-3 col-12>
+        <ion-row justify-content-center>
+          <ion-col class="row-header">
+            Recent Events
+          </ion-col>
+        </ion-row>
+        <ion-row justify-content-center>
+          <ion-col>
+            <etn-event-timeline></etn-event-timeline>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
+    
+    
   </ion-grid>
   
 </ion-content>

@@ -41,8 +41,7 @@ export class MyApp {
       { title: 'Devices', icon: 'apps', component: DevicesPage },
       { title: 'Events', icon: 'pulse', component: EventsPage },
       { title: 'Energy', icon: 'stats', component: EnergyPage },
-      { title: 'Sites', icon: 'pin', component: SitesPage },
-      { title: 'List', icon: 'list', component: ListPage }
+      { title: 'Sites', icon: 'pin', component: SitesPage }
     ];
 
     const authObserver = afAuth.authState.subscribe( user => {

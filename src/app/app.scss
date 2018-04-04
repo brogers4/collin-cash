@@ -77,6 +77,18 @@
     }
 }
 
+@include respond-to(small) {
+    .split-pane-main {
+        .ion-page {
+            .content {
+                .scroll-content {
+                    padding: 8px 0 8px 0;
+                }
+            }
+        }
+    }
+}
+
 @include respond-to(medium) {
     .split-pane-visible {
         .split-pane-side.main-menu {
