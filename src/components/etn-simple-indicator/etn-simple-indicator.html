@@ -1,0 +1,17 @@
+<!-- Generated template for the EtnSimpleIndicatorComponent component -->
+<div class="etn-simple-indicator-container" [ngClass]="{'etn-simple-indicator-alarm': alarm}">
+  <div class="etn-simple-indicator-label">
+    {{label}}
+  </div>
+  <div class="etn-simple-indicator-value">
+    {{value}}
+  </div>
+  <div class="etn-simple-indicator-unit" *ngIf="_useSingleUnit(); else pluralUnit">
+    {{unit}}
+  </div>
+  <ng-template #pluralUnit>
+    <div class="etn-simple-indicator-unit">
+      {{pluralUnits}}
+    </div>
+  </ng-template>
+</div>
