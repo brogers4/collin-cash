@@ -17,15 +17,26 @@
             System Summary
           </ion-col>
         </ion-row>
-        <ion-row justify-content-center>
-          <ion-col col-auto>
+        <ion-row>
+          <ion-col col-md col-12 class="col-centered-content">
+            <!-- <div class="col-header">
+              <div class="rotate-text">
+                <span class="header-text">TOTAL DEVICES: 3</span>
+              </div>
+            </div> -->
             <etn-simple-indicator class="online-indicator" value="3" unit="device" pluralUnits="devices" label="Online"></etn-simple-indicator>
-          </ion-col>
-          <ion-col col-auto>
             <etn-simple-indicator class="offline-indicator" value="0" unit="device" pluralUnits="devices" label="Offline"></etn-simple-indicator>
+            <etn-simple-indicator class="fault-indicator" value="1" unit="device" pluralUnits="devices" label="Faults"></etn-simple-indicator>
           </ion-col>
-          <ion-col col-auto>
-            <etn-simple-indicator class="fault-indicator" value="2" unit="breaker" pluralUnits="breakers" label="Faults"></etn-simple-indicator>
+          <ion-col col-md col-12 class="col-centered-content">
+            <!-- <div class="col-header">
+              <div class="rotate-text">
+                <span class="header-text">TOTAL BREAKERS: 12</span>
+              </div>
+            </div> -->
+            <etn-simple-indicator class="closed-indicator" value="9" unit="breaker" pluralUnits="breakers" label="Closed"></etn-simple-indicator>
+            <etn-simple-indicator class="open-indicator" value="1" unit="breaker" pluralUnits="breakers" label="Open"></etn-simple-indicator>
+            <etn-simple-indicator class="tripped-indicator" value="2" unit="breaker" pluralUnits="breakers" label="Tripped"></etn-simple-indicator>
           </ion-col>
         </ion-row>
       </ion-col>

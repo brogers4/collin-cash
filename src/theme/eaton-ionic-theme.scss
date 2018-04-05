@@ -56,8 +56,9 @@ $colors: (
   primary-light: color($eaton-blue,300),
   primary-dark: color($eaton-blue,700),
   secondary:  color($eaton-green,A700),
+  success:    color($eaton-green,600),
   danger:     color($eaton-red,A700),
-  warning:    color($eaton-yellow,A700),
+  warning:    color($eaton-yellow,700),
   light:      #f4f4f4,
   medium:     #dedede,
   dark:       #222,
@@ -67,3 +68,4 @@ $colors: (
 );
 
 $primary-background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
+$background-primary: linear-gradient(color($colors,primary),color($colors,primary-dark));
