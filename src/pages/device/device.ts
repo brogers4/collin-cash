@@ -15,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DevicePage {
 
-  id: number;
+  id: number | string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.id = navParams.get('id');
