@@ -68,4 +68,7 @@ $colors: (
 );
 
 $primary-background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
-$background-primary: linear-gradient(color($colors,primary),color($colors,primary-dark));
+$bg-primary: linear-gradient(color($colors,primary),color($colors,primary-dark));
+$bg-gray: linear-gradient(color($colors,light-gray),color($colors,dark-gray));
+$bg-danger: linear-gradient(color($colors,danger),darken(color($colors,danger),20%));
+$bg-success: linear-gradient(color($colors,success),darken(color($colors,success),10%));

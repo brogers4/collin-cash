@@ -6,13 +6,46 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>devices</ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Devices</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-grid class="devices-grid">
+
+    <ion-row>
+      <ion-col col-12>
+        <ion-list>
+          <button ion-item *ngFor="let device of devices" [ngClass]="{'status-danger': isActiveFault(device)}" (click)="goToDevice(device.id)">
+            <ion-avatar item-start>
+              <div class="status-indicator">
+                <ion-icon name="alert"></ion-icon>
+              </div>
+            </ion-avatar>
+            <h2>{{device.name}}</h2>
+            <h3>
+              {{device.numActiveFaults}} Active 
+              <span [ngPlural]="device.numActiveFaults">
+                <ng-template ngPluralCase="=1">Fault</ng-template>
+                <ng-template ngPluralCase="other">Faults</ng-template>
+              </span>
+            </h3>
+            <p>
+              Last Fault: {{device.lastFault}} 
+              <span *ngIf="device.lastFaultTimestamp > 0">({{device.lastFaultTimestamp | date:'medium'}})</span>
+            </p>
+          </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 
 </ion-content>

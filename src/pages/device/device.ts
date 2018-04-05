@@ -15,11 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DevicePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  id: number;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DevicePage');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.id = navParams.get('id');
   }
 
 }

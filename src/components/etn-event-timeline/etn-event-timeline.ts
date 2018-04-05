@@ -28,19 +28,19 @@ export class EtnEventTimelineComponent {
     this.events = [
       {
         title: "Breaker Opened",
-        subTitle: "Loadcenter 2, Breaker 2",
+        subTitle: "Garage Loadcenter, Breaker 2",
         icon: "alert",
         type: "success",
         timestamp: 1522870722005
       },{
         title: "Overload Trip",
-        subTitle: "Loadcenter 1, Breaker 2",
+        subTitle: "Pool House Loadcenter, Breaker 2",
         icon: "flash",
         type: "danger",
         timestamp: 1522870571745
       },{
         title: "Arc Fault",
-        subTitle: "Loadcenter 1, Breaker 3",
+        subTitle: "Pool House Loadcenter, Breaker 3",
         icon: "flash",
         type: "danger",
         timestamp: 1522870287566

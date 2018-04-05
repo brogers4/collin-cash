@@ -24,6 +24,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DevicesPage } from '../pages/devices/devices';
+import { DevicePage } from '../pages/device/device';
 import { EventsPage } from '../pages/events/events';
 import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
@@ -42,6 +43,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     EventsPage,
     SitesPage,
     EnergyPage,
+    DevicePage,
     HighchartsChartComponent
   ],
   imports: [
@@ -65,7 +67,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DevicesPage,
     EventsPage,
     SitesPage,
-    EnergyPage
+    EnergyPage,
+    DevicePage
   ],
   providers: [
     StatusBar,

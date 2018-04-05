@@ -1,3 +1,51 @@
 page-devices {
+    button.item {
+        &.status-danger {
+            .status-indicator {
+                display: flex;
+                background: $bg-danger;
+            }
+            h3 {
+                color: color($colors,danger);
+            }
+        }
+    }
+    .status-indicator {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: color($colors,light-gray);
+        background: $bg-gray;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        font-size: 20px;
+        display: none;
+    }
+    ion-grid {
+        &.devices-grid {
+            border: 1px solid color($colors,medium);
+            border-radius: 2px;
+            max-width: 800px;
+            ion-list {
+                margin: 0;
+            }
+        }
+    }
+}
 
+@include respond-to(small){
+    page-devices {
+        ion-grid {
+            &.devices-grid {
+                border: inherit;
+                padding: 0;
+                ion-col {
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
