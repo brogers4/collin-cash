@@ -30,7 +30,7 @@ export class EtnEventTimelineComponent {
         title: "Breaker Opened",
         subTitle: "Loadcenter 2, Breaker 2",
         icon: "alert",
-        type: "warning",
+        type: "success",
         timestamp: 1522870722005
       },{
         title: "Overload Trip",

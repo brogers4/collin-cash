@@ -2,8 +2,10 @@ $etn-event-timeline-line-color: color($colors,medium);
 $etn-event-timeline-icon-color: color($colors,med-gray);
 $etn-event-timeline-icon-warning-color: color($colors,warning);
 $etn-event-timeline-icon-danger-color: color($colors,danger);
-$etn-event-timeline-warning-color: darken(color($colors,warning),20%);
+$etn-event-timeline-icon-success-color: color($colors,success);
+$etn-event-timeline-warning-color: darken(color($colors,warning),10%);
 $etn-event-timeline-danger-color: darken(color($colors,danger),10%);
+$etn-event-timeline-success-color: color($colors,success);
 $etn-event-timeline-bubble-color: color($colors,light);
 $etn-event-timeline-subtitle-color: color($colors,dark);
 $etn-event-timeline-timestamp-color: color($colors,dark-gray);
@@ -61,10 +63,13 @@ etn-event-timeline {
                 font-size: 1.3em;
                 padding: 1px 0 0 1px;
                 &[eventType="warning"] {
-                    background-color: $etn-event-timeline-icon-warning-color
+                    background-color: $etn-event-timeline-icon-warning-color;
                 }
                 &[eventType="danger"] {
-                    background-color: $etn-event-timeline-icon-danger-color
+                    background-color: $etn-event-timeline-icon-danger-color;
+                }
+                &[eventType="success"] {
+                    background-color: $etn-event-timeline-icon-success-color;
                 }
             }
             .etn-event-timeline-bubble-container {
@@ -98,6 +103,9 @@ etn-event-timeline {
                     }
                     &[eventType="danger"] {
                         color: $etn-event-timeline-danger-color;
+                    }
+                    &[eventType="success"] {
+                        color: $etn-event-timeline-success-color;
                     }
                 }
                 .etn-event-timeline-subtitle {
