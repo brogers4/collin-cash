@@ -17,6 +17,7 @@ import {
 import { environment } from '../environments/environment.dev';
 
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -31,6 +32,7 @@ import { EnergyPage } from '../pages/energy/energy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
 import { DevicesProvider } from '../providers/devices/devices';
 
 @NgModule({
@@ -54,6 +56,7 @@ import { DevicesProvider } from '../providers/devices/devices';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ComponentsModule,
+    PipesModule,
     MatIconModule,
     MatButtonModule,
     MatStepperModule
