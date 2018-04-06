@@ -6,13 +6,116 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Device {{id}}</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>{{ (device.name !== null) ? device.name : "Device" }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md col-12>
+        
+        <ion-grid>
+          <ion-row>
+            <ion-col class="grid-header">
+              Device Details
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-card>
+                
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-md-3 col-auto class="col-table-header">
+                      Device Name
+                    </ion-col>
+                    <ion-col>
+                      {{ device.name | orUnknown }}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-md-3 col-auto class="col-table-header">
+                      Number of Breakers
+                    </ion-col>
+                    <ion-col>
+                      {{ device.breakers.length | orUnknown }}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-md-3 col-auto class="col-table-header">
+                      Number of Active Faults
+                    </ion-col>
+                    <ion-col>
+                      {{ device.numActiveFaults | orUnknown }}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-md-3 col-auto class="col-table-header">
+                      Last Fault
+                    </ion-col>
+                    <ion-col>
+                      {{ device.lastFault | orUnknown }}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-md-3 col-auto class="col-table-header">
+                      Last Fault Time
+                    </ion-col>
+                    <ion-col>
+                      {{ device.lastFaultTimestamp | date:'medium' | orUnknown }}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      {{ device | json }}
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="grid-header">
+              Breaker Details
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col *ngFor="let breaker of device.breakers">
+              <ion-card>
+                <ion-card-header>{{breaker.name}}</ion-card-header>
+                <ion-card-content>
+                  {{breaker.status}}
+                  <div><span class="wd-icon-breaker-closed"></span></div>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+      <ion-col col-md-auto col-12>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col class="grid-header">
+              Recent Events
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <etn-event-timeline></etn-event-timeline>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

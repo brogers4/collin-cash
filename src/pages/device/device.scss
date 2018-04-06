@@ -1,3 +1,21 @@
 page-device {
-
+    ion-content {
+        ion-grid {
+            max-width: 1000px;
+            ion-row {
+                ion-col {
+                    &.grid-header {
+                        padding: 10px;
+                        text-align: center;
+                        font-size: 1.2em;
+                        background-color: color($colors,light);
+                        color: color($colors,dark);
+                    }
+                    &.col-table-header {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
 }

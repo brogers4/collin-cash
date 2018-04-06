@@ -144,4 +144,12 @@ export class DevicesProvider {
 
   }
 
+  getDeviceById(id: number | string){
+    for(var i=0; i<this.loadcenters.length; i++){
+      if(this.loadcenters[i].id === id){
+        return this.loadcenters[i];
+      }
+    }
+  }
+
 }
