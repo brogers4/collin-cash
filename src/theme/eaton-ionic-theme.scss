@@ -67,6 +67,14 @@ $colors: (
   dark-gray:  color($eaton-gray,600)
 );
 
+$breakers: (
+  default: color($eaton-blue,500),
+  closed: color($eaton-blue,500),
+  fault: color($eaton-red,A700),
+  open: color($eaton-green,600),
+  unknown: color($eaton-gray,200)
+);
+
 $primary-background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
 $bg-primary: linear-gradient(color($colors,primary),color($colors,primary-dark));
 $bg-gray: linear-gradient(color($colors,light-gray),color($colors,dark-gray));
