@@ -77,6 +77,27 @@
     }
 }
 
+ion-content {
+    ion-grid {
+        max-width: 1000px;
+        ion-row {
+            ion-col {
+                &.grid-header {
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 1.2em;
+                    background-color: color($colors,light);
+                    color: color($colors,dark);
+                }
+                &.col-table-header {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+    
+
 @include respond-to(small) {
     .split-pane-main {
         .ion-page {
@@ -119,9 +140,21 @@ ion-content:not(.content-ios){
     }
 }
 
+$deep-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+$med-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+$lite-shadow: 0 4px 15px 3px rgba(0, 0, 0, 0.12), 0 6px 8px -3px rgba(0, 0, 0, 0.4);
+$hard-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
 ion-card {
+    &.hover-elevation {
+        transition: all 0.3s;
+        &:hover {
+            cursor: pointer;
+            box-shadow: $lite-shadow;
+            transform: translateY(-4px);
+        }
+    }
     &.deep-shadow {
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+        box-shadow: $deep-shadow;
     }
     &.no-shadow {
         box-shadow: none;

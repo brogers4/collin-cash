@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -8,9 +7,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HighchartsChartComponent } from 'highcharts-angular';
 import { 
   MatIconModule,
-  MatMenuModule,
 	MatButtonModule,
-  MatListModule,
   MatStepperModule
 } from '@angular/material';
 
@@ -29,6 +26,7 @@ import { DevicePage } from '../pages/device/device';
 import { EventsPage } from '../pages/events/events';
 import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
+import { BreakerPage } from '../pages/breaker/breaker';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,6 +45,7 @@ import { DevicesProvider } from '../providers/devices/devices';
     SitesPage,
     EnergyPage,
     DevicePage,
+    BreakerPage,
     HighchartsChartComponent
   ],
   imports: [
@@ -72,7 +71,8 @@ import { DevicesProvider } from '../providers/devices/devices';
     EventsPage,
     SitesPage,
     EnergyPage,
-    DevicePage
+    DevicePage,
+    BreakerPage
   ],
   providers: [
     StatusBar,

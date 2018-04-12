@@ -25,9 +25,10 @@ page-devices {
         display: none;
     }
     ion-grid {
-        &.devices-grid {
+        .devices-list {
             border: 1px solid color($colors,medium);
             border-radius: 2px;
+            margin-top: 5px;
             max-width: 1000px;
             ion-list {
                 margin: 0;
@@ -39,9 +40,10 @@ page-devices {
 @include respond-to(small){
     page-devices {
         ion-grid {
-            &.devices-grid {
+            .devices-list {
                 border: inherit;
                 padding: 0;
+                margin: 5px -10px 32px -10px;
                 ion-col {
                     padding: 0;
                 }

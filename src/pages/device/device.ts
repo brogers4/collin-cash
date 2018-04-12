@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DevicesProvider } from '../../providers/devices/devices';
 import { Loadcenter } from '../../interfaces/devices';
+import { BreakerPage } from '../breaker/breaker';
 
 /**
  * Generated class for the DevicePage page.
@@ -29,6 +30,13 @@ export class DevicePage {
     this.id = navParams.get('id');
     this.devices = this.devicesProvider.loadcenters;
     this.device = this.devicesProvider.getDeviceById(this.id);
+  }
+
+  goToBreaker(id: number | string){
+    this.navCtrl.push(BreakerPage,{
+      "breakerId": id,
+      "loadcenterId": this.id
+    })
   }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Loadcenter } from '../../interfaces/devices';
+import { ID, Loadcenter, Breaker, Fault } from '../../interfaces/devices';
 
 /*
   Generated class for the DevicesProvider provider.
@@ -11,7 +11,14 @@ import { Loadcenter } from '../../interfaces/devices';
 @Injectable()
 export class DevicesProvider {
 
-  loadcenters: Array<Loadcenter>
+  loadcenters: Array<Loadcenter>;
+
+  _statusBreakerIcons: any = {
+    "closed": "breaker-closed",
+    "open": "breaker-open",
+    "fault": "breaker-fault",
+    "tripped": "breaker-open-handle"
+  }
 
   constructor() {
     
@@ -67,10 +74,10 @@ export class DevicesProvider {
           {
             id: 1,
             name: "Breaker 1",
-            status: "Closed",
-            closed: true,
-            activeFault: false,
-            currentFault: "None",
+            status: "Fault",
+            closed: false,
+            activeFault: true,
+            currentFault: "Arc Fault",
             faults: []
           }, {
             id: 2,
@@ -83,8 +90,8 @@ export class DevicesProvider {
           }, {
             id: 3,
             name: "Breaker 3",
-            status: "Closed",
-            closed: true,
+            status: "Open",
+            closed: false,
             activeFault: false,
             currentFault: "None",
             faults: []
@@ -144,10 +151,25 @@ export class DevicesProvider {
 
   }
 
-  getDeviceById(id: number | string){
+  getDeviceById(id: ID){
     for(var i=0; i<this.loadcenters.length; i++){
       if(this.loadcenters[i].id === id){
         return this.loadcenters[i];
+      }
+    }
+  }
+
+  getBreakerIconByStatus(status: string){
+    if(status.toLowerCase() in this._statusBreakerIcons){
+      return this._statusBreakerIcons[status.toLowerCase()];
+    }
+  }
+
+  getBreakerById(loadcenterId: ID, breakerId: ID){
+    let loadcenter: Loadcenter = this.getDeviceById(loadcenterId);
+    for(var i=0; i<loadcenter.breakers.length; i++){
+      if(loadcenter.breakers[i].id === breakerId){
+        return loadcenter.breakers[i];
       }
     }
   }

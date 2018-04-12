@@ -21,8 +21,13 @@
   <ion-grid class="devices-grid">
 
     <ion-row>
+      <ion-col class="grid-header">
+        My Loadcenters
+      </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-12>
-        <ion-list>
+        <ion-list class="devices-list">
           <button ion-item *ngFor="let device of devices" [ngClass]="{'status-danger': isActiveFault(device)}" (click)="goToDevice(device.id)">
             <ion-avatar item-start>
               <div class="status-indicator">

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>{{ (device.name !== null) ? device.name : "Device" }}</ion-title>
+    <ion-title>{{ device.name | orDefault : "Device" }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -70,11 +70,11 @@
                       {{ device.lastFaultTimestamp | date:'medium' | orUnknown }}
                     </ion-col>
                   </ion-row>
-                  <ion-row>
+                  <!-- <ion-row>
                     <ion-col>
                       {{ device | json }}
                     </ion-col>
-                  </ion-row>
+                  </ion-row> -->
                 </ion-grid>
 
               </ion-card>
@@ -87,11 +87,11 @@
           </ion-row>
           <ion-row>
             <ion-col *ngFor="let breaker of device.breakers">
-              <ion-card>
-                <ion-card-header>{{breaker.name}}</ion-card-header>
-                <ion-card-content>
-                  {{breaker.status}}
-                  <div><span class="wd-icon-breaker-closed"></span></div>
+              <ion-card class="breaker-card hover-elevation" (click)="goToBreaker(breaker.id)">
+                <ion-card-header class="breaker-header">{{breaker.name}}</ion-card-header>
+                <ion-card-content class="breaker-content">
+                  <wd-breaker-icon class="breaker-status-icon" [status]="breaker.status"></wd-breaker-icon>
+                  <span class="breaker-status">{{breaker.status}}</span>
                 </ion-card-content>
               </ion-card>
             </ion-col>

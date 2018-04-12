@@ -1,12 +1,14 @@
+export type ID = number | string;
+
 export interface Fault {
-    id: number | string;
+    id: ID;
     active: boolean;
     type: string;
     timestamp: number;
 }
 
 export interface Breaker {
-    id: number | string;
+    id: ID;
     name: string;
     status: string;
     closed: boolean;
@@ -16,7 +18,7 @@ export interface Breaker {
 }
 
 export interface Loadcenter {
-    id: number | string;
+    id: ID;
     name: string;
     numActiveFaults?: number;
     lastFault?: string;
