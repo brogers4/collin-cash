@@ -89,6 +89,11 @@ ion-content {
                     background-color: color($colors,light);
                     color: color($colors,dark);
                 }
+                &.grid-sub-header {
+                    padding: 10px 20px 0 20px;
+                    color: color($colors,dark-gray);
+                    font-size: 0.9em;
+                }
                 &.col-table-header {
                     font-weight: 600;
                 }

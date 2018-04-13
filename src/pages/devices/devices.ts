@@ -35,7 +35,6 @@ export class DevicesPage {
   }
 
   goToDevice(id: number | string){
-    console.log("Going to device:",id);
     this.navCtrl.push(DevicePage,{
       "id": id
     })

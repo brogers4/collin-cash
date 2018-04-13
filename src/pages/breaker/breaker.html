@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>{{ breaker.name | orDefault: "Breaker" }}</ion-title>
+    <ion-title>{{ loadType | async | orDefault: "Breaker" }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -26,14 +26,19 @@
             </ion-col>
           </ion-row>
           <ion-row>
+            <ion-col class="grid-sub-header">
+              {{ loadcenterName | async }} > Circuit {{ circuitNumber | async }}
+            </ion-col>
+          </ion-row>
+          <ion-row>
             <ion-col>
               <ion-card>
                 <ion-item>
                   <ion-avatar item-start>
-                    <wd-breaker-icon [status]="breaker.status"></wd-breaker-icon>
+                    <wd-breaker-icon [state]="state | async"></wd-breaker-icon>
                   </ion-avatar>
-                  <h2>{{breaker.name}}</h2>
-                  <p>{{breaker.status}}</p>
+                  <h2>{{ loadType | async }}</h2>
+                  <p>{{ status | async }}</p>
                 </ion-item>
                 <ion-card-content>
                   <ion-row>

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>{{ device.name | orDefault : "Device" }}</ion-title>
+    <ion-title>{{ (loadcenter.name | async) | orDefault : "Device" }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -35,7 +35,7 @@
                       Device Name
                     </ion-col>
                     <ion-col>
-                      {{ device.name | orUnknown }}
+                      {{ loadcenter.name | async | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -43,7 +43,7 @@
                       Number of Breakers
                     </ion-col>
                     <ion-col>
-                      {{ device.breakers.length | orUnknown }}
+                      {{ (loadcenter.object | async)?.staticData?.numBreakers?.val | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -51,7 +51,7 @@
                       Number of Active Faults
                     </ion-col>
                     <ion-col>
-                      {{ device.numActiveFaults | orUnknown }}
+                      {{ (loadcenter.object | async)?.dynamicData?.numActiveFaults?.val | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -59,7 +59,7 @@
                       Last Fault
                     </ion-col>
                     <ion-col>
-                      {{ device.lastFault | orUnknown }}
+                      {{ (loadcenter.object | async)?.dynamicData?.lastFault?.val | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -67,14 +67,9 @@
                       Last Fault Time
                     </ion-col>
                     <ion-col>
-                      {{ device.lastFaultTimestamp | date:'medium' | orUnknown }}
+                      {{ (loadcenter.object | async)?.dynamicData?.lastFaultTime?.val | date:'medium' | orUnknown }}
                     </ion-col>
                   </ion-row>
-                  <!-- <ion-row>
-                    <ion-col>
-                      {{ device | json }}
-                    </ion-col>
-                  </ion-row> -->
                 </ion-grid>
 
               </ion-card>
@@ -86,12 +81,12 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col *ngFor="let breaker of device.breakers">
+            <ion-col col-md-3 col-6 *ngFor="let breaker of breakers">
               <ion-card class="breaker-card hover-elevation" (click)="goToBreaker(breaker.id)">
-                <ion-card-header class="breaker-header">{{breaker.name}}</ion-card-header>
+                <ion-card-header class="breaker-header">{{(breaker.object | async)?.staticData?.loadType?.val}}</ion-card-header>
                 <ion-card-content class="breaker-content">
-                  <wd-breaker-icon class="breaker-status-icon" [status]="breaker.status"></wd-breaker-icon>
-                  <span class="breaker-status">{{breaker.status}}</span>
+                  <wd-breaker-icon class="breaker-status-icon" [state]="(breaker.object | async)?.dynamicData?.state?.val"></wd-breaker-icon>
+                  <span class="breaker-status">{{(breaker.object | async)?.dynamicData?.status?.val}}</span>
                 </ion-card-content>
               </ion-card>
             </ion-col>

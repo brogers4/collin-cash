@@ -12,17 +12,17 @@ import { Component, Input } from '@angular/core';
 })
 export class WdBreakerIconComponent {
 
-  _status: string = '';
+  _state: string = '';
   icon: string;
 
-  @Input() set status(status: string) {
-    console.log("wd-breaker-icon set status:",status);
-    this._status = status.toLowerCase();
-    this.icon = this._getBreakerIconByStatus(this._status);
+  @Input() set state(state: string) {
+    if (typeof state === 'undefined' || state === null) return;
+    this._state = state.toLowerCase();
+    this.icon = this._getBreakerIconBystate(this._state);
   }
-  get status(): string { return this._status };
+  get state(): string { return this._state };
 
-  _statusBreakerIcons: any = {
+  _stateBreakerIcons: any = {
     "closed": "breaker-closed",
     "open": "breaker-open",
     "fault": "breaker-fault",
@@ -33,9 +33,9 @@ export class WdBreakerIconComponent {
     
   }
 
-  _getBreakerIconByStatus(status: string) {
-    if (status in this._statusBreakerIcons) {
-      return this._statusBreakerIcons[status];
+  _getBreakerIconBystate(state: string) {
+    if (state in this._stateBreakerIcons) {
+      return this._stateBreakerIcons[state];
     } else return "etn-help";
   }
 

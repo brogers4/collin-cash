@@ -58,7 +58,8 @@ export class DevicesProvider {
                   this.loadcenters.push({
                     id: deviceId,
                     name: db.object('v1/devices/'+deviceId+'/staticData/name/val').valueChanges(),
-                    object: db.object('v1/loadcenter/'+deviceId).valueChanges()
+                    object: db.object('v1/loadcenter/'+deviceId).valueChanges(),
+                    ref: db.object('v1/loadcenter/'+deviceId)
                   })
                   loadcenterListChange = true;
 
@@ -73,7 +74,8 @@ export class DevicesProvider {
                         this.breakerList.push(breakerId);
                         this.breakers.push({
                           id: breakerId,
-                          object: db.object('v1/breaker/'+breakerId).valueChanges()
+                          object: db.object('v1/breaker/'+breakerId).valueChanges(),
+                          ref: db.object('v1/breaker/' + breakerId)
                         });
                         breakerListChange = true;
 
@@ -88,7 +90,8 @@ export class DevicesProvider {
                               this.faultList.push(faultId);
                               this.faults.push({
                                 id: faultId,
-                                object: db.object('v1/faults/' + faultId).valueChanges()
+                                object: db.object('v1/faults/' + faultId).valueChanges(),
+                                ref: db.object('v1/faults/' + faultId)
                               });
                               faultListChange = true;
                             }
@@ -146,9 +149,11 @@ export class DevicesProvider {
 
   }
 
-  getDeviceById(id: ID){
-    for(var i=0; i<this.loadcenters.length; i++){
-      if(this.loadcenters[i].id === id){
+  getLoadcenterById(id: ID){
+    console.log("DevicesProvider getLoadcenterById loadcenters:",this.loadcenters);
+    for (var i = 0; i < this.loadcenters.length; i++) {
+      if (this.loadcenters[i].id === id) {
+        console.log("DevicesProvider getLoadcenterById loadcenter:",this.loadcenters[i])
         return this.loadcenters[i];
       }
     }
@@ -160,14 +165,16 @@ export class DevicesProvider {
     }
   }
 
-  getBreakerById(loadcenterId: ID, breakerId: ID){
-    let loadcenter: Loadcenter = this.getDeviceById(loadcenterId);
-    for(var i=0; i<loadcenter.breakers.length; i++){
-      if(loadcenter.breakers[i].id === breakerId){
-        return loadcenter.breakers[i];
-      }
-    }
-  }
+  // NOTE: This function no longer works
+  //
+  // getBreakerById(loadcenterId: ID, breakerId: ID){
+  //   let loadcenter: Loadcenter = this.getLoadcenterById(loadcenterId);
+  //   for(var i=0; i<loadcenter.breakers.length; i++){
+  //     if(loadcenter.breakers[i].id === breakerId){
+  //       return loadcenter.breakers[i];
+  //     }
+  //   }
+  // }
 
   ///////////////////////////////
   //region  PRIVATE FUNCTIONS  //
