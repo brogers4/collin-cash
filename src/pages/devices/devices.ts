@@ -20,14 +20,14 @@ import { DevicesProvider } from '../../providers/devices/devices';
 })
 export class DevicesPage {
 
-  devices: Array<Loadcenter>;
+  loadcenters: Array<Loadcenter>;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public devicesProvider: DevicesProvider
   ) {
-    this.devices = this.devicesProvider.loadcenters;
+    this.loadcenters = this.devicesProvider.loadcenters;
   }
 
   isActiveFault(device: Loadcenter){
@@ -35,6 +35,7 @@ export class DevicesPage {
   }
 
   goToDevice(id: number | string){
+    console.log("Going to device:",id);
     this.navCtrl.push(DevicePage,{
       "id": id
     })
