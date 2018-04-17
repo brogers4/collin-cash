@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DevicePage } from '../device/device';
 
-import { Loadcenter } from '../../interfaces/devices';
+import { Loadcenter, ID } from '../../interfaces/devices';
 
 import { DevicesProvider } from '../../providers/devices/devices';
 
@@ -20,14 +20,19 @@ import { DevicesProvider } from '../../providers/devices/devices';
 })
 export class DevicesPage {
 
-  loadcenters: Array<Loadcenter>;
+  loadcenters: Array<Loadcenter> = [];
+  loadcenterList: Array<ID> = [];
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public devicesProvider: DevicesProvider
   ) {
-    this.loadcenters = this.devicesProvider.loadcenters;
+    
+    this.devicesProvider.loadcenters.subscribe( loadcenters => {
+      this.loadcenters = loadcenters;
+    })
+    
   }
 
   isActiveFault(device: Loadcenter){

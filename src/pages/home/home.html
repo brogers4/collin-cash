@@ -24,8 +24,8 @@
                 <span class="header-text">TOTAL DEVICES: 3</span>
               </div>
             </div> -->
-            <etn-simple-indicator class="online-indicator" value="3" unit="device" pluralUnits="devices" label="Online"></etn-simple-indicator>
-            <etn-simple-indicator class="offline-indicator" value="0" unit="device" pluralUnits="devices" label="Offline"></etn-simple-indicator>
+            <etn-simple-indicator class="online-indicator" [value]="numOnline" unit="device" pluralUnits="devices" label="Online"></etn-simple-indicator>
+            <etn-simple-indicator class="offline-indicator" [value]="numOffline" unit="device" pluralUnits="devices" label="Offline"></etn-simple-indicator>
             <etn-simple-indicator class="fault-indicator" value="1" unit="device" pluralUnits="devices" label="Faults"></etn-simple-indicator>
           </ion-col>
           <ion-col col-md col-12 class="col-centered-content">
@@ -48,7 +48,7 @@
         </ion-row>
         <ion-row justify-content-center>
           <ion-col>
-            <etn-event-timeline></etn-event-timeline>
+            <etn-event-timeline [events]="timelineEvents"></etn-event-timeline>
           </ion-col>
         </ion-row>
       </ion-col>

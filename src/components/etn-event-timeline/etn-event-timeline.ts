@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import { 
+  Component, 
+  Input,
+  OnChanges,
+  SimpleChanges,
+  SimpleChange
+} from '@angular/core';
 
 /**
  * Generated class for the EtnEventTimelineComponent component.
@@ -8,6 +14,7 @@ import { Component } from '@angular/core';
  */
 
 interface Event {
+  id: number | string;
   title: string;
   subTitle?: string;
   icon?: string;
@@ -22,30 +29,27 @@ interface Event {
 })
 export class EtnEventTimelineComponent {
 
-  events: Array<Event>;
+  @Input() events: Array<any>;
+  @Input() sortBy: (string | Array<string>) = "timestamp";
+  private _events: Array<any>;
 
   constructor() {
-    this.events = [
-      {
-        title: "Breaker Opened",
-        subTitle: "Garage Loadcenter, Breaker 2",
-        icon: "alert",
-        type: "success",
-        timestamp: 1522870722005
-      },{
-        title: "Overload Trip",
-        subTitle: "Pool House Loadcenter, Breaker 2",
-        icon: "flash",
-        type: "danger",
-        timestamp: 1522870571745
-      },{
-        title: "Arc Fault",
-        subTitle: "Pool House Loadcenter, Breaker 3",
-        icon: "flash",
-        type: "danger",
-        timestamp: 1522870287566
-      }
-    ]
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    const events: SimpleChange = changes.events;
+    if(typeof events.currentValue === 'undefined' || events.currentValue === null) return;
+    this._events = events.currentValue.slice(0);
+    if(this.sortBy === 'timestamp'){
+      this._events.sort((a, b) => {
+        if (a.timestamp && b.timestamp) {
+          return (b.timestamp - a.timestamp)
+        } else {
+          return 0;
+        }
+      });
+    }
   }
 
 }

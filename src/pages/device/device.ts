@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DevicesProvider } from '../../providers/devices/devices';
-import { Loadcenter, Breaker, Fault, ID } from '../../interfaces/devices';
+import { Loadcenter, Breaker, Event, ID } from '../../interfaces/devices';
 import { BreakerPage } from '../breaker/breaker';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the DevicePage page.
@@ -23,12 +24,13 @@ export class DevicePage {
   // _loadcenter: any;
   loadcenter: Loadcenter;
   breakers: Array<Breaker>;
-  faults: Array<Fault>;
+  events: Array<any> = [];
   name: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public db: AngularFireDatabase,
     public devicesProvider: DevicesProvider
   ) {
     this.id = navParams.get('id');
@@ -40,32 +42,47 @@ export class DevicePage {
     // })
     this.loadcenter = {
       id: this.id,
-      name: devicesProvider.db.object('v1/devices/'+this.id+'/staticData/name/val').valueChanges(),
-      object: devicesProvider.db.object('v1/loadcenter/'+this.id).valueChanges()
+      name: null,
+      object: null
     }
+    this.db.object('v1/devices/' + this.id + '/staticData/name/val').valueChanges().subscribe( val => { this.loadcenter.name = val });
+    this.db.object('v1/loadcenter/' + this.id).valueChanges().subscribe( val => { this.loadcenter.object = val });
 
-    devicesProvider.db.object('v1/loadcenter/'+this.id+'/breakers').valueChanges().subscribe( breakers => {
+    this.db.object('v1/loadcenter/'+this.id+'/breakers').valueChanges().subscribe( breakers => {
       if (typeof breakers === 'undefined' || breakers === null) return;
       var breakerList = devicesProvider._truthyObjectToArray(breakers);
       this.breakers = [];
-      this.faults = [];
+      this.events = [];
       breakerList.forEach( (breakerId, index) => {
-        this.breakers.push({
-          id: breakerId,
-          object: devicesProvider.db.object('v1/breaker/'+breakerId).valueChanges()
-        })
-        devicesProvider.db.object('v1/breaker/'+breakerId+'/faults').valueChanges().subscribe( faults => {
-          if (typeof faults === 'undefined' || faults === null) return;
-          var faultList = devicesProvider._truthyObjectToArray(faults);
-          faultList.forEach( (faultId, index) => {
-            this.faults.push({
-              id: faultId,
-              object: devicesProvider.db.object('v1/fault/'+faultId).valueChanges()
-            })
+        this.db.object('v1/breaker/' + breakerId).valueChanges().subscribe( (breaker: any) => {
+          this.breakers.push({
+            id: breakerId,
+            object: breaker
           });
-        })
-      })
-    })
+
+          this.db.object('v1/breaker/' + breakerId + '/events').valueChanges().subscribe(events => {
+            if (typeof events === 'undefined' || events === null) return;
+            var eventList = devicesProvider._truthyObjectToArray(events);
+            eventList.forEach((eventId, index) => {
+              this.db.object('v1/event/' + eventId).valueChanges().subscribe((event: any) => {
+                this.events.push({
+                  id: eventId,
+                  title: (event.staticData && event.staticData.eventDescription && event.staticData.eventDescription.val) ? event.staticData.eventDescription.val : 'Unknown',
+                  subTitle: this.loadcenter.name + ", " + breaker.staticData.loadType.val,
+                  icon: (event.staticData && event.staticData.eventType && event.staticData.eventType.val) ? this._getTimelineIcon(event.staticData.eventType.val) : 'help',
+                  type: (event.staticData && event.staticData.eventType && event.staticData.eventType.val) ? this._getTimelineType(event.staticData.eventType.val) : 'unknown',
+                  timestamp: (event.staticData && event.staticData.time && event.staticData.time.val) ? event.staticData.time.val : null
+                });
+              });
+            });
+          });
+        });
+        
+        
+
+      });
+    });
+
   }
 
   goToBreaker(id: number | string){
@@ -73,6 +90,33 @@ export class DevicePage {
       "breakerId": id,
       "loadcenterId": this.id
     })
+  }
+
+  _getTimelineIcon(eventType: string) {
+    switch (eventType) {
+      case "fault":
+        return "flash";
+      case "open":
+      case "closed":
+      case "close":
+        return "alert";
+      default:
+        return "help";
+    }
+  }
+
+  _getTimelineType(eventType: string) {
+    switch (eventType) {
+      case "fault":
+        return "danger";
+      case "open":
+        return "success";
+      case "closed":
+      case "close":
+        return "warning";
+      default:
+        return "unknown";
+    }
   }
 
 }

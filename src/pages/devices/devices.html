@@ -28,23 +28,23 @@
     <ion-row>
       <ion-col col-12>
         <ion-list class="devices-list">
-          <button ion-item *ngFor="let loadcenter of devicesProvider.loadcenters" [ngClass]="{'status-danger': (loadcenter.object | async)?.dynamicData?.activeFault?.val}" (click)="goToDevice(loadcenter.id)">
+          <button ion-item *ngFor="let loadcenter of loadcenters" [ngClass]="{'status-danger': loadcenter.object?.dynamicData?.activeFault?.val}" (click)="goToDevice(loadcenter.id)">
             <ion-avatar item-start>
               <div class="status-indicator">
                 <ion-icon name="alert"></ion-icon>
               </div>
             </ion-avatar>
-            <h2>{{loadcenter.name | async | orUnknown}}</h2>
+            <h2>{{loadcenter.name | orUnknown}}</h2>
             <h3>
-              {{(loadcenter.object | async)?.dynamicData?.numActiveFaults?.val | orUnknown}} Active
-              <span *ngIf="(loadcenter.object | async)?.dynamicData?.numActiveFaults?.val === 1; else defaultFaults">
+              {{loadcenter.object?.dynamicData?.numActiveFaults?.val | orUnknown}} Active
+              <span *ngIf="loadcenter.object?.dynamicData?.numActiveFaults?.val === 1; else defaultFaults">
                 Fault
               </span>
               <ng-template #defaultFaults>Faults</ng-template>
             </h3>
             <p>
-              Last Fault: {{(loadcenter.object | async)?.dynamicData?.lastFault?.val | orDefault : "None"}} 
-              <span *ngIf="(loadcenter.object | async)?.dynamicData?.lastFaultTime?.val as timestamp">({{timestamp | date : 'medium'}})</span>
+              Last Fault: {{loadcenter.object?.dynamicData?.lastFault?.val | orDefault : "None"}} 
+              <span *ngIf="loadcenter.object?.dynamicData?.lastFaultTime?.val as timestamp">({{timestamp | date : 'medium'}})</span>
             </p>
           </button>
         </ion-list>

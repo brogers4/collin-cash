@@ -9,6 +9,12 @@ export interface Fault {
     timestamp?: number;
 }
 
+export interface Event {
+    id: ID;
+    object?: any;
+    ref?: any;
+}
+
 export interface Breaker {
     id: ID;
     object?: any;
@@ -19,6 +25,7 @@ export interface Breaker {
     activeFault?: boolean;
     currentFault?: string;
     faults?: Array<Fault>;
+    events?: Array<Event>;
 }
 
 export interface Loadcenter {
@@ -30,4 +37,10 @@ export interface Loadcenter {
     lastFault?: string;
     lastFaultTimestamp?: number;
     breakers?: Array<Breaker>;
+}
+
+export interface Device {
+    id: ID;
+    object?: any;
+    ref?: any;
 }
