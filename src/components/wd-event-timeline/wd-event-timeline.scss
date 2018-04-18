@@ -117,4 +117,12 @@ wd-event-timeline {
             }
         }
     }
+
+    .wd-event-timeline-empty-container {
+        padding: 20px;
+        background-color: color($colors,light);
+        color: color($colors,light-gray);
+        text-align: center;
+        font-style: italic;
+    }
 }

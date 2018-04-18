@@ -1,5 +1,5 @@
 <!-- Generated template for the WdEventTimelineComponent component -->
-<div class="wd-event-timeline-container">
+<div class="wd-event-timeline-container" *ngIf="_events && _events.length; else emptyContainer">
   <ul>
     <li *ngFor="let event of _events">
       <div class="wd-event-timeline-icon-container" [attr.eventType]="event.type">
@@ -19,3 +19,9 @@
     </li>
   </ul>
 </div>
+
+<ng-template #emptyContainer>
+  <div class="wd-event-timeline-empty-container">
+    No Events
+  </div>
+</ng-template>

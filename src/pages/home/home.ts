@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import { DevicesProvider } from '../../providers/devices/devices';
 
+import 'rxjs/add/operator/debounceTime';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -26,7 +28,7 @@ export class HomePage {
     public devicesProvider: DevicesProvider
   ) {
 
-    this.devicesProvider.timelineEvents.subscribe( timelineEvents => {
+    this.devicesProvider.timelineEvents.debounceTime(100).subscribe( timelineEvents => {
       this.timelineEvents = timelineEvents;
     })
 

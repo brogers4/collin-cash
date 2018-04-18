@@ -4,6 +4,8 @@ import { DevicesProvider } from '../../providers/devices/devices';
 import { Loadcenter, Breaker, ID } from '../../interfaces/devices';
 import { AngularFireDatabase } from 'angularfire2/database';
 
+import 'rxjs/add/operator/debounceTime';
+
 /**
  * Generated class for the BreakerPage page.
  *
@@ -52,7 +54,7 @@ export class BreakerPage {
 
     this.db.object('v1/devices/'+this.loadcenterId+'/staticData/name/val').valueChanges().subscribe(val=>{this.loadcenterName=val;})
 
-    this.devicesProvider.events.subscribe(events => {
+    this.devicesProvider.events.debounceTime(100).subscribe(events => {
       this.events = this.devicesProvider.getTimelineEventsByBreakerId(events, this.id);
     })
   }
