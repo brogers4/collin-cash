@@ -1,5 +1,5 @@
-import { 
-  Component, 
+import {
+  Component,
   Input,
   OnChanges,
   SimpleChanges,
@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 /**
- * Generated class for the EtnEventTimelineComponent component.
+ * Generated class for the WdEventTimelineComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
@@ -24,10 +24,10 @@ interface Event {
 }
 
 @Component({
-  selector: 'etn-event-timeline',
-  templateUrl: 'etn-event-timeline.html'
+  selector: 'wd-event-timeline',
+  templateUrl: 'wd-event-timeline.html'
 })
-export class EtnEventTimelineComponent {
+export class WdEventTimelineComponent {
 
   @Input() events: Array<any>;
   @Input() sortBy: (string | Array<string>) = "timestamp";
@@ -35,14 +35,14 @@ export class EtnEventTimelineComponent {
   private _events: Array<any>;
 
   constructor() {
-    
+
   }
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
     const events: SimpleChange = changes.events;
-    if(typeof events.currentValue === 'undefined' || events.currentValue === null) return;
+    if (typeof events.currentValue === 'undefined' || events.currentValue === null) return;
     this._events = events.currentValue.slice(0);
-    if(this.sortBy === 'timestamp'){
+    if (this.sortBy === 'timestamp') {
       this._events.sort((a, b) => {
         if (a.timestamp && b.timestamp) {
           return (b.timestamp - a.timestamp)
@@ -51,7 +51,7 @@ export class EtnEventTimelineComponent {
         }
       });
     }
-    if(this.log) console.log("[EtnEventTimelineComponent.ngOnChanges] _events:",this._events);
+    if (this.log) console.log("[WdEventTimelineComponent.ngOnChanges] _events:", this._events);
   }
 
 }
