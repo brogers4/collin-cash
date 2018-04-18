@@ -52,50 +52,9 @@ export class BreakerPage {
 
     this.db.object('v1/devices/'+this.loadcenterId+'/staticData/name/val').valueChanges().subscribe(val=>{this.loadcenterName=val;})
 
-    this.db.object('v1/breaker/'+this.id+'/events').valueChanges().subscribe( events => {
-      var eventList = devicesProvider._truthyObjectToArray(events);
-      this.events = [];
-      eventList.forEach( (eventId, index) => {
-        this.db.object('v1/event/' + eventId).valueChanges().subscribe( (event: any) => {
-          if(typeof event === 'undefined' || event === null) return;
-          this.events.push({
-            id: eventId,
-            title: (event.staticData && event.staticData.eventDescription && event.staticData.eventDescription.val) ? event.staticData.eventDescription.val : 'Unknown',
-            subTitle: this.loadcenterName+", "+this.loadType,
-            icon: (event.staticData && event.staticData.eventType && event.staticData.eventType.val) ? this._getTimelineIcon(event.staticData.eventType.val) : 'help',
-            type: (event.staticData && event.staticData.eventType && event.staticData.eventType.val) ? this._getTimelineType(event.staticData.eventType.val) : 'unknown',
-            timestamp: (event.staticData && event.staticData.time && event.staticData.time.val) ? event.staticData.time.val : null
-          })
-        })
-      })
+    this.devicesProvider.events.subscribe(events => {
+      this.events = this.devicesProvider.getTimelineEventsByBreakerId(events, this.id);
     })
-  }
-
-  _getTimelineIcon(eventType: string){
-    switch(eventType){
-      case "fault":
-        return "flash";
-      case "open":
-      case "closed":
-      case "close":
-        return "alert";
-      default:
-        return "help";
-    }
-  }
-
-  _getTimelineType(eventType: string) {
-    switch (eventType) {
-      case "fault":
-        return "danger";
-      case "open":
-        return "success";
-      case "closed":
-      case "close":
-        return "warning";
-      default:
-        return "unknown";
-    }
   }
 
 }

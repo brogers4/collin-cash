@@ -31,6 +31,7 @@ export class EtnEventTimelineComponent {
 
   @Input() events: Array<any>;
   @Input() sortBy: (string | Array<string>) = "timestamp";
+  @Input() log: boolean = false;
   private _events: Array<any>;
 
   constructor() {
@@ -50,6 +51,7 @@ export class EtnEventTimelineComponent {
         }
       });
     }
+    if(this.log) console.log("[EtnEventTimelineComponent.ngOnChanges] _events:",this._events);
   }
 
 }

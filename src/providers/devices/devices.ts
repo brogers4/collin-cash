@@ -58,7 +58,6 @@ export class DevicesProvider {
 
     this.devices = new Observable( observer => {
       this.deviceList.subscribe( deviceList => {
-        console.log("DevicesProvider deviceList:",deviceList);
         var devices = [];
         deviceList.forEach( deviceId => {
           this.db.object('v1/devices/'+deviceId).valueChanges().subscribe(val => {
@@ -149,10 +148,15 @@ export class DevicesProvider {
         var breakers = [];
         breakerList.forEach(breakerId => {
           this.db.object('v1/breaker/' + breakerId).valueChanges().subscribe(val => {
-            breakers.push({
-              id: breakerId,
-              object: val
-            });
+            let index = this._getIndexOfArrayById(breakers,breakerId);
+            if(index === -1){
+              breakers.push({
+                id: breakerId,
+                object: val
+              });
+            } else {
+              breakers[index].object = val;
+            }
             observer.next(breakers);
           });
         });
@@ -259,6 +263,45 @@ export class DevicesProvider {
       return this._statusBreakerIcons[status.toLowerCase()];
     }
   }
+
+  filterBreakersByLoadcenterId(breakers: Array<Breaker>, loadcenterId: ID){
+    return breakers.filter( breaker => {
+      try { 
+        return (breaker.object.staticData.loadcenterId.val === loadcenterId);
+      } catch(e) {
+        return false;
+      }
+    })
+  }
+
+  filterEventsByLoadcenterId(events: Array<Event>, loadcenterId: ID){
+    return events.filter(event => {
+      try {
+        return (event.object.staticData.loadcenterId.val === loadcenterId);
+      } catch (e) {
+        return false;
+      }
+    })
+  }
+
+  filterEventsByBreakerId(events: Array<Event>, breakerId: ID) {
+    return events.filter(event => {
+      try {
+        return (event.object.staticData.breakerId.val === breakerId);
+      } catch (e) {
+        return false;
+      }
+    })
+  }
+
+  getTimelineEventsByLoadcenterId(events: Array<Event>, loadcenterId: ID){
+    return this.filterEventsByLoadcenterId(events,loadcenterId).map(event => this.getEventAsTimelineEvent(event));
+  }
+
+  getTimelineEventsByBreakerId(events: Array<Event>, breakerId: ID) {
+    return this.filterEventsByBreakerId(events, breakerId).map(event => this.getEventAsTimelineEvent(event));
+  }
+
 
   getEventAsTimelineEvent(_event: any){
     if (typeof _event === 'undefined' || _event === null) return;

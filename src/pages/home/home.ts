@@ -19,6 +19,7 @@ export class HomePage {
   numClosed: number = 0;
   numOpen: number = 0;
   numTripped: number = 0;
+  numUnknownState: number = 0;
 
   constructor(
     public navCtrl: NavController,
@@ -30,7 +31,6 @@ export class HomePage {
     })
 
     this.devicesProvider.devices.subscribe( devices => {
-      console.log("HomePage devices:",devices);
       this.numOnline = 0;
       this.numOffline = 0;
       this.numUnknownConnected = 0;
@@ -43,6 +43,38 @@ export class HomePage {
           }
         } catch(e) {
           this.numUnknownConnected++;
+        }
+      });
+    });
+
+    this.devicesProvider.loadcenters.subscribe( loadcenters => {
+      this.numFaults = 0;
+      loadcenters.forEach( loadcenter => {
+        try {
+          if(loadcenter.object.dynamicData.activeFault.val === true){
+            this.numFaults++;
+          }
+        } catch(e) {
+          // ignore
+        }
+      });
+    });
+
+    this.devicesProvider.breakers.subscribe( breakers => {
+      this.numClosed = 0;
+      this.numOpen = 0;
+      this.numTripped = 0;
+      breakers.forEach( breaker => {
+        try {
+          if(breaker.object.dynamicData.state.val === "open"){
+            this.numOpen++;
+          } else if(breaker.object.dynamicData.state.val === "closed"){
+            this.numClosed++;
+          } else if(breaker.object.dynamicData.state.val === "fault"){
+            this.numTripped++;
+          }
+        } catch(e) {
+          this.numUnknownState++;
         }
       })
     })
