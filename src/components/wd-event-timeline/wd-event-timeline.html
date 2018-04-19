@@ -1,7 +1,7 @@
 <!-- Generated template for the WdEventTimelineComponent component -->
 <div class="wd-event-timeline-container" *ngIf="_events && _events.length; else emptyContainer">
-  <ul>
-    <li *ngFor="let event of _events">
+  <ul [ngClass]="{'show-next':_showNext, 'show-prev':_showPrev}">
+    <li *ngFor="let event of _timelineEvents">
       <div class="wd-event-timeline-icon-container" [attr.eventType]="event.type">
         <ion-icon [name]="event.icon"></ion-icon>
       </div>
@@ -18,6 +18,10 @@
       </div>
     </li>
   </ul>
+  <div class="wd-event-timeline-paginate" *ngIf="paginate">
+    <button ion-button clear small (click)="onPrev()" [disabled]="!_showPrev">Previous</button>
+    <button ion-button clear small (click)="onNext()" [disabled]="!_showNext">Next</button>
+  </div>
 </div>
 
 <ng-template #emptyContainer>
