@@ -1,5 +1,12 @@
 export type ID = number | string;
 
+export type TimestampVal = {
+    ts?: number,
+    val?: any
+};
+
+export type TruthyObject = Array<{ [key: string]: boolean }>;
+
 export interface Fault {
     id: ID;
     object?: any;
@@ -39,8 +46,32 @@ export interface Loadcenter {
     breakers?: Array<Breaker>;
 }
 
+export interface LoadcenterData {
+    staticData?: {
+        numBreakers?: TimestampVal
+    },
+    dynamicData?: {
+        activeFault?: TimestampVal,
+        lastFault?: TimestampVal,
+        lastFaultTime?: TimestampVal,
+        numActiveFaults?: TimestampVal
+    },
+    breakers?: TruthyObject
+}
+
 export interface Device {
     id: ID;
     object?: any;
     ref?: any;
+}
+
+export interface DeviceData {
+    staticData?: {
+        name?: TimestampVal,
+        idAgent?: TimestampVal
+    },
+    dynamicData?: {
+        connected?: TimestampVal
+    },
+    classes?: TruthyObject
 }

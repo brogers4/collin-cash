@@ -39,10 +39,7 @@ export class BreakerPage {
     public db: AngularFireDatabase,
     public devicesProvider: DevicesProvider
   ) {
-    // this.loadcenterId = navParams.get('loadcenterId');
-    // this.breakerId = navParams.get('breakerId');
-    // this.loadcenter = devicesProvider.getLoadcenterById(this.loadcenterId);
-    // this.breaker = devicesProvider.getBreakerById(this.loadcenterId,this.breakerId);
+
     this.id = navParams.get('breakerId');
     this.loadcenterId = navParams.get('loadcenterId');
 

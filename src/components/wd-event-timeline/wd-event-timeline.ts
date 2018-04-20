@@ -29,7 +29,7 @@ interface Event {
 })
 export class WdEventTimelineComponent {
 
-  @Input() events: Array<any>;
+  @Input() events: Array<any> = [];
   @Input() sortBy: (string | Array<string>) = "timestamp";
   @Input() limitTo: number = 0;
   @Input() startAt: number = 0;

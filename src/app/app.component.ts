@@ -22,7 +22,11 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, icon: string, component: any}>;
+  pages: Array<{
+    title: string, 
+    icon: string, 
+    component: any
+  }>;
 
   user: any;
 
@@ -35,7 +39,7 @@ export class MyApp {
   ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+    // Pages that are shown in the side menu
     this.pages = [
       { title: 'Home', icon: 'home', component: HomePage },
       { title: 'Devices', icon: 'apps', component: DevicesPage },
@@ -44,6 +48,7 @@ export class MyApp {
       { title: 'Sites', icon: 'pin', component: SitesPage }
     ];
 
+    // Monitor whether user is logged in or not
     const authObserver = afAuth.authState.subscribe( user => {
       if(user){
         // user is logged in

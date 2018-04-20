@@ -38,10 +38,12 @@ export class HomePage {
       this.numUnknownConnected = 0;
       devices.forEach( device => {
         try {
-          if(device.object.dynamicData.connected.val === true){
+          if(device.isConnected()){
             this.numOnline++;
-          } else if(device.object.dynamicData.connected.val === false){
+          } else if(device.isDisconnected()){
             this.numOffline++;
+          } else {
+            this.numUnknownConnected++;
           }
         } catch(e) {
           this.numUnknownConnected++;
@@ -53,7 +55,7 @@ export class HomePage {
       this.numFaults = 0;
       loadcenters.forEach( loadcenter => {
         try {
-          if(loadcenter.object.dynamicData.activeFault.val === true){
+          if(loadcenter.data.dynamicData.activeFault.val === true){
             this.numFaults++;
           }
         } catch(e) {
@@ -67,15 +69,14 @@ export class HomePage {
       this.numOpen = 0;
       this.numTripped = 0;
       breakers.forEach( breaker => {
-        try {
-          if(breaker.object.dynamicData.state.val === "open"){
-            this.numOpen++;
-          } else if(breaker.object.dynamicData.state.val === "closed"){
-            this.numClosed++;
-          } else if(breaker.object.dynamicData.state.val === "fault"){
-            this.numTripped++;
-          }
-        } catch(e) {
+        let state = breaker.getState();
+        if(state === "open"){
+          this.numOpen++;
+        } else if(state === "closed"){
+          this.numClosed++;
+        } else if(state === "fault"){
+          this.numTripped++;
+        } else {
           this.numUnknownState++;
         }
       })
