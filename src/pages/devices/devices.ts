@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DevicePage } from '../device/device';
 
 import { Loadcenter, ID } from '../../interfaces/devices';
+import { LoadcenterModel } from '../../models/loadcenter-model';
 
 import { DevicesProvider } from '../../providers/devices/devices';
 
@@ -20,7 +21,7 @@ import { DevicesProvider } from '../../providers/devices/devices';
 })
 export class DevicesPage {
 
-  loadcenters: Array<Loadcenter> = [];
+  loadcenters: Array<LoadcenterModel> = [];
   loadcenterList: Array<ID> = [];
 
   constructor(
@@ -35,8 +36,8 @@ export class DevicesPage {
     
   }
 
-  isActiveFault(device: Loadcenter){
-    return (device.numActiveFaults > 0);
+  isActiveFault(device: LoadcenterModel){
+    return (device.getNumActiveFaults() > 0);
   }
 
   goToDevice(id: number | string){

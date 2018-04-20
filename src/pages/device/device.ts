@@ -4,6 +4,8 @@ import { DevicesProvider } from '../../providers/devices/devices';
 import { Loadcenter, Breaker, Event, ID } from '../../interfaces/devices';
 import { BreakerPage } from '../breaker/breaker';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { LoadcenterModel } from '../../models/loadcenter-model';
+import { BreakerModel } from '../../models/breaker-model';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -24,8 +26,8 @@ export class DevicePage {
   id: ID;
   // loadcenters: Array<Loadcenter>;
   // _loadcenter: any;
-  loadcenter: Loadcenter;
-  breakers: Array<Breaker>;
+  loadcenter: LoadcenterModel;
+  breakers: Array<BreakerModel>;
   events: Array<any> = [];
   name: string;
 
@@ -35,23 +37,15 @@ export class DevicePage {
     public db: AngularFireDatabase,
     public devicesProvider: DevicesProvider
   ) {
+    
     this.id = navParams.get('id');
-    // this._loadcenter = this.devicesProvider.getLoadcenterById(this.id).ref.valueChanges();
-    // this.loadcenters = this.devicesProvider.loadcenters;
-    // this.loadcenter = this.devicesProvider.getLoadcenterById(this.id);
-    // this.loadcenter.name.subscribe( name => {
-    //   console.log("DevicePage loadcenter.name:",name);
-    // })
-    this.loadcenter = {
-      id: this.id,
-      name: null,
-      object: null
-    }
-    this.db.object('v1/devices/' + this.id + '/staticData/name/val').valueChanges().subscribe( val => { this.loadcenter.name = val });
-    this.db.object('v1/loadcenter/' + this.id).valueChanges().subscribe( val => { this.loadcenter.object = val });
 
-    this.devicesProvider.breakers.subscribe( breakers => {
-      this.breakers = this.devicesProvider.filterBreakersByLoadcenterId(breakers,this.id);
+    this.loadcenter = new LoadcenterModel(this.id);
+    this.db.object('v1/devices/' + this.id + '/staticData/name/val').valueChanges().subscribe( val => { this.loadcenter.name = String(val) });
+    this.db.object('v1/loadcenter/' + this.id).valueChanges().subscribe( val => { this.loadcenter.updateData(val) });
+
+    this.devicesProvider.getBreakersByLoadcenterId(this.id).subscribe( breakers => {
+      this.breakers = breakers;
     });
 
     this.devicesProvider.events.debounceTime(100).subscribe( events => {

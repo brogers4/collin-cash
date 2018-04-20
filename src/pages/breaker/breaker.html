@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>{{ loadType | orDefault: "Breaker" }}</ion-title>
+    <ion-title>{{ breaker.getName() | orDefault: "Breaker" }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,7 +27,7 @@
           </ion-row>
           <ion-row>
             <ion-col class="grid-sub-header">
-              {{ loadcenterName }} > Circuit {{ circuitNumber }}
+              {{ loadcenterName }} > Circuit {{ breaker.getCircuitNumber() }}
             </ion-col>
           </ion-row>
           <ion-row>
@@ -35,10 +35,10 @@
               <ion-card>
                 <ion-item>
                   <ion-avatar item-start>
-                    <wd-breaker-icon [state]="state"></wd-breaker-icon>
+                    <wd-breaker-icon [state]="breaker.getState()"></wd-breaker-icon>
                   </ion-avatar>
-                  <h2>{{ loadType }}</h2>
-                  <p>{{ status }}</p>
+                  <h2>{{ breaker.getName() }}</h2>
+                  <p>{{ breaker.getStatus() }}</p>
                 </ion-item>
                 <ion-card-content>
                   <ion-row>

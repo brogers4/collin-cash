@@ -43,7 +43,7 @@
                       Number of Breakers
                     </ion-col>
                     <ion-col>
-                      {{ loadcenter.object?.staticData?.numBreakers?.val | orUnknown }}
+                      {{ loadcenter.getNumBreakers() | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -51,7 +51,7 @@
                       Number of Active Faults
                     </ion-col>
                     <ion-col>
-                      {{ loadcenter.object?.dynamicData?.numActiveFaults?.val | orUnknown }}
+                      {{ loadcenter.getNumActiveFaults() | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -59,7 +59,7 @@
                       Last Fault
                     </ion-col>
                     <ion-col>
-                      {{ loadcenter.object?.dynamicData?.lastFault?.val | orUnknown }}
+                      {{ loadcenter.getLastFault() | orUnknown }}
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -67,7 +67,7 @@
                       Last Fault Time
                     </ion-col>
                     <ion-col>
-                      {{ loadcenter.object?.dynamicData?.lastFaultTime?.val | date:'medium' | orUnknown }}
+                      {{ loadcenter.getLastFaultTime() | date:'medium' | orUnknown }}
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -83,10 +83,10 @@
           <ion-row>
             <ion-col col-md-3 col-6 *ngFor="let breaker of breakers">
               <ion-card class="breaker-card hover-elevation" (click)="goToBreaker(breaker.id)">
-                <ion-card-header class="breaker-header">{{breaker.object?.staticData?.loadType?.val}}</ion-card-header>
+                <ion-card-header class="breaker-header">{{breaker.getLoadType()}}</ion-card-header>
                 <ion-card-content class="breaker-content">
-                  <wd-breaker-icon class="breaker-status-icon" [state]="breaker.object?.dynamicData?.state?.val"></wd-breaker-icon>
-                  <span class="breaker-status">{{breaker.object?.dynamicData?.status?.val}}</span>
+                  <wd-breaker-icon class="breaker-status-icon" [state]="breaker.getState()"></wd-breaker-icon>
+                  <span class="breaker-status">{{breaker.getStatus()}}</span>
                 </ion-card-content>
               </ion-card>
             </ion-col>

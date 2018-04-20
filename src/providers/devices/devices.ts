@@ -205,7 +205,7 @@ export class DevicesProvider {
     })
     
     // Observe auth state and user to build device list and loadcenter list
-    const authObserver = afAuth.authState.subscribe(user => {
+    afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
       } else {
@@ -215,12 +215,54 @@ export class DevicesProvider {
 
   }
 
-  getDeviceById(id: ID){
-    return this._getObjectById(this._devices,id);
+  getDevice(id: ID):Observable<DeviceModel> {
+    return new Observable( observer => {
+      this.db.object(`v1/device/${id}`).valueChanges().subscribe( data => {
+        observer.next(new DeviceModel(id,data));
+      });
+    });
   }
 
-  getLoadcenterById(id: ID){
-    return this._getObjectById(this._loadcenters,id);
+  getLoadcenter(id: ID):Observable<LoadcenterModel> {
+    return new Observable( observer => {
+      this.db.object(`v1/loadcenter/${id}`).valueChanges().subscribe( data => {
+        observer.next(new LoadcenterModel(id,data));
+      });
+    });
+  }
+
+  getBreaker(id: ID):Observable<BreakerModel> {
+    return new Observable( observer => {
+      this.db.object(`v1/breaker/${id}`).valueChanges().subscribe( data => {
+        observer.next(new BreakerModel(id,data));
+      })
+    })
+  }
+
+  getBreakersFromList(breakerList: Array<ID>):Observable<Array<BreakerModel>> {
+    return new Observable( observer => {
+      var breakers = [];
+      breakerList.forEach(breakerId => {
+        this.getBreaker(breakerId).subscribe(breaker => {
+          let index = this._getIndexOfArrayById(breakers, breakerId);
+          if (index === -1) {
+            breakers.push(breaker);
+          } else {
+            breakers[index] = breaker;
+          }
+          observer.next(breakers);
+        });
+      });
+      observer.next(breakers);
+    })
+  }
+
+  getEvent(id: ID):Observable<EventModel> {
+    return new Observable( observer => {
+      this.db.object(`v1/event/${id}`).valueChanges().subscribe( data => {
+        observer.next(new EventModel(id,data));
+      })
+    })
   }
 
   getLoadcenterNameById(id: ID){
@@ -253,13 +295,24 @@ export class DevicesProvider {
     }
   }
 
-  filterBreakersByLoadcenterId(breakers: Array<Breaker>, loadcenterId: ID){
+  filterBreakersByLoadcenterId(breakers: Array<BreakerModel>, loadcenterId: ID){
     return breakers.filter( breaker => {
       try { 
-        return (breaker.object.staticData.loadcenterId.val === loadcenterId);
+        return (breaker.getLoadcenterId() === loadcenterId);
       } catch(e) {
         return false;
       }
+    })
+  }
+
+  getBreakersByLoadcenterId(loadcenterId: ID):Observable<any>{
+    return new Observable( observer => {
+      this.getLoadcenter(loadcenterId).subscribe( (loadcenter:LoadcenterModel) => {
+        let breakerList = loadcenter.getBreakerList();
+        this.getBreakersFromList(breakerList).subscribe( breakers => {
+          observer.next(breakers);
+        })
+      })
     })
   }
 
