@@ -3,6 +3,8 @@ import { ID } from '../interfaces/devices';
 
 export class BreakerModel extends DataModel {
 
+    public loadcenterName?: string;
+
     getName():string {
         return this._getStaticDataVal('name');
     }

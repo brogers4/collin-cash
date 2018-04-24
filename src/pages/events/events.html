@@ -6,13 +6,45 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>events</ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Events</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="grid-header">
+        Active Faults
+        <ion-badge class="active-faults-badge" color="danger" *ngIf="numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list class="active-faults-list">
+          <button ion-item *ngFor="let breaker of activeFaultBreakers" (click)="goToBreaker(breaker)">
+            <h2>{{ breaker.getStatus() }}</h2>
+            <h3>{{ breaker.loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }} > {{ breaker.getName() }}</h3>
+          </button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="grid-header">
+        All Events
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <wd-event-timeline [events]="timelineEvents" [limitTo]="10" [paginate]="true" [log]="true"></wd-event-timeline>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

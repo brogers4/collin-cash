@@ -11,7 +11,7 @@ import { EventsPage } from '../pages/events/events';
 import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
 
-import { ListPage } from '../pages/list/list';
+import { DevicesProvider } from '../providers/devices/devices';
 
 
 @Component({
@@ -29,13 +29,15 @@ export class MyApp {
   }>;
 
   user: any;
+  numActiveFaultBreakers: number = 0;
 
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public menu: MenuController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public devicesProvider: DevicesProvider
   ) {
     this.initializeApp();
 
@@ -55,6 +57,9 @@ export class MyApp {
         console.log("Firebase user is logged in:",user);
         this.user = user;
         this.rootPage = HomePage;
+        this.devicesProvider.getBreakersWithActiveFaults().subscribe(breakers => {
+          this.numActiveFaultBreakers = breakers.length;
+        })
         // authObserver.unsubscribe();
       } else {
         // user is logged out

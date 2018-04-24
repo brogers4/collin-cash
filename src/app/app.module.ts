@@ -32,6 +32,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DevicesProvider } from '../providers/devices/devices';
+import { AlertsProvider } from '../providers/alerts/alerts';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { DevicesProvider } from '../providers/devices/devices';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DevicesProvider
+    DevicesProvider,
+    AlertsProvider
   ]
 })
 export class AppModule {}

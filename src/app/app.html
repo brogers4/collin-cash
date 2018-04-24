@@ -14,6 +14,7 @@
         <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" [ngClass]="{'active-page': isActive(p)}">
           <ion-icon name="{{p.icon}}" item-start></ion-icon>
           {{p.title}}
+          <ion-badge class="active-faults-badge" item-end color="danger" *ngIf="p.title == 'Events' && numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge>
         </button>
         <button menuClose ion-item detail-none (click)="logout()">
           <ion-icon name="log-out" item-start></ion-icon>
