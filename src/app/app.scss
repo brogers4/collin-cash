@@ -165,3 +165,21 @@ ion-card {
         box-shadow: none;
     }
 }
+
+button[ion-button] {
+    div.menu-icon-badge {
+        background: color($colors,danger);
+        border-radius: 10px;
+        font-size: 0.5em;
+        min-height: 8px;
+        min-width: 8px;
+        padding: 4px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        right: 8px;
+        top: 6px;
+    }
+}

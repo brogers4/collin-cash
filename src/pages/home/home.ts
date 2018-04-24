@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { DevicesProvider } from '../../providers/devices/devices';
+import { AlertsProvider } from '../../providers/alerts/alerts';
 
 import 'rxjs/add/operator/debounceTime';
 
@@ -22,11 +23,17 @@ export class HomePage {
   numOpen: number = 0;
   numTripped: number = 0;
   numUnknownState: number = 0;
+  numAlerts: number = 0;
 
   constructor(
     public navCtrl: NavController,
-    public devicesProvider: DevicesProvider
+    public devicesProvider: DevicesProvider,
+    public alertsProvider: AlertsProvider
   ) {
+
+    this.alertsProvider.alertCount.subscribe( count => {
+      this.numAlerts = count;
+    })
 
     this.devicesProvider.timelineEvents.debounceTime(100).subscribe( timelineEvents => {
       this.timelineEvents = timelineEvents;

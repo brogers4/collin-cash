@@ -12,6 +12,7 @@ import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
 
 import { DevicesProvider } from '../providers/devices/devices';
+import { AlertsProvider } from '../providers/alerts/alerts';
 
 
 @Component({
@@ -30,6 +31,8 @@ export class MyApp {
 
   user: any;
   numActiveFaultBreakers: number = 0;
+  numAlerts: number = 0;
+  alerts: Array<any> = [];
 
   constructor(
     public platform: Platform, 
@@ -37,7 +40,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public menu: MenuController,
     public afAuth: AngularFireAuth,
-    public devicesProvider: DevicesProvider
+    public devicesProvider: DevicesProvider,
+    public alertsProvider: AlertsProvider
   ) {
     this.initializeApp();
 
@@ -57,8 +61,13 @@ export class MyApp {
         console.log("Firebase user is logged in:",user);
         this.user = user;
         this.rootPage = HomePage;
-        this.devicesProvider.getBreakersWithActiveFaults().subscribe(breakers => {
-          this.numActiveFaultBreakers = breakers.length;
+
+        this.alertsProvider.activeFaultBreakerAlertCount.subscribe( count => {
+          this.numActiveFaultBreakers = count;
+        })
+
+        this.alertsProvider.alertCount.subscribe( alertCount => {
+          this.numAlerts = alertCount;
         })
         // authObserver.unsubscribe();
       } else {
