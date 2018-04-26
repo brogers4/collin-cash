@@ -180,6 +180,15 @@ button[ion-button] {
         justify-content: center;
         position: absolute;
         right: 8px;
-        top: 6px;
+        top: 5px;
+    }
+}
+
+.platform-ios {
+    button[ion-button] {
+        div.menu-icon-badge {
+            right: 4px;
+            top: 4px;
+        }
     }
 }

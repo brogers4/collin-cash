@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DevicesProvider } from '../../providers/devices/devices';
+import { ApiProvider } from '../../providers/api/api';
 import { Loadcenter, Breaker, ID } from '../../interfaces/devices';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { BreakerModel } from '../../models/breaker-model';
@@ -34,7 +35,8 @@ export class BreakerPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public db: AngularFireDatabase,
-    public devicesProvider: DevicesProvider
+    public devicesProvider: DevicesProvider,
+    public api: ApiProvider
   ) {
 
     this.id = navParams.get('breakerId');
@@ -51,6 +53,32 @@ export class BreakerPage {
     this.devicesProvider.events.debounceTime(100).subscribe(events => {
       this.events = this.devicesProvider.getTimelineEventsByBreakerId(events, this.id);
     })
+  }
+
+  openBreaker(){
+    this.api.openLoadcenterBreaker(this.loadcenterId, this.breaker.getCircuitNumber()).then(
+      req => {
+        console.log("Successfully sent open breaker command.");
+      },
+      err => {
+        console.log("Error sending open breaker command.");
+      }
+    );
+  }
+
+  closeBreaker(){
+    this.api.closeLoadcenterBreaker(this.loadcenterId, this.breaker.getCircuitNumber()).then(
+      req => {
+        console.log("Successfully sent close breaker command.");
+      },
+      err => {
+        console.log("Error sending close breaker command.");
+      }
+    );
+  }
+
+  clearFault(){
+
   }
 
 }

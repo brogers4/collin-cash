@@ -20,6 +20,7 @@ import { EventModel } from '../../models/event-model';
 export class DevicesProvider {
 
   user: any;
+  token: string;
 
   deviceList: Observable<Array<ID>>;
   loadcenterList: Observable<Array<ID>>;
@@ -42,6 +43,8 @@ export class DevicesProvider {
 
   _testDevices: Array<DeviceModel>;
 
+  private _v: string = "v1";
+
   _statusBreakerIcons: any = {
     "closed": "breaker-closed",
     "open": "breaker-open",
@@ -61,7 +64,7 @@ export class DevicesProvider {
     // PATH: v1/users/{id}/devices
     this.deviceList = new Observable( observer => {
       afAuth.authState.subscribe( user => {
-        db.object('v1/users/'+user.uid+'/devices').valueChanges().subscribe( devices => {
+        db.object(`${this._v}/users/${user.uid}/devices`).valueChanges().subscribe( devices => {
           if (typeof devices === 'undefined' || devices === null) observer.next([]);
           let deviceList = this._truthyObjectToArray(devices);
           observer.next(deviceList);
@@ -75,7 +78,7 @@ export class DevicesProvider {
       this.deviceList.subscribe( deviceList => {
         var devices = [];
         deviceList.forEach( deviceId => {
-          this.db.object(`v1/devices/${deviceId}`).valueChanges().subscribe(val => {
+          this.db.object(`${this._v}/devices/${deviceId}`).valueChanges().subscribe(val => {
             let index = this._getIndexOfArrayById(devices,deviceId);
             if(index === -1){
               devices.push(new DeviceModel(deviceId,val));
@@ -95,7 +98,7 @@ export class DevicesProvider {
       var deviceNames = {};
       this.deviceList.subscribe(deviceList => {
         deviceList.forEach(deviceId => {
-          this.db.object(`v1/devices/${deviceId}/staticData/name/val`).valueChanges().subscribe(name => {
+          this.db.object(`${this._v}/devices/${deviceId}/staticData/name/val`).valueChanges().subscribe(name => {
             deviceNames[deviceId] = name;
             observer.next(deviceNames);
           })
@@ -114,7 +117,7 @@ export class DevicesProvider {
       this.deviceList.subscribe(deviceList => {
         var loadcenterList = [];
         deviceList.forEach((deviceId, index) => {
-          db.object(`v1/devices/${deviceId}/classes`).valueChanges().subscribe( deviceClasses => {
+          db.object(`${this._v}/devices/${deviceId}/classes`).valueChanges().subscribe( deviceClasses => {
             if(typeof deviceClasses !== 'undefined' && deviceClasses !== null){
               if('loadcenter' in deviceClasses && deviceClasses['loadcenter'] === true){
                 loadcenterList.push(deviceId);
@@ -139,12 +142,12 @@ export class DevicesProvider {
         var loadcenters = [];
         loadcenterList.forEach((loadcenterId, idx) => {
           loadcenters.push(new LoadcenterModel(loadcenterId));
-          this.db.object(`v1/devices/${loadcenterId}/staticData/name/val`).valueChanges().subscribe(val => {
+          this.db.object(`${this._v}/devices/${loadcenterId}/staticData/name/val`).valueChanges().subscribe(val => {
             let index = this._getIndexOfArrayById(loadcenters, loadcenterId);
             loadcenters[index].name = val;
             observer.next(loadcenters);
           })
-          this.db.object(`v1/loadcenter/${loadcenterId}`).valueChanges().subscribe(loadcenter => {
+          this.db.object(`${this._v}/loadcenter/${loadcenterId}`).valueChanges().subscribe(loadcenter => {
             let index = this._getIndexOfArrayById(loadcenters, loadcenterId);
             loadcenters[index].updateData(loadcenter);
             observer.next(loadcenters);
@@ -178,7 +181,7 @@ export class DevicesProvider {
       this.breakerList.subscribe(breakerList => {
         var breakers = [];
         breakerList.forEach(breakerId => {
-          this.db.object('v1/breaker/' + breakerId).valueChanges().subscribe(val => {
+          this.db.object(`${this._v}/breaker/${breakerId}`).valueChanges().subscribe(val => {
             let index = this._getIndexOfArrayById(breakers,breakerId);
             if(index === -1){
               breakers.push(new BreakerModel(breakerId,val));
@@ -216,7 +219,7 @@ export class DevicesProvider {
       this.eventList.subscribe(eventList => {
         var events = [];
         eventList.forEach(eventId => {
-          this.db.object('v1/event/'+eventId).valueChanges().subscribe(val => {
+          this.db.object(`${this._v}/event/${eventId}`).valueChanges().subscribe(val => {
             events.push(new EventModel(eventId,val));
             observer.next(events);
           });
@@ -252,8 +255,17 @@ export class DevicesProvider {
     afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
+        user.getIdToken(false).then(
+          token => {
+            this.token = token;
+          },
+          err => {
+            console.log("Error getting user token:",err);
+          }
+        )
       } else {
         this.user = null;
+        this.token = null;
       }
     });
 
@@ -266,7 +278,7 @@ export class DevicesProvider {
   ////////////////////////////
   getDevice(id: ID):Observable<DeviceModel> {
     return new Observable( observer => {
-      this.db.object(`v1/device/${id}`).valueChanges().subscribe( data => {
+      this.db.object(`${this._v}/device/${id}`).valueChanges().subscribe( data => {
         observer.next(new DeviceModel(id,data));
       });
     });
@@ -287,7 +299,7 @@ export class DevicesProvider {
   ////////////////////////////////
   getLoadcenter(id: ID):Observable<LoadcenterModel> {
     return new Observable( observer => {
-      this.db.object(`v1/loadcenter/${id}`).valueChanges().subscribe( data => {
+      this.db.object(`${this._v}/loadcenter/${id}`).valueChanges().subscribe( data => {
         observer.next(new LoadcenterModel(id,data));
       });
     });
@@ -318,7 +330,7 @@ export class DevicesProvider {
   /////////////////////////////
   getBreaker(id: ID):Observable<BreakerModel> {
     return new Observable( observer => {
-      this.db.object(`v1/breaker/${id}`).valueChanges().subscribe( data => {
+      this.db.object(`${this._v}/breaker/${id}`).valueChanges().subscribe( data => {
         observer.next(new BreakerModel(id,data));
       })
     })
@@ -410,7 +422,7 @@ export class DevicesProvider {
   ///////////////////////////
   getEvent(id: ID):Observable<EventModel> {
     return new Observable( observer => {
-      this.db.object(`v1/event/${id}`).valueChanges().subscribe( data => {
+      this.db.object(`${this._v}/event/${id}`).valueChanges().subscribe( data => {
         observer.next(new EventModel(id,data));
       })
     })
@@ -450,14 +462,8 @@ export class DevicesProvider {
       timestamp: event.getTime()
     }
   }
-  //endregion EVENT FUNCTIONS
-  ///////////////////////////
 
-  
-
-  
-
-  filterEventsByLoadcenterId(events: Array<EventModel>, loadcenterId: ID){
+  filterEventsByLoadcenterId(events: Array<EventModel>, loadcenterId: ID) {
     return events.filter(event => {
       return (event.getLoadcenterId() === loadcenterId);
     })
@@ -469,43 +475,19 @@ export class DevicesProvider {
     })
   }
 
-  getTimelineEventsByLoadcenterId(events: Array<EventModel>, loadcenterId: ID){
-    return this.filterEventsByLoadcenterId(events,loadcenterId).map(event => this.getEventAsTimelineEvent(event));
+  getTimelineEventsByLoadcenterId(events: Array<EventModel>, loadcenterId: ID) {
+    return this.filterEventsByLoadcenterId(events, loadcenterId).map(event => this.getEventAsTimelineEvent(event));
   }
 
   getTimelineEventsByBreakerId(events: Array<EventModel>, breakerId: ID) {
     return this.filterEventsByBreakerId(events, breakerId).map(event => this.getEventAsTimelineEvent(event));
   }
+  //endregion EVENT FUNCTIONS
+  ///////////////////////////
 
-
-  
-
-  // NOTE: This function no longer works
-  //
-  // getBreakerById(loadcenterId: ID, breakerId: ID){
-  //   let loadcenter: Loadcenter = this.getLoadcenterById(loadcenterId);
-  //   for(var i=0; i<loadcenter.breakers.length; i++){
-  //     if(loadcenter.breakers[i].id === breakerId){
-  //       return loadcenter.breakers[i];
-  //     }
-  //   }
-  // }
-
-  ///////////////////////////////
-  //region  PRIVATE FUNCTIONS  //
-  ///////////////////////////////
-
-  _onLoadcenterListChange(){
-    // console.log("DevicesProvider _onLoadcenterListChange loadcenters:",this.loadcenterList);
-  }
-
-  _onBreakerListChange(){
-    // console.log("DevicesProvider _onBreakerListChange breakers:",this.breakerList);
-  }
-
-  _oneventListChange(){
-    // console.log("DevicesProvider _oneventListChange events:",this.eventList);
-  }
+  //////////////////////////////
+  //region  PRIVATE FUNCTIONS
+  //////////////////////////////
 
   _getTimelineIcon(eventType: string) {
     switch (eventType) {
@@ -568,7 +550,7 @@ export class DevicesProvider {
     return Object.keys(obj).filter(objKey => obj[objKey] === false);
   }
 
-  //////////////////////////////////
-  //endregion  PRIVATE FUNCTIONS  //  
-  //////////////////////////////////
+  //////////////////////////////
+  //endregion  PRIVATE FUNCTIONS  
+  //////////////////////////////
 }

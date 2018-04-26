@@ -33,6 +33,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DevicesProvider } from '../providers/devices/devices';
 import { AlertsProvider } from '../providers/alerts/alerts';
+import { ApiProvider } from '../providers/api/api';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AlertsProvider } from '../providers/alerts/alerts';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DevicesProvider,
-    AlertsProvider
+    AlertsProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}
