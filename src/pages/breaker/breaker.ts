@@ -61,7 +61,7 @@ export class BreakerPage {
         console.log("Successfully sent open breaker command.");
       },
       err => {
-        console.log("Error sending open breaker command.");
+        console.log("Error sending open breaker command:",err);
       }
     );
   }
@@ -72,13 +72,20 @@ export class BreakerPage {
         console.log("Successfully sent close breaker command.");
       },
       err => {
-        console.log("Error sending close breaker command.");
+        console.log("Error sending close breaker command:",err);
       }
     );
   }
 
   clearFault(){
-
+    this.api.clearLoadcenterBreakerFault(this.loadcenterId, this.breaker.getCircuitNumber()).then(
+      req => {
+        console.log("Successfully sent clear fault command.");
+      },
+      err => {
+        console.log("Error sending clear fault command:",err);
+      }
+    )
   }
 
 }
