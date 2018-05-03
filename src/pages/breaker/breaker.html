@@ -17,62 +17,40 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-md col-12>
+      <ion-col col-md-8 col-12>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col class="grid-header">
-              Breaker Details
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col class="grid-sub-header">
-              {{ loadcenterName }} > Circuit {{ breaker.getCircuitNumber() }}
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-card>
-                <ion-item>
-                  <ion-avatar item-start>
-                    <wd-breaker-icon [state]="breaker.getState()"></wd-breaker-icon>
-                  </ion-avatar>
-                  <h2>{{ breaker.getName() }}</h2>
-                  <p>{{ breaker.getStatus() }}</p>
-                </ion-item>
-                <ion-card-content>
-                  <ion-row>
-                    <ion-col col-md col-12>
-                      <button ion-button block (click)="openBreaker()">Open Breaker</button>
-                    </ion-col>
-                    <ion-col col-md col-12>
-                      <button ion-button block (click)="closeBreaker()">Close Breaker</button>
-                    </ion-col>
-                    <ion-col col-md col-12>
-                      <button ion-button block (click)="clearFault()">Clear Fault</button>
-                    </ion-col>
-                  </ion-row>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-card class="main-card">
+          <ion-card-header>Breaker Details</ion-card-header>
+          <ion-card-content class="breaker-content">
+            <h1>{{ breaker.getName() }}</h1>
+            <h2>{{ loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }}</h2>
+            <wd-breaker-icon [state]="breaker.getState()"></wd-breaker-icon>
+            <div class="breaker-status">{{ breaker.getStatus() }}</div>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md col-12>
+                  <button ion-button block (click)="openBreaker()">Open Breaker</button>
+                </ion-col>
+                <ion-col col-md col-12>
+                  <button ion-button block (click)="closeBreaker()">Close Breaker</button>
+                </ion-col>
+                <ion-col col-md col-12>
+                  <button ion-button block (click)="clearFault()">Clear Fault</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
 
       </ion-col>
-      <ion-col col-md-auto col-12>
+      <ion-col col-md-4 col-12>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col class="grid-header">
-              Recent Events
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <wd-event-timeline [events]="events"></wd-event-timeline>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-card class="main-card">
+          <ion-card-header>Recent Events</ion-card-header>
+          <ion-card-content>
+            <wd-event-timeline [events]="events" [limitTo]="10"></wd-event-timeline>
+          </ion-card-content>
+        </ion-card>
 
       </ion-col>
     </ion-row>

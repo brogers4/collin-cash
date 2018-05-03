@@ -9,43 +9,45 @@
 </ion-header>
 
 <ion-content padding>
-  
+
   <ion-grid>
+
     <ion-row>
+
       <ion-col col-md-8 col-12>
-        <ion-row justify-content-center>
-          <ion-col class="row-header">
-            System Summary
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-md col-12 class="col-centered-content">
-            <etn-simple-indicator class="online-indicator" [value]="numOnline" unit="loadcenter" pluralUnits="loadcenters" label="Online"></etn-simple-indicator>
-            <etn-simple-indicator class="offline-indicator" [value]="numOffline" unit="loadcenter" pluralUnits="loadcenters" label="Offline"></etn-simple-indicator>
-            <etn-simple-indicator class="fault-indicator" [value]="numFaults" unit="loadcenter" pluralUnits="loadcenters" label="Faults"></etn-simple-indicator>
-          </ion-col>
-          <ion-col col-md col-12 class="col-centered-content">
-            <etn-simple-indicator class="closed-indicator" [value]="numClosed" unit="breaker" pluralUnits="breakers" label="Closed"></etn-simple-indicator>
-            <etn-simple-indicator class="open-indicator" [value]="numOpen" unit="breaker" pluralUnits="breakers" label="Open"></etn-simple-indicator>
-            <etn-simple-indicator class="tripped-indicator" [value]="numTripped" unit="breaker" pluralUnits="breakers" label="Tripped"></etn-simple-indicator>
-          </ion-col>
-        </ion-row>
+        <ion-card class="main-card">
+          <ion-card-header>System Summary</ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md col-12 class="col-centered-content">
+                  <etn-simple-indicator class="online-indicator" [value]="numOnline" unit="loadcenter" pluralUnits="loadcenters" label="Online"></etn-simple-indicator>
+                  <etn-simple-indicator class="offline-indicator" [value]="numOffline" unit="loadcenter" pluralUnits="loadcenters" label="Offline"></etn-simple-indicator>
+                  <etn-simple-indicator class="fault-indicator" [value]="numFaults" unit="loadcenter" pluralUnits="loadcenters" label="Faults"></etn-simple-indicator>
+                </ion-col>
+                <ion-col col-md col-12 class="col-centered-content">
+                  <etn-simple-indicator class="closed-indicator" [value]="numClosed" unit="breaker" pluralUnits="breakers" label="Closed"></etn-simple-indicator>
+                  <etn-simple-indicator class="open-indicator" [value]="numOpen" unit="breaker" pluralUnits="breakers" label="Open"></etn-simple-indicator>
+                  <etn-simple-indicator class="tripped-indicator" [value]="numTripped" unit="breaker" pluralUnits="breakers" label="Tripped"></etn-simple-indicator>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+        <button ion-button clear full small (click)="goToDevices()">See All Devices</button>
       </ion-col>
+
       <ion-col col-md-4 col-12>
-        <ion-row justify-content-center>
-          <ion-col class="row-header">
-            Recent Events
-          </ion-col>
-        </ion-row>
-        <ion-row justify-content-center>
-          <ion-col>
+        <ion-card class="main-card">
+          <ion-card-header>Recent Events</ion-card-header>
+          <ion-card-content>
             <wd-event-timeline [events]="timelineEvents" [limitTo]="5"></wd-event-timeline>
-          </ion-col>
-        </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <button ion-button clear block small (click)="goToEvents()">See All Events</button>
       </ion-col>
     </ion-row>
-    
-    
+
   </ion-grid>
   
 </ion-content>

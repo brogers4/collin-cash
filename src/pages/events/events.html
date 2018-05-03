@@ -20,29 +20,29 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col class="grid-header">
-        Active Faults
-        <ion-badge class="active-faults-badge" color="danger" *ngIf="numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge>
+      <ion-col>
+        <ion-card class="main-card">
+          <ion-card-header>
+            <span>Active Faults</span>
+            <ion-badge class="active-faults-badge" color="danger" *ngIf="numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge>
+          </ion-card-header>
+          <ion-list class="active-faults-list">
+            <button ion-item *ngFor="let breaker of activeFaultBreakers" (click)="goToBreaker(breaker)">
+              <h2>{{ breaker.getStatus() }}</h2>
+              <h3>{{ breaker.loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }} > {{ breaker.getName() }}</h3>
+            </button>
+          </ion-list>
+        </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-list class="active-faults-list">
-          <button ion-item *ngFor="let breaker of activeFaultBreakers" (click)="goToBreaker(breaker)">
-            <h2>{{ breaker.getStatus() }}</h2>
-            <h3>{{ breaker.loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }} > {{ breaker.getName() }}</h3>
-          </button>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="grid-header">
-        All Events
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <wd-event-timeline [events]="timelineEvents" [limitTo]="10" [paginate]="true" [log]="true"></wd-event-timeline>
+        <ion-card class="main-card">
+          <ion-card-header>All Events</ion-card-header>
+          <ion-card-content>
+            <wd-event-timeline [events]="timelineEvents" [limitTo]="10" [paginate]="true" [log]="true"></wd-event-timeline>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>

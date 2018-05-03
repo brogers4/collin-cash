@@ -91,4 +91,8 @@ export class HomePage {
 
   }
 
+  goToDevices(){
+    this.navCtrl.push("DevicesPage");
+  }
+
 }

@@ -21,7 +21,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { DevicesPage } from '../pages/devices/devices';
+import { DevicesPageModule } from '../pages/devices/devices.module';
 import { DevicePage } from '../pages/device/device';
 import { EventsPage } from '../pages/events/events';
 import { SitesPage } from '../pages/sites/sites';
@@ -42,7 +42,7 @@ import { ApiProvider } from '../providers/api/api';
     SignupPage,
     HomePage,
     ListPage,
-    DevicesPage,
+    
     EventsPage,
     SitesPage,
     EnergyPage,
@@ -60,7 +60,8 @@ import { ApiProvider } from '../providers/api/api';
     PipesModule,
     MatIconModule,
     MatButtonModule,
-    MatStepperModule
+    MatStepperModule,
+    DevicesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -69,7 +70,7 @@ import { ApiProvider } from '../providers/api/api';
     SignupPage,
     HomePage,
     ListPage,
-    DevicesPage,
+    // DevicesPage,
     EventsPage,
     SitesPage,
     EnergyPage,

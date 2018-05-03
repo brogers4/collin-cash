@@ -17,21 +17,21 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-md col-12>
+      <ion-col col-md-8 col-12>
         
-        <ion-grid>
-          <ion-row>
+        <!-- <ion-grid> -->
+          <!-- <ion-row>
             <ion-col class="grid-header">
               Device Details
             </ion-col>
-          </ion-row>
+          </ion-row> -->
           <ion-row>
-            <ion-col>
-              <ion-card>
-                
+            <!-- <ion-col> -->
+              <ion-card class="main-card">
+                <ion-card-header>Device Details</ion-card-header>
                 <ion-grid>
                   <ion-row>
-                    <ion-col col-md-3 col-auto class="col-table-header">
+                    <ion-col col-md-4 col-auto class="col-table-header">
                       Device Name
                     </ion-col>
                     <ion-col>
@@ -39,7 +39,7 @@
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col col-md-3 col-auto class="col-table-header">
+                    <ion-col col-md-4 col-auto class="col-table-header">
                       Number of Breakers
                     </ion-col>
                     <ion-col>
@@ -47,7 +47,7 @@
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col col-md-3 col-auto class="col-table-header">
+                    <ion-col col-md-4 col-auto class="col-table-header">
                       Number of Active Faults
                     </ion-col>
                     <ion-col>
@@ -55,7 +55,7 @@
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col col-md-3 col-auto class="col-table-header">
+                    <ion-col col-md-4 col-auto class="col-table-header">
                       Last Fault
                     </ion-col>
                     <ion-col>
@@ -63,7 +63,7 @@
                     </ion-col>
                   </ion-row>
                   <ion-row>
-                    <ion-col col-md-3 col-auto class="col-table-header">
+                    <ion-col col-md-4 col-auto class="col-table-header">
                       Last Fault Time
                     </ion-col>
                     <ion-col>
@@ -73,13 +73,13 @@
                 </ion-grid>
 
               </ion-card>
-            </ion-col>
+            <!-- </ion-col> -->
           </ion-row>
-          <ion-row>
+          <!-- <ion-row>
             <ion-col class="grid-header">
               Breaker Details
             </ion-col>
-          </ion-row>
+          </ion-row> -->
           <ion-row>
             <ion-col col-md-3 col-6 *ngFor="let breaker of breakers">
               <ion-card class="breaker-card hover-elevation" (click)="goToBreaker(breaker.id)">
@@ -91,23 +91,17 @@
               </ion-card>
             </ion-col>
           </ion-row>
-        </ion-grid>
+        <!-- </ion-grid> -->
 
       </ion-col>
-      <ion-col col-md-auto col-12>
+      <ion-col col-md-4 col-12>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col class="grid-header">
-              Recent Events
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <wd-event-timeline [events]="events"></wd-event-timeline>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-card class="main-card">
+          <ion-card-header>Recent Events</ion-card-header>
+          <ion-card-content>
+            <wd-event-timeline [events]="events" [limitTo]="10"></wd-event-timeline>
+          </ion-card-content>
+        </ion-card>
 
       </ion-col>
     </ion-row>

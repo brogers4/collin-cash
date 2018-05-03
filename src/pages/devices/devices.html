@@ -21,33 +21,33 @@
   <ion-grid class="devices-grid">
 
     <ion-row>
-      <ion-col class="grid-header">
-        My Loadcenters
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <ion-list class="devices-list">
-          <button ion-item *ngFor="let loadcenter of loadcenters" [ngClass]="{'status-danger': loadcenter.hasActiveFault()}" (click)="goToDevice(loadcenter.id)">
-            <ion-avatar item-start>
-              <div class="status-indicator">
-                <ion-icon name="alert"></ion-icon>
-              </div>
-            </ion-avatar>
-            <h2>{{loadcenter.name | orUnknown}}</h2>
-            <h3>
-              {{loadcenter.getNumActiveFaults() | orUnknown}} Active
-              <span *ngIf="loadcenter.getNumActiveFaults() === 1; else defaultFaults">
-                Fault
-              </span>
-              <ng-template #defaultFaults>Faults</ng-template>
-            </h3>
-            <p>
-              Last Fault: {{loadcenter.getLastFault() | orDefault : "None"}} 
-              <span *ngIf="loadcenter.getLastFaultTime() as timestamp">({{timestamp | date : 'medium'}})</span>
-            </p>
-          </button>
-        </ion-list>
+      <ion-col>
+        <ion-card class="main-card">
+          <ion-card-header>My Loadcenters</ion-card-header>
+          <!-- <ion-card-content> -->
+            <ion-list class="devices-list">
+              <button ion-item *ngFor="let loadcenter of loadcenters" [ngClass]="{'status-danger': loadcenter.hasActiveFault()}" (click)="goToDevice(loadcenter.id)">
+                <ion-avatar item-start>
+                  <div class="status-indicator">
+                    <ion-icon name="alert"></ion-icon>
+                  </div>
+                </ion-avatar>
+                <h2>{{loadcenter.name | orUnknown}}</h2>
+                <h3>
+                  {{loadcenter.getNumActiveFaults() | orUnknown}} Active
+                  <span *ngIf="loadcenter.getNumActiveFaults() === 1; else defaultFaults">
+                    Fault
+                  </span>
+                  <ng-template #defaultFaults>Faults</ng-template>
+                </h3>
+                <p>
+                  Last Fault: {{loadcenter.getLastFault() | orDefault : "None"}}
+                  <span *ngIf="loadcenter.getLastFaultTime() as timestamp">({{timestamp | date : 'medium'}})</span>
+                </p>
+              </button>
+            </ion-list>
+          <!-- </ion-card-content> -->
+        </ion-card>
       </ion-col>
     </ion-row>
 
