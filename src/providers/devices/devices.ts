@@ -4,6 +4,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
+import 'rxjs/add/operator/debounceTime';
+
 import { DeviceModel } from '../../models/device-model';
 import { LoadcenterModel } from '../../models/loadcenter-model';
 import { BreakerModel } from '../../models/breaker-model';
@@ -71,6 +73,7 @@ export class DevicesProvider {
         });
       });
     });
+    this.deviceList.debounceTime(100);
 
     // OBSERVABLE: devices[DeviceModel]
     // PATH: v1/devices/{id}
@@ -165,14 +168,37 @@ export class DevicesProvider {
     // OBSERVABLE: breakerList[ID]
     // PATH: v1/loadcenter/{id}/breakers
     this.breakerList = new Observable( observer => {
-      this.loadcenters.subscribe( loadcenters => {
+      this.loadcenterList.subscribe( loadcenterList => {
         var breakerList = [];
-        loadcenters.forEach( (loadcenter, index) => {
-          let subBreakerList = loadcenter.getBreakerList();
-          breakerList.push(...subBreakerList);
-        });
-        observer.next(breakerList);
+        loadcenterList.forEach( loadcenterId => {
+          this.db.object(`${this._v}/loadcenter/${loadcenterId}/breakers`).valueChanges().subscribe( subBreakerList => {
+            let _subBreakerListTrue = this._truthyObjectToArray(subBreakerList);
+            let _subBreakerListFalse = this._falseyObjectToArray(subBreakerList);
+            let change = false;
+            _subBreakerListFalse.forEach( breakerId => {
+              if(breakerList.includes(breakerId)){
+                breakerList.splice(breakerList.indexOf(breakerId),1);
+                change = true;
+              }
+            })
+            _subBreakerListTrue.forEach( breakerId => {
+              if(!breakerList.includes(breakerId)){
+                breakerList.push(breakerId);
+                change = true;
+              }
+            })
+            if(change) observer.next(breakerList);
+          })
+        })
       })
+      // this.loadcenters.subscribe( loadcenters => {
+      //   var breakerList = [];
+      //   loadcenters.forEach( (loadcenter, index) => {
+      //     let subBreakerList = loadcenter.getBreakerList();
+      //     breakerList.push(...subBreakerList);
+      //   });
+      //   observer.next(breakerList);
+      // })
     });
 
     // OBSERVABLE: breakers[BreakerModel]
@@ -203,14 +229,40 @@ export class DevicesProvider {
     // OBSERVABLE: eventList[ID]
     // PATH: v1/breaker/{id}/events
     this.eventList = new Observable( observer => {
-      this.breakers.subscribe( breakers => {
+      this.breakerList.subscribe(breakerList => {
         var eventList = [];
-        breakers.forEach( breaker => {
-          let subEventList = breaker.getEventList();
-          eventList.push(...subEventList);
-        });
-        observer.next(eventList);
-      });
+        breakerList.forEach(breakerId => {
+          this.db.object(`${this._v}/breaker/${breakerId}/events`).valueChanges().subscribe(subEventList => {
+            if(typeof subEventList !== 'undefined' && subEventList !== null){
+              let _subEventListTrue = this._truthyObjectToArray(subEventList);
+              let _subEventListFalse = this._falseyObjectToArray(subEventList);
+              let change = false;
+              _subEventListFalse.forEach(eventId => {
+                if (eventList.includes(eventId)) {
+                  eventList.splice(eventList.indexOf(eventId), 1);
+                  change = true;
+                }
+              })
+              _subEventListTrue.forEach(eventId => {
+                if (!eventList.includes(eventId)) {
+                  eventList.push(eventId);
+                  change = true;
+                }
+              })
+              if (change) observer.next(eventList);
+            }
+          })
+        })
+      })
+      
+      // this.breakers.subscribe( breakers => {
+      //   var eventList = [];
+      //   breakers.forEach( breaker => {
+      //     let subEventList = breaker.getEventList();
+      //     eventList.push(...subEventList);
+      //   });
+      //   observer.next(eventList);
+      // });
     });
 
     // OBSERVABLE: events[EventModel]
