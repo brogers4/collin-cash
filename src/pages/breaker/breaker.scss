@@ -14,8 +14,18 @@ page-breaker {
             color: color($colors,dark-gray);
         }
         wd-breaker-icon {
-            font-size: 2.0em;
-            margin: 8px;
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .breaker-status-container {
+            padding-right: 16px;
+            border-right: solid 1px color($colors,light);
+            .breaker-status {
+                text-align: center;
+            }
+        }
+        .breaker-details-container {
+            padding-left: 16px;
         }
     }
 }

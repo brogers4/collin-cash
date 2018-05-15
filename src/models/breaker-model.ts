@@ -17,6 +17,14 @@ export class BreakerModel extends DataModel {
         return this._getStaticDataVal('circuitNumber');
     }
 
+    getCurrentRating():number {
+        return this._getStaticDataVal('currentRating');
+    }
+
+    getBreakerType():string {
+        return this._getStaticDataVal('breakerType');
+    }
+
     getLoadcenterId():ID {
         return this._getStaticDataVal('loadcenterId');
     }

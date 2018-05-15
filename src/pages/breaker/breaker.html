@@ -27,11 +27,21 @@
             </ion-item>
           </ion-card-header>
           <ion-card-content class="breaker-content">
-            <h1>{{ breaker.getName() }}</h1>
-            <h2>{{ loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }}</h2>
-            <wd-breaker-icon [state]="breaker.getState()"></wd-breaker-icon>
-            <div class="breaker-status">{{ breaker.getStatus() }}</div>
             <ion-grid>
+              <ion-row align-items-center justify-content-center>
+                <ion-col col-auto class="breaker-status-container">
+                  <wd-breaker-icon [state]="breaker.getState()"></wd-breaker-icon>
+                  <div class="breaker-status">{{ breaker.getStatus() }}</div>
+                </ion-col>
+                <ion-col col-auto class="breaker-details-container">
+                  <h1>{{ breaker.getName() }}</h1>
+                  <h2>{{ loadcenterName }}</h2>
+                  <h2>Load Type: {{ breaker.getLoadType() }}</h2>
+                  <h2>Circuit Number: {{ breaker.getCircuitNumber() }}</h2>
+                  <h2>Current Rating: {{ breaker.getCurrentRating() }}A</h2>
+                  <h2>Breaker Type: {{breaker.getBreakerType() }}</h2>
+                </ion-col>
+              </ion-row>
               <ion-row>
                 <ion-col col-md col-12>
                   <button ion-button block (click)="openBreaker()">Open Breaker</button>
