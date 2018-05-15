@@ -79,7 +79,7 @@
 }
 
 .ion-page {
-    ion-content {
+    > ion-content {
         background-color: color($colors,light);
     }
     ion-grid {
@@ -158,6 +158,13 @@ ion-card {
         ion-card-header {
             border-bottom: 1px solid color($colors,light);
             color: color($colors,primary);
+            ion-item {
+                color: color($colors,primary);
+                // padding: 0;
+            }
+            &.header-with-item {
+                padding: 3px;
+            }
         }
     }
     &.hover-elevation {
@@ -199,6 +206,19 @@ button[ion-button] {
         div.menu-icon-badge {
             right: 4px;
             top: 4px;
+        }
+    }
+}
+
+ion-toast {
+    &.toast-success {
+        .toast-wrapper {
+            background-color: color($colors, success);
+        }
+    }
+    &.toast-error {
+        .toast-wrapper {
+            background-color: color($colors, danger);
         }
     }
 }

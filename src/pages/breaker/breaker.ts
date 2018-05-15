@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DevicesProvider } from '../../providers/devices/devices';
 import { ApiProvider } from '../../providers/api/api';
 import { Loadcenter, Breaker, ID } from '../../interfaces/devices';
@@ -33,6 +33,7 @@ export class BreakerPage {
 
   constructor(
     public navCtrl: NavController, 
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public db: AngularFireDatabase,
     public devicesProvider: DevicesProvider,
@@ -86,6 +87,11 @@ export class BreakerPage {
         console.log("Error sending clear fault command:",err);
       }
     )
+  }
+
+  onBreakerEdit(){
+    var editBreakerModal = this.modalCtrl.create('EditBreakerModalPage',{'breakerId':this.id});
+    editBreakerModal.present();
   }
 
 }

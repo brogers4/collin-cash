@@ -20,7 +20,12 @@
       <ion-col col-md-8 col-12>
 
         <ion-card class="main-card">
-          <ion-card-header>Breaker Details</ion-card-header>
+          <ion-card-header class="header-with-item">
+            <ion-item>
+              Breaker Details
+              <button ion-button clear item-end (click)="onBreakerEdit()">Edit</button>
+            </ion-item>
+          </ion-card-header>
           <ion-card-content class="breaker-content">
             <h1>{{ breaker.getName() }}</h1>
             <h2>{{ loadcenterName }} > Circuit #{{ breaker.getCircuitNumber() }}</h2>

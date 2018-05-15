@@ -27,6 +27,7 @@ import { EventsPage } from '../pages/events/events';
 import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
 import { BreakerPage } from '../pages/breaker/breaker';
+import { EditBreakerModalPageModule } from '../pages/edit-breaker-modal/edit-breaker-modal.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -61,7 +62,8 @@ import { ApiProvider } from '../providers/api/api';
     MatIconModule,
     MatButtonModule,
     MatStepperModule,
-    DevicesPageModule
+    DevicesPageModule,
+    EditBreakerModalPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
