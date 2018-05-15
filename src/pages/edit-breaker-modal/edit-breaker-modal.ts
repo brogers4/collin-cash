@@ -36,7 +36,10 @@ export class EditBreakerModalPage {
 
     this.breakerDetails = this.formBuilder.group({
       name: ['', Validators.required],
-      loadType: ['', Validators.required]
+      loadType: ['', Validators.required],
+      circuitNumber: ['', Validators.required],
+      currentRating: ['', Validators.required],
+      breakerType: ['', Validators.required],
     });
 
     if(this.breakerId){
@@ -45,6 +48,9 @@ export class EditBreakerModalPage {
         this.breaker = breaker;
         this.breakerDetails.controls['name'].setValue(breaker.getName());
         this.breakerDetails.controls['loadType'].setValue(breaker.getLoadType());
+        this.breakerDetails.controls['circuitNumber'].setValue(breaker.getCircuitNumber());
+        this.breakerDetails.controls['currentRating'].setValue(breaker.getCurrentRating());
+        this.breakerDetails.controls['breakerType'].setValue(breaker.getBreakerType());
       })
     }
     
@@ -62,12 +68,22 @@ export class EditBreakerModalPage {
     if (this.breakerDetails.get('loadType').dirty) {
       Object.assign(staticData, {loadType: this.dp._tsVal(this.breakerDetails.get('loadType').value)});
     }
+    if (this.breakerDetails.get('circuitNumber').dirty) {
+      Object.assign(staticData, { circuitNumber: this.dp._tsVal(this.breakerDetails.get('circuitNumber').value) });
+    }
+    if (this.breakerDetails.get('currentRating').dirty) {
+      Object.assign(staticData, { currentRating: this.dp._tsVal(this.breakerDetails.get('currentRating').value) });
+    }
+    if (this.breakerDetails.get('breakerType').dirty) {
+      Object.assign(staticData, { breakerType: this.dp._tsVal(this.breakerDetails.get('breakerType').value) });
+    }
+
     if(Object.keys(staticData).length !== 0){
       this.dp.getBreakerRef(this.breakerId,'staticData').update(staticData)
         .then(success => {
           console.log("Successfully updated breaker data:", staticData)
           let toast = this.toastCtrl.create({
-            message: "Successfull updated breaker data.",
+            message: "Successfully updated breaker data.",
             duration: 3000,
             // showCloseButton: true,
             cssClass: "toast-success"

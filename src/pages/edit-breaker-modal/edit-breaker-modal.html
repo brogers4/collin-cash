@@ -22,12 +22,24 @@
   <form [formGroup]="breakerDetails" (ngSubmit)="submitForm()">
 
     <ion-item>
-      <ion-label>Name</ion-label>
+      <ion-label floating>Name</ion-label>
       <ion-input type="text" formControlName="name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Load Type</ion-label>
+      <ion-label floating>Load Type</ion-label>
       <ion-input type="text" formControlName="loadType"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Circuit Number</ion-label>
+      <ion-input type="text" formControlName="circuitNumber"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Current Rating</ion-label>
+      <ion-input type="text" formControlName="currentRating"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Breaker Type</ion-label>
+      <ion-input type="text" formControlName="breakerType"></ion-input>
     </ion-item>
     <ion-footer padding>
       <ion-buttons end>
