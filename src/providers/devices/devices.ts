@@ -3,8 +3,10 @@ import { ID, Device, Loadcenter, Breaker, Event } from '../../interfaces/devices
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
 
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/catch';
 
 import { DeviceModel } from '../../models/device-model';
 import { LoadcenterModel } from '../../models/loadcenter-model';
@@ -66,14 +68,24 @@ export class DevicesProvider {
     // PATH: v1/users/{id}/devices
     this.deviceList = new Observable( observer => {
       afAuth.authState.subscribe( user => {
-        db.object(`${this._v}/users/${user.uid}/devices`).valueChanges().subscribe( devices => {
-          if (typeof devices === 'undefined' || devices === null) observer.next([]);
-          let deviceList = this._truthyObjectToArray(devices);
-          observer.next(deviceList);
-        });
+        if(typeof user !== 'undefined' && user !== null && user.uid !== null){
+          db.object(`${this._v}/users/${user.uid}/devices`).valueChanges().subscribe(devices => {
+            if (typeof devices === 'undefined' || devices === null) observer.next([]);
+            let deviceList = this._truthyObjectToArray(devices);
+            observer.next(deviceList);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
+          });
+        } else {
+          observer.next([]);
+        }
       });
     });
-    this.deviceList.debounceTime(100);
+    this.deviceList.debounceTime(50);
 
     // OBSERVABLE: devices[DeviceModel]
     // PATH: v1/devices/{id}
@@ -89,6 +101,12 @@ export class DevicesProvider {
               devices[index].updateData(val);
             }
             observer.next(devices);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           });
         });
         observer.next(devices);
@@ -104,6 +122,12 @@ export class DevicesProvider {
           this.db.object(`${this._v}/devices/${deviceId}/staticData/name/val`).valueChanges().subscribe(name => {
             deviceNames[deviceId] = name;
             observer.next(deviceNames);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
         })
       })
@@ -132,6 +156,12 @@ export class DevicesProvider {
                 }
               }
             }
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
         });
       });
@@ -149,11 +179,23 @@ export class DevicesProvider {
             let index = this._getIndexOfArrayById(loadcenters, loadcenterId);
             loadcenters[index].name = val;
             observer.next(loadcenters);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
           this.db.object(`${this._v}/loadcenter/${loadcenterId}`).valueChanges().subscribe(loadcenter => {
             let index = this._getIndexOfArrayById(loadcenters, loadcenterId);
             loadcenters[index].updateData(loadcenter);
             observer.next(loadcenters);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
         })
         observer.next(loadcenters);
@@ -188,6 +230,12 @@ export class DevicesProvider {
               }
             })
             if(change) observer.next(breakerList);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
         })
       })
@@ -215,6 +263,12 @@ export class DevicesProvider {
               breakers[index].updateData(val);
             }
             observer.next(breakers);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           });
         });
         observer.next(breakers);
@@ -251,6 +305,12 @@ export class DevicesProvider {
               })
               if (change) observer.next(eventList);
             }
+          }, err => {
+            if(err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           })
         })
       })
@@ -274,6 +334,12 @@ export class DevicesProvider {
           this.db.object(`${this._v}/event/${eventId}`).valueChanges().subscribe(val => {
             events.push(new EventModel(eventId,val));
             observer.next(events);
+          }, err => {
+            if (err.code == "PERMISSION_DENIED") {
+              // ignore
+            } else {
+              console.log(err);
+            }
           });
         });
         observer.next(events);
@@ -386,6 +452,21 @@ export class DevicesProvider {
         observer.next(new BreakerModel(id,data));
       })
     })
+  }
+
+  updateBreakerName(id: ID, name: string){
+    return this.updateBreaker(id, this._tsVal(name), 'staticData/name');
+  }
+
+  updateBreaker(id: ID, value: any, path: string = null){
+    return this.getBreakerRef(id,path).update(value);
+  }
+
+  getBreakerRef(id: ID, path: String = null) {
+    if(path){
+      return this.db.object(`${this._v}/breaker/${id}/${path}`);
+    }
+    else return this.db.object(`${this._v}/breaker/${id}`);
   }
 
   getBreakersFromList(breakerList: Array<ID>):Observable<Array<BreakerModel>> {
@@ -581,8 +662,10 @@ export class DevicesProvider {
   }
 
   _getIndexOfArrayById(arr: Array<any>, id: ID){
-    for (var i = 0; i < arr.length; i++){
-      if (arr[i].id === id) return i;
+    if(typeof arr !== 'undefined' && arr !== null){
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i].id === id) return i;
+      }
     }
     return -1;
   }
@@ -600,6 +683,13 @@ export class DevicesProvider {
 
   _falseyObjectToArray(obj: any) {
     return Object.keys(obj).filter(objKey => obj[objKey] === false);
+  }
+
+  _tsVal(val: any){
+    return {
+      val: val,
+      ts: Date.now()
+    }
   }
 
   //////////////////////////////
