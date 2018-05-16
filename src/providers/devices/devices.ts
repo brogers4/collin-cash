@@ -396,7 +396,7 @@ export class DevicesProvider {
   ////////////////////////////
   getDevice(id: ID):Observable<DeviceModel> {
     return new Observable( observer => {
-      this.db.object(`${this._v}/device/${id}`).valueChanges().subscribe( data => {
+      this.db.object(`${this._v}/devices/${id}`).valueChanges().subscribe( data => {
         observer.next(new DeviceModel(id,data));
       });
     });
@@ -408,6 +408,13 @@ export class DevicesProvider {
         observer.next(deviceNames[id]);
       });
     });
+  }
+
+  getDeviceRef(id: ID, path: String = null) {
+    if (path) {
+      return this.db.object(`${this._v}/devices/${id}/${path}`);
+    }
+    else return this.db.object(`${this._v}/devices/${id}`);
   }
   //endregion DEVICE FUNCTIONS
   ////////////////////////////

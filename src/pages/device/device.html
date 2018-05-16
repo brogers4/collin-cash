@@ -28,7 +28,13 @@
           <ion-row>
             <!-- <ion-col> -->
               <ion-card class="main-card">
-                <ion-card-header>Device Details</ion-card-header>
+                <ion-card-header class="header-with-item">
+                  <ion-item>
+                     Device Details
+                     <button ion-button clear item-end (click)="onLoadcenterEdit()">Edit</button>
+                  </ion-item>
+                  
+                </ion-card-header>
                 <ion-grid>
                   <ion-row>
                     <ion-col col-md-4 col-auto class="col-table-header">

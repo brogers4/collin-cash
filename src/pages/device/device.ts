@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DevicesProvider } from '../../providers/devices/devices';
 import { Loadcenter, Breaker, Event, ID } from '../../interfaces/devices';
 import { BreakerPage } from '../breaker/breaker';
@@ -33,6 +33,7 @@ export class DevicePage {
 
   constructor(
     public navCtrl: NavController, 
+    public modalCtrl: ModalController,
     public navParams: NavParams,
     public db: AngularFireDatabase,
     public devicesProvider: DevicesProvider
@@ -59,6 +60,11 @@ export class DevicePage {
       "breakerId": id,
       "loadcenterId": this.id
     })
+  }
+
+  onLoadcenterEdit(){
+    var editLoadcenterModal = this.modalCtrl.create('EditLoadcenterModalPage',{'loadcenterId':this.id});
+    editLoadcenterModal.present();
   }
 
 }

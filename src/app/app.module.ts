@@ -28,6 +28,7 @@ import { SitesPage } from '../pages/sites/sites';
 import { EnergyPage } from '../pages/energy/energy';
 import { BreakerPage } from '../pages/breaker/breaker';
 import { EditBreakerModalPageModule } from '../pages/edit-breaker-modal/edit-breaker-modal.module';
+import { EditLoadcenterModalPageModule } from '../pages/edit-loadcenter-modal/edit-loadcenter-modal.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -63,7 +64,8 @@ import { ApiProvider } from '../providers/api/api';
     MatButtonModule,
     MatStepperModule,
     DevicesPageModule,
-    EditBreakerModalPageModule
+    EditBreakerModalPageModule,
+    EditLoadcenterModalPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
