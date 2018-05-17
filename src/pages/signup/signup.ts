@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { finalize } from 'rxjs/operators';
 
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
@@ -25,11 +27,14 @@ export class SignupPage {
   private profileForm : FormGroup;
   private summaryForm: FormGroup;
 
+  private profileImageFile: File;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public menu: MenuController,
     public afAuth: AngularFireAuth,
+    private afStorage: AngularFireStorage,
     public alertCtrl: AlertController,
     private formBuilder: FormBuilder
   ) {
@@ -42,7 +47,7 @@ export class SignupPage {
     });
     this.profileForm = this.formBuilder.group({
       displayName: ['', Validators.required],
-      profileImageURL: ['', Validators.required]
+      profileImageInput: ['', Validators.required]
     });
     this.summaryForm = this.formBuilder.group({
 
@@ -50,12 +55,10 @@ export class SignupPage {
   }
 
   ionViewWillEnter() {
-    console.log("ionViewWillEnter SignupPage");
     this.menu.enable(false);
   }
 
   ionViewWillLeave() {
-    console.log("ionViewWillLeave SignupPage");
     this.menu.enable(true);
   }
 
@@ -67,38 +70,54 @@ export class SignupPage {
     if(this.emailForm.valid && this.profileForm.valid){
       this.afAuth.auth.createUserWithEmailAndPassword(this.emailForm.value.email,this.emailForm.value.password).then(
         user => {
+          // User is created; now upload profile image
+          //TODO: Handle if error uploading profile image;
+          //TODO: Create user tree in RTDB
           console.log("Successfully created user.");
-          user.updateProfile({
-            displayName: this.profileForm.value.displayName,
-            photoURL: this.profileForm.value.profileImageURL
-          }).then(
-            () => {
-              console.log("Successfully updated user profile.");
-              let alert = this.alertCtrl.create({
-                title: 'Success!',
-                subTitle: 'User account and profile created successfully.',
-                buttons: [{
-                  text: 'OK',
-                  handler: data => {
-                    this.navCtrl.setRoot(HomePage);
+          const fileRef = this.afStorage.ref(`${user.uid}/images/profile-image/original`);
+          const task = fileRef.put(this.profileImageFile);
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe( url => {
+
+                // Profile image is uploaded; now update user profile
+                console.log("Successfully uploaded profile image:",url);
+                user.updateProfile({
+                  displayName: this.profileForm.value.displayName,
+                  photoURL: url
+                }).then(
+                  () => {
+                    console.log("Successfully updated user profile.");
+                    let alert = this.alertCtrl.create({
+                      title: 'Success!',
+                      subTitle: 'User account and profile created successfully.',
+                      buttons: [{
+                        text: 'OK',
+                        handler: data => {
+                          this.navCtrl.setRoot(HomePage);
+                        }
+                      }]
+                    });
+                    alert.present();
+                  }, error => {
+                    console.log("Error updating user profile:", error);
+                    let alert = this.alertCtrl.create({
+                      subTitle: 'Your user account was created successfully, but there were issues updating your profile. Please try updating your profile again within the app.',
+                      buttons: [{
+                        text: 'OK',
+                        handler: data => {
+                          this.navCtrl.setRoot(HomePage);
+                        }
+                      }]
+                    });
+                    alert.present();
                   }
-                }]
-              });
-              alert.present();
-            }, error => {
-              console.log("Error updating user profile:",error);
-              let alert = this.alertCtrl.create({
-                subTitle: 'Your user account was created successfully, but there were issues updating your profile. Please try updating your profile again within the app.',
-                buttons: [{
-                  text: 'OK',
-                  handler: data => {
-                    this.navCtrl.setRoot(HomePage);
-                  }
-                }]
-              });
-              alert.present();
-            }
-          )
+                )
+
+              })
+            })
+          ).subscribe();
+
         }, error => {
           console.log("Error creating user:",error);
           let alert = this.alertCtrl.create({
@@ -111,6 +130,18 @@ export class SignupPage {
       )
     }
     console.log("Submitting Registration!");
+  }
+
+  onFileChanged(file: File){
+    this.profileImageFile = file;
+    this.profileForm.controls['profileImageInput'].setValue(file);
+
+    var reader = new FileReader();
+    reader.onload = function(e: any){
+      document.getElementById('profileImagePreview').style.backgroundImage = "url(" + e.target.result + ")";
+    }
+    reader.readAsDataURL(file);
+    
   }
 
 }
