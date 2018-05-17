@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { HighchartsChartComponent } from 'highcharts-angular';
 import { 
   MatIconModule,
@@ -58,6 +59,7 @@ import { ApiProvider } from '../providers/api/api';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ComponentsModule,
     PipesModule,
     MatIconModule,

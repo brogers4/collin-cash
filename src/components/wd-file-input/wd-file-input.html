@@ -1,0 +1,9 @@
+<!-- Generated template for the WdFileInputComponent component -->
+<div class="wd-file-input-container">
+  <div id="wdFileInputPreview" class="wd-file-input-preview"></div>
+  <input type="file" id="wdFileInputControl" class="wd-file-input-control" (change)="onFileChange($event)" accept="image/*"/>
+  <label ion-button small for="wdFileInputControl" class="wd-file-input-button">
+    Choose Profile Image
+  </label>
+  <!-- <button ion-button small class="wd-file-input-button" [hidden]="!readyToUpload" color="success" (click)="uploadFile()">Upload Profile Image</button> -->
+</div>

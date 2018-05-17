@@ -12,6 +12,7 @@ import { EtnSimpleIndicatorComponent } from './etn-simple-indicator/etn-simple-i
 import { WdEventTimelineComponent } from './wd-event-timeline/wd-event-timeline';
 import { WdIconComponent } from './wd-icon/wd-icon';
 import { WdBreakerIconComponent } from './wd-breaker-icon/wd-breaker-icon';
+import { WdFileInputComponent } from './wd-file-input/wd-file-input';
 @NgModule({
 	declarations: [
 		EtnAccountHeaderComponent,
@@ -19,6 +20,7 @@ import { WdBreakerIconComponent } from './wd-breaker-icon/wd-breaker-icon';
     	WdEventTimelineComponent,
     	WdIconComponent,
     	WdBreakerIconComponent,
+    WdFileInputComponent,
 	],
 	imports: [
 		IonicModule,
@@ -38,6 +40,7 @@ import { WdBreakerIconComponent } from './wd-breaker-icon/wd-breaker-icon';
     	WdEventTimelineComponent,
     	WdIconComponent,
     	WdBreakerIconComponent,
+    WdFileInputComponent,
 	]
 })
 export class ComponentsModule {}
