@@ -32,6 +32,7 @@
                 }
             }
         }
+        
         ion-list button {
             &.active-page {
                 background-color: color($colors,primary);
@@ -57,6 +58,22 @@
     
     ion-header {
         display: none;
+    }
+    .menu-fixed-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .menu-resize-button {
+            color: color($colors,light-gray);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            .button-inner {
+                justify-content: flex-end;
+            }
+        }
     }
     button {
         &.active-page {
@@ -124,6 +141,56 @@
         .split-pane-side.main-menu {
             max-width: 50px;
             min-width: 50px;
+            ion-list {
+                button {
+                    padding: 0;
+                    ion-icon {
+                        padding: 0 0.5em;
+                    }
+                    ion-badge {
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        font-size: 0.6em;
+                        margin: 0;
+                        padding: 0.3em;
+                        min-height: 16px;
+                        min-width: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(large) {
+    .split-pane-visible {
+        .split-pane-side.main-menu.minify-menu {
+            max-width: 50px;
+            min-width: 50px;
+            ion-list {
+                button {
+                    padding: 0;
+                    ion-icon {
+                        padding: 0 0.5em;
+                    }
+                    ion-badge {
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        font-size: 0.6em;
+                        margin: 0;
+                        padding: 0.3em;
+                        min-height: 16px;
+                        min-width: 16px;
+                    }
+                }
+            }
+            .menu-resize-button {
+                .button-inner {
+                    justify-content: center;
+                }
+            }
         }
     }
 }
@@ -131,6 +198,7 @@
 // Global override for overflow when not on iOS. Note: with overflow
 // set to auto, bounce-back feature will not work.
 ion-content:not(.content-ios){
+// .platform-core {
     .scroll-content {
         overflow-y: auto;
     }

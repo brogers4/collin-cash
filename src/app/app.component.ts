@@ -33,6 +33,7 @@ export class MyApp {
   numActiveFaultBreakers: number = 0;
   numAlerts: number = 0;
   alerts: Array<any> = [];
+  minifyMenu: boolean = false;
 
   constructor(
     public platform: Platform, 
@@ -108,5 +109,9 @@ export class MyApp {
         this.nav.setRoot(LoginPage);
       }
     }.bind(this));
+  }
+
+  resizeMenu() {
+    this.minifyMenu = !this.minifyMenu;
   }
 }
