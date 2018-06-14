@@ -1,19 +1,21 @@
 <!-- Generated template for the WdEventTimelineComponent component -->
 <div class="wd-event-timeline-container" *ngIf="_events && _events.length; else emptyContainer">
   <ul [ngClass]="{'show-next':_showNext, 'show-prev':_showPrev}">
-    <li *ngFor="let event of _timelineEvents">
+    <li *ngFor="let event of _timelineEvents" [@eventAnim]="_timelineEvents.length">
       <div class="wd-event-timeline-icon-container" [attr.eventType]="event.type">
         <ion-icon [name]="event.icon"></ion-icon>
       </div>
       <div class="wd-event-timeline-bubble-container">
-        <div class="wd-event-timeline-title" [attr.eventType]="event.type">
-          {{event.title}}
-        </div>
-        <div class="wd-event-timeline-subtitle">
-          {{event.subTitle}}
-        </div>
-        <div class="wd-event-timeline-timestamp">
-          {{event.timestamp | date:'medium'}}
+        <div class="wd-event-timeline-bubble-content">
+          <div class="wd-event-timeline-title" [attr.eventType]="event.type">
+            {{event.title}}
+          </div>
+          <div class="wd-event-timeline-subtitle">
+            {{event.subTitle}}
+          </div>
+          <div class="wd-event-timeline-timestamp">
+            {{event.timestamp | date:'medium'}}
+          </div>
         </div>
       </div>
     </li>

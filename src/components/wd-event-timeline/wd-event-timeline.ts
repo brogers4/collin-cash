@@ -5,6 +5,14 @@ import {
   SimpleChanges,
   SimpleChange
 } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  group
+} from '@angular/animations';
 
 /**
  * Generated class for the WdEventTimelineComponent component.
@@ -25,7 +33,18 @@ interface Event {
 
 @Component({
   selector: 'wd-event-timeline',
-  templateUrl: 'wd-event-timeline.html'
+  templateUrl: 'wd-event-timeline.html',
+  animations: [
+    trigger('eventAnim',[
+      transition(':enter',[
+        style({ transform: 'translateY(-56px)', height: '0px', margin: '0px', opacity: 0 }),
+        animate('0.3s linear')
+      ]),
+      transition(':leave', [
+        animate('0.3s linear', style({transform: 'translateY(-56px)', height: '0px', margin: '0px', opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class WdEventTimelineComponent {
 

@@ -73,6 +73,11 @@ wd-event-timeline {
             position: relative;
             display: flex;
             flex-direction: row;
+            .wd-event-timeline-content {
+                display: flex;
+                flex-direction: row;
+                flex: 1;
+            }
             .wd-event-timeline-icon-container {
                 position: relative;
                 margin-right: -29px;
@@ -104,7 +109,7 @@ wd-event-timeline {
                 flex: 1 0 auto;
                 margin-left: 15px;
                 min-width: 100px;
-                min-height: 20px;
+                // min-height: 20px;
                 background-color: $wd-event-timeline-bubble-color;
                 border-radius: 2px;
                 padding: 4px 8px;
@@ -120,6 +125,12 @@ wd-event-timeline {
                     border-top: 5px solid transparent;
                     border-bottom: 5px solid transparent;
                     border-right: 10px solid $wd-event-timeline-bubble-color;
+                }
+                .wd-event-timeline-bubble-content {
+                    height: 100%;
+                    // padding: 4px 8px;
+                    // box-sizing: border-box;
+                    overflow-y: hidden;
                 }
                 .wd-event-timeline-title {
                     font-weight: 600;
