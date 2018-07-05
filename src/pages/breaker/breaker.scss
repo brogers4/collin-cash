@@ -1,0 +1,31 @@
+page-breaker {
+    .breaker-content {
+        &.card-content {
+            padding: 8px;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h1 {
+            font-size: 1.2em;
+        }
+        h2 {
+            font-size: 0.9em;
+            color: color($colors,dark-gray);
+        }
+        wd-breaker-icon {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .breaker-status-container {
+            padding-right: 16px;
+            border-right: solid 1px color($colors,light);
+            .breaker-status {
+                text-align: center;
+            }
+        }
+        .breaker-details-container {
+            padding-left: 16px;
+        }
+    }
+}

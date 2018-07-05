@@ -1,11 +1,11 @@
 export const environment = {
     production: false,
     firebase: {
-      apiKey: "AIzaSyAfGkv4kM8fkLtFHvgQKWLEC8AayzdtQaY",
-      authDomain: "px-ionic-seed-app.firebaseapp.com",
-      databaseURL: "https://px-ionic-seed-app.firebaseio.com",
-      projectId: "px-ionic-seed-app",
-      storageBucket: "",
-      messagingSenderId: "441077916705"
+      apiKey: "AIzaSyC_YIfqWTdKyUj40YDGajBC5Ud-aE9qwQ0",
+      authDomain: "rwdd-project-leapfrog.firebaseapp.com",
+      databaseURL: "https://rwdd-project-leapfrog.firebaseio.com",
+      projectId: "rwdd-project-leapfrog",
+      storageBucket: "rwdd-project-leapfrog.appspot.com",
+      messagingSenderId: "862649843101"
     }
 }

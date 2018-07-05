@@ -6,8 +6,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { DevicesPage } from '../pages/devices/devices';
+import { EventsPage } from '../pages/events/events';
+import { SitesPage } from '../pages/sites/sites';
+import { EnergyPage } from '../pages/energy/energy';
 
-import { ListPage } from '../pages/list/list';
+import { DevicesProvider } from '../providers/devices/devices';
+import { AlertsProvider } from '../providers/alerts/alerts';
 
 
 @Component({
@@ -18,31 +23,53 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, icon: string, component: any}>;
+  pages: Array<{
+    title: string, 
+    icon: string, 
+    component: any
+  }>;
 
   user: any;
+  numActiveFaultBreakers: number = 0;
+  numAlerts: number = 0;
+  alerts: Array<any> = [];
+  minifyMenu: boolean = false;
 
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public menu: MenuController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public devicesProvider: DevicesProvider,
+    public alertsProvider: AlertsProvider
   ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+    // Pages that are shown in the side menu
     this.pages = [
       { title: 'Home', icon: 'home', component: HomePage },
-      { title: 'List', icon: 'list', component: ListPage }
+      { title: 'Devices', icon: 'apps', component: DevicesPage },
+      { title: 'Events', icon: 'pulse', component: EventsPage },
+      { title: 'Energy', icon: 'stats', component: EnergyPage },
+      { title: 'Sites', icon: 'pin', component: SitesPage }
     ];
 
+    // Monitor whether user is logged in or not
     const authObserver = afAuth.authState.subscribe( user => {
       if(user){
         // user is logged in
         console.log("Firebase user is logged in:",user);
         this.user = user;
         this.rootPage = HomePage;
+
+        this.alertsProvider.activeFaultBreakerAlertCount.subscribe( count => {
+          this.numActiveFaultBreakers = count;
+        })
+
+        this.alertsProvider.alertCount.subscribe( alertCount => {
+          this.numAlerts = alertCount;
+        })
         // authObserver.unsubscribe();
       } else {
         // user is logged out
@@ -82,5 +109,9 @@ export class MyApp {
         this.nav.setRoot(LoginPage);
       }
     }.bind(this));
+  }
+
+  resizeMenu() {
+    this.minifyMenu = !this.minifyMenu;
   }
 }

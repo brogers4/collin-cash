@@ -1,0 +1,21 @@
+page-device {
+    
+    .breaker-card {
+        .breaker-header {
+            text-align: center;
+        }
+        .breaker-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .breaker-status {
+                font-size: 0.8em;
+                color: color($colors,med-gray);
+            }
+        }
+        .breaker-status-icon {
+            font-size: 36px;
+        }
+    }
+    
+}

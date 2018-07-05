@@ -1,0 +1,35 @@
+page-events {
+    ion-grid {
+        .active-faults-badge {
+            margin-left: 6px;
+        }
+        .active-faults-list {
+            border-color: color($colors,light);
+            margin-top: 0;
+            > .item {
+                border-bottom: 1px solid color($colors,light);
+                &:first-child {
+                    border-top: 0;
+                }
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(small){
+    page-events {
+        ion-grid {
+            .active-faults-list {
+                border: inherit;
+                padding: 0;
+                margin: 5px -10px 32px -10px;
+                ion-col {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}

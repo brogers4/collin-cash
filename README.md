@@ -1,8 +1,8 @@
-# px-ionic-seed-app
+# leapfrog-app
 
 ## Overview
 
-This is app is a seed app for PX-Blue design system using Ionic and Firebase.
+This is app is a proof-of-concept as part of Project Leapfrog. It allows control and monitoring of a smart loadcenter controller which coordinates among its branch circuits.
 
 This app leverages the Ionic Framework, Firebase, and Eaton's PX Blue 2.0 design system.
 
@@ -12,14 +12,8 @@ The following tools are pre-requisites and should be installed globally:
 
 - npm
 - firebase-tools
-
-    `npm install -g firebase-tools`
 - ionic
-
-    `npm install -g cordova ionic`
 - gulp
-
-    `npm install -g gulp`
 
 ### Install NPM packages
 

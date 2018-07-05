@@ -1,0 +1,163 @@
+@import "variables";
+
+@font-face {
+  font-family: 'emcb';
+  src:  url('#{$icomoon-font-path}/emcb.eot?maxwc6');
+  src:  url('#{$icomoon-font-path}/emcb.eot?maxwc6#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/emcb.ttf?maxwc6') format('truetype'),
+    url('#{$icomoon-font-path}/emcb.woff?maxwc6') format('woff'),
+    url('#{$icomoon-font-path}/emcb.svg?maxwc6#emcb') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="wd-icon-"], [class*=" wd-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'emcb' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@function unicode($str) {
+  @return unquote("\"") + $str + unquote("\"");
+}
+
+.wd-icon-breaker-closed {
+  &:before {
+    content: unicode($wd-icon-breaker-closed); 
+  }
+}
+.wd-icon-breaker-fault {
+  &:before {
+    content: unicode($wd-icon-breaker-fault); 
+  }
+}
+.wd-icon-breaker-open {
+  &:before {
+    content: unicode($wd-icon-breaker-open); 
+  }
+}
+.wd-icon-breaker-open-handle {
+  &:before {
+    content: unicode($wd-icon-breaker-open-handle); 
+  }
+}
+.wd-icon-breaker-open-scheduled {
+  &:before {
+    content: unicode($wd-icon-breaker-open-scheduled); 
+  }
+}
+.wd-icon-charging-plugged-3 {
+  &:before {
+    content: unicode($wd-icon-charging-plugged-3); 
+  }
+}
+.wd-icon-charging-plugged-active {
+  &:before {
+    content: unicode($wd-icon-charging-plugged-active); 
+  }
+}
+.wd-icon-charging-plugged-fault {
+  &:before {
+    content: unicode($wd-icon-charging-plugged-fault); 
+  }
+}
+.wd-icon-charging-unplugged-3 {
+  &:before {
+    content: unicode($wd-icon-charging-unplugged-3); 
+  }
+}
+.wd-icon-device-battery {
+  &:before {
+    content: unicode($wd-icon-device-battery); 
+  }
+}
+.wd-icon-device-evse {
+  &:before {
+    content: unicode($wd-icon-device-evse); 
+  }
+}
+.wd-icon-device-hvac {
+  &:before {
+    content: unicode($wd-icon-device-hvac); 
+  }
+}
+.wd-icon-device-outlet {
+  &:before {
+    content: unicode($wd-icon-device-outlet); 
+  }
+}
+.wd-icon-device-outlet-inverse {
+  &:before {
+    content: unicode($wd-icon-device-outlet-inverse); 
+  }
+}
+.wd-icon-device-solar {
+  &:before {
+    content: unicode($wd-icon-device-solar); 
+  }
+}
+.wd-icon-device-water-heater {
+  &:before {
+    content: unicode($wd-icon-device-water-heater); 
+  }
+}
+.wd-icon-energy-backfeed {
+  &:before {
+    content: unicode($wd-icon-energy-backfeed); 
+  }
+}
+.wd-icon-energy-forward {
+  &:before {
+    content: unicode($wd-icon-energy-forward); 
+  }
+}
+.wd-icon-energy-reverse {
+  &:before {
+    content: unicode($wd-icon-energy-reverse); 
+  }
+}
+.wd-icon-etn-contact {
+  &:before {
+    content: unicode($wd-icon-etn-contact); 
+  }
+}
+.wd-icon-etn-document {
+  &:before {
+    content: unicode($wd-icon-etn-document); 
+  }
+}
+.wd-icon-etn-email {
+  &:before {
+    content: unicode($wd-icon-etn-email); 
+  }
+}
+.wd-icon-etn-help {
+  &:before {
+    content: unicode($wd-icon-etn-help); 
+  }
+}
+.wd-icon-etn-phone {
+  &:before {
+    content: unicode($wd-icon-etn-phone); 
+  }
+}
+.wd-icon-etn-video {
+  &:before {
+    content: unicode($wd-icon-etn-video); 
+  }
+}
+.wd-icon-waveform-capture {
+  &:before {
+    content: unicode($wd-icon-waveform-capture); 
+  }
+}
+
