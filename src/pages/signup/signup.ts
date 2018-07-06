@@ -5,7 +5,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 
-import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { CustomValidation } from '../../models/custom-validation';
 

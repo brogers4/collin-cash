@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { DevicesProvider } from '../devices/devices';
@@ -41,38 +41,6 @@ export class ApiProvider {
     
 
   }
-
-  ///////////////////////////////
-  //region LOADCENTER COMMANDS
-  ///////////////////////////////
-  openLoadcenterBreaker(loadcenterId: ID, circuitNumber: number){
-    return this.put(loadcenterId, `loadcenter/breaker/${circuitNumber}/control`,{
-      command: "open",
-      reason: "Client Request"
-    })
-  }
-
-  closeLoadcenterBreaker(loadcenterId: ID, circuitNumber: number){
-    return this.put(loadcenterId, `loadcenter/breaker/${circuitNumber}/control`, {
-      command: "close",
-      reason: "Client Request"
-    })
-  }
-
-  clearLoadcenterBreakerFault(loadcenterId: ID, circuitNumber: number){
-    return this.put(loadcenterId, `loadcenter/breaker/${circuitNumber}/clearFault`, {
-      reason: "Client Request"
-    })
-  }
-  //endregion LOADCENTER COMMANDS
-  ///////////////////////////////
-
-  ////////////////////////////
-  //region BREAKER COMMANDS
-  ////////////////////////////
-
-  //endregion BREAKER COMMANDS
-  ////////////////////////////
 
   getLastRequest(id: ID){
     return this.db.list(this._getRequestString(id), ref => ref.limitToLast(1)).valueChanges();
