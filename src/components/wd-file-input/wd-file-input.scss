@@ -1,0 +1,29 @@
+wd-file-input {
+    display: block;
+    width: 100%;
+    .wd-file-input-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .wd-file-input-control {
+            visibility: hidden;
+            width: 0.1px;
+            height: 0.1px;
+            position: absolute;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .wd-file-input-button {
+            vertical-align: middle;
+        }
+        .wd-file-input-preview {
+            height: 40px;
+            width: 40px;
+            background-color: color($colors,light-gray);
+            border-radius: 50%;
+            margin-right: 20px;
+            background-size: cover;
+            vertical-align: middle;
+        }
+    }
+}

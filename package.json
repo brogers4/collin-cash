@@ -9,7 +9,9 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "ionic:watch:before": "node ./src/bin/env-script.js",
+    "ionic:build:before": "node ./src/bin/env-script.js"
   },
   "dependencies": {
     "@angular/animations": "^5.2.5",
@@ -33,6 +35,8 @@
     "cordova-plugin-telerik-imagepicker": "^2.1.9",
     "firebase": "^4.10.0",
     "hammerjs": "^2.0.8",
+    "highcharts": "^6.0.7",
+    "highcharts-angular": "^1.0.2",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.2",

@@ -15,6 +15,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
 .split-pane-visible {
     .split-pane-side.main-menu {
         max-width: 275px;
@@ -31,6 +32,7 @@
                 }
             }
         }
+        
         ion-list button {
             &.active-page {
                 background-color: color($colors,primary);
@@ -55,7 +57,23 @@
 .main-menu {
     
     ion-header {
-        display: none;
+        display: none;// comment
+    }
+    .menu-fixed-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        .menu-resize-button {
+            color: color($colors,light-gray);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            .button-inner {
+                justify-content: center;
+            }
+        }
     }
     button {
         &.active-page {
@@ -77,11 +95,102 @@
     }
 }
 
+.ion-page {
+    > ion-content {
+        background-color: color($colors,light);
+    }
+    ion-grid {
+        max-width: 1000px;
+        ion-row {
+            ion-col {
+                &.grid-header {
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 1.2em;
+                    background-color: color($colors,medium);
+                    color: color($colors,dark);
+                }
+                &.grid-sub-header {
+                    padding: 10px 20px 0 20px;
+                    color: color($colors,dark-gray);
+                    font-size: 0.9em;
+                }
+                &.col-table-header {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+    
+
+@include respond-to(small) {
+    .split-pane-main {
+        .ion-page {
+            .content {
+                .scroll-content {
+                    padding: 8px 0 8px 0;
+                }
+            }
+        }
+    }
+}
+
 @include respond-to(medium) {
     .split-pane-visible {
         .split-pane-side.main-menu {
             max-width: 50px;
             min-width: 50px;
+            ion-list {
+                button {
+                    padding: 0;
+                    ion-icon {
+                        padding: 0 0.5em;
+                    }
+                    ion-badge {
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        font-size: 0.6em;
+                        margin: 0;
+                        padding: 0.3em;
+                        min-height: 16px;
+                        min-width: 16px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include respond-to(large) {
+    .split-pane-visible {
+        .split-pane-side.main-menu.minify-menu {
+            max-width: 50px;
+            min-width: 50px;
+            ion-list {
+                button {
+                    padding: 0;
+                    ion-icon {
+                        padding: 0 0.5em;
+                    }
+                    ion-badge {
+                        position: absolute;
+                        top: 4px;
+                        right: 4px;
+                        font-size: 0.6em;
+                        margin: 0;
+                        padding: 0.3em;
+                        min-height: 16px;
+                        min-width: 16px;
+                    }
+                }
+            }
+            .menu-resize-button {
+                .button-inner {
+                    justify-content: center;
+                }
+            }
         }
     }
 }
@@ -89,6 +198,7 @@
 // Global override for overflow when not on iOS. Note: with overflow
 // set to auto, bounce-back feature will not work.
 ion-content:not(.content-ios){
+// .platform-core {
     .scroll-content {
         overflow-y: auto;
     }
@@ -107,11 +217,76 @@ ion-content:not(.content-ios){
     }
 }
 
+$deep-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+$med-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+$lite-shadow: 0 4px 15px 3px rgba(0, 0, 0, 0.12), 0 6px 8px -3px rgba(0, 0, 0, 0.4);
+$hard-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
 ion-card {
+    &.main-card {
+        ion-card-header {
+            border-bottom: 1px solid color($colors,light);
+            color: color($colors,primary);
+            ion-item {
+                color: color($colors,primary);
+                // padding: 0;
+            }
+            &.header-with-item {
+                padding: 3px;
+            }
+        }
+    }
+    &.hover-elevation {
+        transition: all 0.3s;
+        &:hover {
+            cursor: pointer;
+            box-shadow: $lite-shadow;
+            transform: translateY(-4px);
+        }
+    }
     &.deep-shadow {
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+        box-shadow: $deep-shadow;
     }
     &.no-shadow {
         box-shadow: none;
+    }
+}
+
+button[ion-button] {
+    div.menu-icon-badge {
+        background: color($colors,danger);
+        border-radius: 10px;
+        font-size: 0.5em;
+        min-height: 8px;
+        min-width: 8px;
+        padding: 4px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        right: 8px;
+        top: 5px;
+    }
+}
+
+.platform-ios {
+    button[ion-button] {
+        div.menu-icon-badge {
+            right: 4px;
+            top: 4px;
+        }
+    }
+}
+
+ion-toast {
+    &.toast-success {
+        .toast-wrapper {
+            background-color: color($colors, success);
+        }
+    }
+    &.toast-error {
+        .toast-wrapper {
+            background-color: color($colors, danger);
+        }
     }
 }

@@ -56,13 +56,30 @@ $colors: (
   primary-light: color($eaton-blue,300),
   primary-dark: color($eaton-blue,700),
   secondary:  color($eaton-green,A700),
+  success:    color($eaton-green,600),
   danger:     color($eaton-red,A700),
+  warning:    color($eaton-yellow,700),
   light:      #f4f4f4,
   medium:     #dedede,
   dark:       #222,
   light-gray: color($eaton-gray,200),
   med-gray:   color($eaton-gray,400),
+  medium-gray: color($eaton-gray,400),
   dark-gray:  color($eaton-gray,600)
 );
 
+// $background-color: color($colors,light);
+
+$breakers: (
+  default: color($eaton-blue,500),
+  closed: color($eaton-blue,500),
+  fault: color($eaton-red,A700),
+  open: color($eaton-green,600),
+  unknown: color($eaton-gray,200)
+);
+
 $primary-background: url(../../assets/imgs/triangle_bg.svg), linear-gradient(color($colors,primary),color($colors,primary-dark));
+$bg-primary: linear-gradient(color($colors,primary),color($colors,primary-dark));
+$bg-gray: linear-gradient(color($colors,light-gray),color($colors,dark-gray));
+$bg-danger: linear-gradient(color($colors,danger),darken(color($colors,danger),20%));
+$bg-success: linear-gradient(color($colors,success),darken(color($colors,success),10%));

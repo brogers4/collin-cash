@@ -2,12 +2,45 @@
   <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
+      <div color="danger" class="menu-icon-badge" *ngIf="numAlerts > 0"></div>
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Welcome to px-ionic-seed-app</h3>
+
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-col col-md-8 col-12>
+        <ion-card class="main-card">
+          <ion-card-header>System Summary</ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md col-12 class="col-centered-content">
+                  <span>System Summary Content</span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+        <button ion-button clear full small>See All Devices</button>
+      </ion-col>
+
+      <ion-col col-md-4 col-12>
+        <ion-card class="main-card">
+          <ion-card-header>Recent Events</ion-card-header>
+          <ion-card-content>
+            Events Content
+          </ion-card-content>
+        </ion-card>
+        <button ion-button clear block small>See All Events</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
   
 </ion-content>

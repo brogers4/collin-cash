@@ -25,6 +25,12 @@ The following tools are pre-requisites and should be installed globally:
 
 `npm install`
 
+### Setup Firebase project
+
+1. Update `.firebaserc` file with correct project
+2. Update `src/environments/environment.${ENV}.ts` file(s) with correct Firebase parameters
+3. Make sure `src/app/app.module.ts` in @NgModule imports `AngularFireModule.initializeApp(environment.firebase)` is pointing to the correct environment
+
 ### Serve in local browser
 
 `ionic serve`

@@ -32,12 +32,10 @@ export class LoginPage {
   }
 
   ionViewWillEnter() {
-    console.log("ionViewWillEnter LoginPage");
     this.menu.enable(false);
   }
 
   ionViewWillLeave() {
-    console.log("ionViewWillLeave LoginPage");
     this.menu.enable(true);
   }
 

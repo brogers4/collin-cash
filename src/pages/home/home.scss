@@ -1,3 +1,83 @@
 page-home {
-
+    ion-grid {
+        max-width: 1000px;
+        ion-row {
+            ion-col {
+                position: relative;
+                &.row-header {
+                    padding: 10px;
+                    text-align: center;
+                    font-size: 1.2em;
+                    background-color: color($colors,light);
+                    color: color($colors,dark);
+                }
+                &.col-centered-content {
+                    display: flex;
+                    justify-content: center;
+                }
+                .col-header {
+                    position: relative;
+                    width: 12px;
+                    // left: -12px;
+                    .rotate-text {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 113px;
+                        font-size: 0.7em;
+                        display: inline-block;
+                        transform: rotate(270deg);
+                        transform-origin: bottom left;
+                        text-align: center;
+                        .header-text {
+                            padding: 6px;
+                            background: color($colors,dark);
+                            color: white;
+                            border-radius: 2px;
+                            width: 100px;
+                            text-align: center;
+                        }
+                    }
+                }
+                wd-event-timeline {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    etn-simple-indicator {
+        .etn-simple-indicator-container {
+            background-color: color($colors,light-gray);
+        }
+        &.online-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,primary);
+            }
+        }
+        &.offline-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,dark);
+            }
+        }
+        &.closed-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,warning);
+            }
+        }
+        &.open-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,success);
+            }
+        }
+        &.fault-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,danger);
+            }
+        }
+        &.tripped-indicator {
+            .etn-simple-indicator-alarm {
+                background-color: color($colors,danger);
+            }
+        }
+    }
 }

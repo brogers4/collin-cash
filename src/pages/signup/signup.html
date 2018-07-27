@@ -13,7 +13,7 @@
 </ion-header> -->
 
 
-<ion-content>
+<ion-content class="signup-content">
   
   <div class="register-container" ion-fixed>
     <div class="register-header">
@@ -73,10 +73,14 @@
                 <ion-input type="text" formControlName="displayName"></ion-input>
               </ion-item>
               <ion-item>
+                <wd-file-input (fileChanged)="onFileChanged($event)"></wd-file-input>
+                <input type="hidden" formControlName="profileImageInput"/>
+              </ion-item>
+              <!-- <ion-item hidden>
                 <ion-icon name="image" item-start></ion-icon>
                 <ion-label floating>Profile Image</ion-label>
                 <ion-input type="text" formControlName="profileImageURL"></ion-input>
-              </ion-item>
+              </ion-item> -->
             </div>
             <div class="step-buttons">
               <button ion-button matStepperPrevious type="button" color="primary" icon-left clear>
@@ -104,7 +108,7 @@
                 <span class="summary-label">Name:</span><span class="summary-value">{{profileForm.value.displayName}}</span>
               </div>
               <div class="summary-item">
-                <span class="summary-label">Profile Image:</span><span class="summary-value"><img *ngIf="profileForm && profileForm.value && profileForm.value.profileImageURL" src="{{profileForm.value.profileImageURL}}"></span>
+                <span class="summary-label">Profile Image:</span><span class="summary-value"><div id="profileImagePreview"></div></span>
               </div>
             </div>
             <div class="step-buttons">

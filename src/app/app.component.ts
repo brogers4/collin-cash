@@ -6,8 +6,10 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { SitesPage } from '../pages/sites/sites';
+import { EnergyPage } from '../pages/energy/energy';
 
-import { ListPage } from '../pages/list/list';
+import { DevicesProvider } from '../providers/devices/devices';
 
 
 @Component({
@@ -18,25 +20,36 @@ export class MyApp {
 
   rootPage: any;
 
-  pages: Array<{title: string, icon: string, component: any}>;
+  pages: Array<{
+    title: string, 
+    icon: string, 
+    component: any
+  }>;
 
   user: any;
+  numActiveFaultBreakers: number = 0;
+  numAlerts: number = 0;
+  alerts: Array<any> = [];
+  minifyMenu: boolean = false;
 
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     public menu: MenuController,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    public devicesProvider: DevicesProvider
   ) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
+    // Pages that are shown in the side menu
     this.pages = [
       { title: 'Home', icon: 'home', component: HomePage },
-      { title: 'List', icon: 'list', component: ListPage }
+      { title: 'Energy', icon: 'stats', component: EnergyPage },
+      { title: 'Sites', icon: 'pin', component: SitesPage }
     ];
 
+    // Monitor whether user is logged in or not
     const authObserver = afAuth.authState.subscribe( user => {
       if(user){
         // user is logged in
@@ -82,5 +95,9 @@ export class MyApp {
         this.nav.setRoot(LoginPage);
       }
     }.bind(this));
+  }
+
+  resizeMenu() {
+    this.minifyMenu = !this.minifyMenu;
   }
 }

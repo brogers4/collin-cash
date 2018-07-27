@@ -8,8 +8,20 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-header';
+import { EtnSimpleIndicatorComponent } from './etn-simple-indicator/etn-simple-indicator';
+import { WdEventTimelineComponent } from './wd-event-timeline/wd-event-timeline';
+import { WdIconComponent } from './wd-icon/wd-icon';
+import { WdBreakerIconComponent } from './wd-breaker-icon/wd-breaker-icon';
+import { WdFileInputComponent } from './wd-file-input/wd-file-input';
 @NgModule({
-	declarations: [EtnAccountHeaderComponent],
+	declarations: [
+		EtnAccountHeaderComponent,
+		EtnSimpleIndicatorComponent,
+    	WdEventTimelineComponent,
+    	WdIconComponent,
+    	WdBreakerIconComponent,
+    WdFileInputComponent,
+	],
 	imports: [
 		IonicModule,
 		BrowserAnimationsModule,
@@ -23,7 +35,12 @@ import { EtnAccountHeaderComponent } from './etn-account-header/etn-account-head
 		MatMenuModule,
 		MatButtonModule,
 		MatListModule,
-		MatIconModule
+		MatIconModule,
+    	EtnSimpleIndicatorComponent,
+    	WdEventTimelineComponent,
+    	WdIconComponent,
+    	WdBreakerIconComponent,
+    WdFileInputComponent,
 	]
 })
 export class ComponentsModule {}

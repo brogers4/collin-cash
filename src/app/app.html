@@ -1,6 +1,6 @@
 <ion-split-pane>
 
-  <ion-menu [content]="content" class="main-menu">
+  <ion-menu [content]="content" class="main-menu" [ngClass]="{'minify-menu': minifyMenu}">
     <ion-header>
 
       <div class="menu-container">
@@ -8,18 +8,22 @@
       </div>
     </ion-header>
     
-    <ion-content>
-      <etn-account-header [user]="user" (onLogout)="logout()"></etn-account-header>
-      <ion-list>
-        <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" [ngClass]="{'active-page': isActive(p)}">
-          <ion-icon name="{{p.icon}}" item-start></ion-icon>
-          {{p.title}}
-        </button>
-        <button menuClose ion-item detail-none (click)="logout()">
-          <ion-icon name="log-out" item-start></ion-icon>
-          Sign Out
-        </button>
-      </ion-list>
+    <ion-content class="menu-content">
+      <div ion-fixed class="menu-fixed-content">
+        <etn-account-header [user]="user" (onLogout)="logout()" [ngClass]="{'minify': minifyMenu}"></etn-account-header>
+        <ion-list>
+          <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" [ngClass]="{'active-page': isActive(p)}">
+            <ion-icon name="{{p.icon}}" item-start></ion-icon>
+            {{p.title}}
+            <!-- <ion-badge class="active-faults-badge" item-end color="danger" *ngIf="p.title == 'Events' && numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge> -->
+          </button>
+          <button menuClose ion-item detail-none (click)="logout()">
+            <ion-icon name="log-out" item-start></ion-icon>
+            Sign Out
+          </button>
+        </ion-list>
+        <button ion-button icon-only small clear full class="menu-resize-button" (click)="resizeMenu()" showWhen="core"><ion-icon [name]="minifyMenu ? 'arrow-forward' : 'arrow-back'"></ion-icon></button>
+      </div>
     </ion-content>
 
   </ion-menu>
