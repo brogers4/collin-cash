@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyAfGkv4kM8fkLtFHvgQKWLEC8AayzdtQaY",
-    authDomain: "px-ionic-seed-app.firebaseapp.com",
-    databaseURL: "https://px-ionic-seed-app.firebaseio.com",
-    projectId: "px-ionic-seed-app",
-    storageBucket: "px-ionic-seed-app.appspot.com",
-    messagingSenderId: "441077916705"
+    apiKey: "AIzaSyDFlHNGN5qeLt5n1Jke2L7FtaY8tsPRf9M",
+    authDomain: "collin-cash.firebaseapp.com",
+    databaseURL: "https://collin-cash.firebaseio.com",
+    projectId: "collin-cash",
+    storageBucket: "collin-cash.appspot.com",
+    messagingSenderId: "831610822219"
   }
 }

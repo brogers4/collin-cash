@@ -1,0 +1,161 @@
+$ticket-color: rgb(58, 228, 42);
+$ticket-border: rgb(42, 151, 34);
+$ticket-text: rgb(35, 124, 28);
+$ticket-hole-size: 0.5em;
+$ticket-hole-increment: 0.1em;
+$ticket-width: 100px;
+$ticket-height: 50px;
+$ticket-size-multiplier: 1;
+
+$ticket-color-green: $ticket-color;
+$ticket-border-green: $ticket-border;
+$ticket-text-green: $ticket-text;
+
+$ticket-color-red: rgb(228, 42, 42);
+$ticket-border-red: rgb(151, 34, 34);
+$ticket-text-red: rgb(124, 28, 28);
+
+$ticket-color-blue: rgb(42, 101, 228);
+$ticket-border-blue: rgb(34, 75, 151);
+$ticket-text-blue: rgb(28, 58, 124);
+
+$ticket-color-yellow: rgb(228, 225, 42);
+$ticket-border-yellow: rgb(151, 143, 34);
+$ticket-text-yellow: rgb(124, 118, 28);
+
+$ticket-color-orange: rgb(247, 180, 57);
+$ticket-border-orange: rgb(165, 91, 30);
+$ticket-text-orange: rgb(141, 93, 22);
+
+collin-cash-ticket {
+    .ticket-container {
+        height: $ticket-height * $ticket-size-multiplier;
+        width: $ticket-width * $ticket-size-multiplier;
+        background-size: 51% 100%;
+        background-repeat: no-repeat;
+        background-image: radial-gradient(circle at 0 50%, rgba($ticket-color,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+        background-position: top left, top right;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-sizing: border-box;
+        filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+        .value-container {
+            flex: 0 0 auto;
+            // background: $ticket-border;
+            border: (1px * $ticket-size-multiplier) solid $ticket-text;
+            color: $ticket-text;
+            font-weight: bold;
+            width: 40%;
+            height: 80%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .value {
+                font-size: 1em * $ticket-size-multiplier;
+                background: $ticket-color;
+            }
+        }
+    }
+
+    &.cc-ticket-green {
+        .ticket-container {
+            background-image: radial-gradient(circle at 0 50%, rgba($ticket-color-green,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-green ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color-green,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-green ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+            filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border-green)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border-green)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border-green)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-green)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+            .value-container {
+                border: (1px * $ticket-size-multiplier) solid $ticket-text-green;
+                color: $ticket-text-green;
+                .value {
+                    background: $ticket-color-green;
+                }
+            }
+        }
+    }
+
+    &.cc-ticket-red {
+        .ticket-container {
+            background-image: radial-gradient(circle at 0 50%, rgba($ticket-color-red,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-red ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color-red,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-red ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+            filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border-red)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border-red)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border-red)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-red)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+            .value-container {
+                border: (1px * $ticket-size-multiplier) solid $ticket-text-red;
+                color: $ticket-text-red;
+                .value {
+                    background: $ticket-color-red;
+                }
+            }
+        }
+    }
+
+    &.cc-ticket-blue {
+        .ticket-container {
+            background-image: radial-gradient(circle at 0 50%, rgba($ticket-color-blue,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-blue ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color-blue,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-blue ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+            filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border-blue)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border-blue)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border-blue)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-blue)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+            .value-container {
+                border: (1px * $ticket-size-multiplier) solid $ticket-text-blue;
+                color: $ticket-text-blue;
+                .value {
+                    background: $ticket-color-blue;
+                }
+            }
+        }
+    }
+
+    &.cc-ticket-yellow {
+        .ticket-container {
+            background-image: radial-gradient(circle at 0 50%, rgba($ticket-color-yellow,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-yellow ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color-yellow,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-yellow ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+            filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border-yellow)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border-yellow)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border-yellow)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-yellow)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+            .value-container {
+                border: (1px * $ticket-size-multiplier) solid $ticket-text-yellow;
+                color: $ticket-text-yellow;
+                .value {
+                    background: $ticket-color-yellow;
+                }
+            }
+        }
+    }
+
+    &.cc-ticket-orange {
+        .ticket-container {
+            background-image: radial-gradient(circle at 0 50%, rgba($ticket-color-orange,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-orange ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment)),
+                            radial-gradient(circle at 100% 50%, rgba($ticket-color-orange,0) $ticket-hole-size * $ticket-size-multiplier, $ticket-color-orange ($ticket-hole-size * $ticket-size-multiplier + $ticket-hole-increment));
+            filter: drop-shadow(0 (1px * $ticket-size-multiplier) 0 $ticket-border-orange)
+                drop-shadow((1px * $ticket-size-multiplier) 0 0 $ticket-border-orange)
+                drop-shadow((-1px * $ticket-size-multiplier) 0 0 $ticket-border-orange)
+                drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-orange)
+                drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
+            .value-container {
+                border: (1px * $ticket-size-multiplier) solid $ticket-text-orange;
+                color: $ticket-text-orange;
+                .value {
+                    background: $ticket-color-orange;
+                }
+            }
+        }
+    }
+}

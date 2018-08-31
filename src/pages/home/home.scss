@@ -1,83 +1,108 @@
 page-home {
+    .main-content {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        overflow: hidden;
+    }
+
     ion-grid {
-        max-width: 1000px;
+        // max-width: 1000px;
         ion-row {
             ion-col {
                 position: relative;
-                &.row-header {
-                    padding: 10px;
-                    text-align: center;
-                    font-size: 1.2em;
-                    background-color: color($colors,light);
-                    color: color($colors,dark);
-                }
                 &.col-centered-content {
                     display: flex;
                     justify-content: center;
                 }
-                .col-header {
-                    position: relative;
-                    width: 12px;
-                    // left: -12px;
-                    .rotate-text {
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
-                        width: 113px;
-                        font-size: 0.7em;
-                        display: inline-block;
-                        transform: rotate(270deg);
-                        transform-origin: bottom left;
-                        text-align: center;
-                        .header-text {
-                            padding: 6px;
-                            background: color($colors,dark);
-                            color: white;
-                            border-radius: 2px;
-                            width: 100px;
-                            text-align: center;
-                        }
-                    }
-                }
-                wd-event-timeline {
-                    width: 100%;
-                }
             }
         }
     }
-    etn-simple-indicator {
-        .etn-simple-indicator-container {
-            background-color: color($colors,light-gray);
+
+    .total-ticket {
+        margin: 20px;
+        perspective: 1000px;
+        transform: rotate3d(1,-1,1,30deg);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        &:hover {
+            transform: rotate3d(1,-1,1,45deg) scale(1.1);
         }
-        &.online-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,primary);
+    }
+
+    $pocket-color: rgba(0,0,0,0.65);
+    .bottom-pocket {
+        background: linear-gradient(to top, rgba($pocket-color,0.5), transparent 1px),
+                    radial-gradient(ellipse at bottom, rgba($pocket-color,0.5), transparent 70%);
+        background-repeat: no-repeat;
+        position: absolute;
+        margin: 0 10% 20px 10%;
+        // border-bottom: 2px solid $pocket-color;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 200px;
+        
+        .pocket-seam {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: $pocket-color;
+            z-index: 10;
+            &:before {
+                content: '';
+                position: absolute;
+                left: -5%;
+                bottom: 0;
+                height: 3px;
+                width: 5%;
+                background: linear-gradient(to top left, $pocket-color, transparent);
+                border-radius: 50% 0 0 50%;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                right: -5%;
+                bottom: 0;
+                height: 3px;
+                width: 5%;
+                background: linear-gradient(to top right, $pocket-color, transparent);
+                border-radius: 0 50% 50% 0;
             }
         }
-        &.offline-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,dark);
+
+        .pocket-ticket-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            .pocket-ticket {
+                flex: 0 1 auto;
+                display: inline-block;
+                transform-origin: center;
+                transform: rotate(90deg) scale(2) translateZ(0) translate(0,0);
+                z-index: 1;
+                transition: all 0.5s ease-in-out;
+                &:hover {
+                    cursor: pointer;
+                    transform: rotate(90deg) scale(2.1) translateZ(0) translate(-10px,0);
+                    z-index: 9;
+                }
             }
         }
-        &.closed-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,warning);
-            }
-        }
-        &.open-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,success);
-            }
-        }
-        &.fault-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,danger);
-            }
-        }
-        &.tripped-indicator {
-            .etn-simple-indicator-alarm {
-                background-color: color($colors,danger);
-            }
+        
+        .pocket-cover {
+            position: absolute;
+            bottom: -22px;
+            left: -5%;
+            right: -5%;
+            height: 22px;
+            background: linear-gradient(to right, transparent, white 4%, white 51%, transparent 51%),
+                        linear-gradient(to left, transparent, white 4%, white 51%, transparent 51%);
+            z-index: 10;
         }
     }
 }

@@ -44,9 +44,7 @@ export class MyApp {
 
     // Pages that are shown in the side menu
     this.pages = [
-      { title: 'Home', icon: 'home', component: HomePage },
-      { title: 'Energy', icon: 'stats', component: EnergyPage },
-      { title: 'Sites', icon: 'pin', component: SitesPage }
+      { title: 'Home', icon: 'home', component: HomePage }
     ];
 
     // Monitor whether user is logged in or not

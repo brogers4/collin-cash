@@ -1,8 +1,8 @@
 {
   "name": "px-ionic-seed-app",
-  "app_id": "85f0c47e",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "85f0c47e"
 }

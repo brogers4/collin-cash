@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 import { DevicesProvider } from '../../providers/devices/devices';
 
@@ -7,24 +8,60 @@ import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  animations: [
+    trigger('addTicketToBank', [
+      state('active', style({
+        transform: 'translate3d(0,-100vh,0) rotate(1080deg) scale(1) translateZ(0)',
+        opacity: '0'
+      })),
+      state('finished', style({
+        transform: 'translate3d(0,150px,0) rotate(90deg) scale(2) translateZ(0)',
+        opacity: '0'
+      })),
+      state('inactive', style({
+        transform: 'translate3d(0,0,0) rotate(90deg) scale(2) translateZ(0)',
+        opacity: '1'
+      })),
+      transition('inactive => active', animate('1s ease-out')),
+      transition('active => finished', animate('0s')),
+      transition('finished => inactive', animate('0.5s ease-in'))
+    ]),
+    trigger('totalTicket',[
+      state('active', style({
+        filter: 'brightness(1.2)',
+        transform: 'rotate3d(1,-1,1,45deg) scale(1.2)'
+      })),
+      state('inactive', style({
+        filter: 'brightness(1)',
+        transform: 'rotate3d(1,-1,1,35deg) scale(1)'
+      })),
+      transition('inactive <=> active', animate('0.9s ease-in-out'))
+    ])
+  ]
 })
 export class HomePage {
 
-  timelineEvents: Array<any>;
-  numLoadcenters: number = 0;
-  numOnline: number = 0;
-  numOffline: number = 0;
-  numUnknownConnected: number = 0;
-  numFaults: number = 0;
-  numBreakers: number = 0;
-  numClosed: number = 0;
-  numOpen: number = 0;
-  numTripped: number = 0;
-  numUnknownState: number = 0;
-  numAlerts: number = 0;
+  bankTotal: number = 0;
+
+  _tickets = [
+    {'value': 1, 'class': 'cc-ticket-green', state: 'inactive'},
+    { 'value': 5, 'class': 'cc-ticket-red', state: 'inactive' },
+    { 'value': 10, 'class': 'cc-ticket-blue', state: 'inactive' },
+    { 'value': 25, 'class': 'cc-ticket-yellow', state: 'inactive' },
+    { 'value': 100, 'class': 'cc-ticket-orange', state: 'inactive' },
+  ]
+  _totalTicketState = "inactive";
+  _valueClasses = {
+    1: "cc-ticket-green",
+    5: "cc-ticket-red",
+    10: "cc-ticket-blue",
+    25: "cc-ticket-yellow",
+    100: "cc-ticket-orange"
+  }
 
   constructor(
+    public renderer: Renderer,
     public navCtrl: NavController,
     public devicesProvider: DevicesProvider
   ) {
@@ -33,6 +70,26 @@ export class HomePage {
       // Do something with the devices
     });
 
+  }
+
+  addToBank = function(val: number, index: number){
+    this._tickets[index].state = 'active';
+    this._totalTicketState = 'active';
+    // ticket.classList.add("pocket-ticket-animation");
+    // this.renderer.addClass("pocket-ticket-animation");
+    // this.renderer.set
+    
+  }
+
+  finishTicketToBank = function(val: number, index: number, event: any){
+    console.log("event = ",event);
+    if(event.fromState == "inactive" && event.toState == "active"){
+      this._tickets[index].state = "finished";
+      this.bankTotal += val;
+    } else if(event.fromState == "active" && event.toState == "finished"){
+      this._tickets[index].state = "inactive";
+      this._totalTicketState = 'inactive';
+    }
   }
 
 }
