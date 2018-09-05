@@ -51,7 +51,8 @@ $dark-theme-red:   mat-dark-theme($dark-primary, $red-primary, $dark-warn);
 
 // Ionic color overrides.
 $colors: (
-  primary:    color($eaton-blue,500),
+  // primary:    color($eaton-blue,500),
+  primary:    white,
   primary-contrast: color($eaton-blue,contrast,500),
   primary-light: color($eaton-blue,300),
   primary-dark: color($eaton-blue,700),

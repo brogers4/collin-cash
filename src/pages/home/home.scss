@@ -1,10 +1,23 @@
 page-home {
     .main-content {
+        background-color: rgba(0,0,0,0.5);
+        background: radial-gradient(circle farthest-corner, #777, #222);
         left: 0;
         right: 0;
         top: 0;
         bottom: 0;
         overflow: hidden;
+        .bg-symbol {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            margin-top: 25vh;
+            // opacity: 0.5;
+            fill: url(#cc_symbol_gradient_bg);
+            filter: blur(5px);
+        }
     }
 
     ion-grid {
@@ -22,11 +35,12 @@ page-home {
 
     .total-ticket {
         margin: 20px;
+        margin-top: 100px;
         perspective: 1000px;
-        transform: rotate3d(1,-1,1,30deg);
+        transform: rotate3d(1,-1,1,30deg) scale(3);
         transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         &:hover {
-            transform: rotate3d(1,-1,1,45deg) scale(1.1);
+            transform: rotate3d(1,-1,1,45deg) scale(3.1);
         }
     }
 
@@ -88,21 +102,39 @@ page-home {
                 transition: all 0.5s ease-in-out;
                 &:hover {
                     cursor: pointer;
-                    transform: rotate(90deg) scale(2.1) translateZ(0) translate(-10px,0);
+                    transform: rotate(90deg) scale(2.1) translateZ(0) translate(-10px,0) !important;
                     z-index: 9;
                 }
             }
         }
         
+        $pocket-cover-color: #aaa;
+        $pocket-cover-color-2: #eeeeee;
         .pocket-cover {
             position: absolute;
             bottom: -22px;
             left: -5%;
             right: -5%;
             height: 22px;
-            background: linear-gradient(to right, transparent, white 4%, white 51%, transparent 51%),
-                        linear-gradient(to left, transparent, white 4%, white 51%, transparent 51%);
+            background: linear-gradient(to right, transparent, $pocket-cover-color 4%, $pocket-cover-color-2 51%, transparent 51%),
+                        linear-gradient(to left, transparent, $pocket-cover-color 4%, $pocket-cover-color-2 51%, transparent 51%);
             z-index: 10;
+        }
+    }
+}
+
+@media (hover: none) {
+    page-home {
+        .bottom-pocket {
+            .pocket-ticket-container {
+                .pocket-ticket {
+                    &:hover {
+                        cursor: inherit !important;
+                        transform: rotate(90deg) scale(2) translateZ(0) translate(0,0) !important;
+                        z-index: 1 !important;
+                    }
+                }
+            }
         }
     }
 }

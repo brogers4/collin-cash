@@ -14,6 +14,8 @@ import { WdIconComponent } from './wd-icon/wd-icon';
 import { WdBreakerIconComponent } from './wd-breaker-icon/wd-breaker-icon';
 import { WdFileInputComponent } from './wd-file-input/wd-file-input';
 import { CollinCashTicketComponent } from './collin-cash-ticket/collin-cash-ticket';
+import { CcMoneyBagComponent } from './cc-money-bag/cc-money-bag';
+import { CcSymbolComponent } from './cc-symbol/cc-symbol';
 @NgModule({
 	declarations: [
 		EtnAccountHeaderComponent,
@@ -23,6 +25,8 @@ import { CollinCashTicketComponent } from './collin-cash-ticket/collin-cash-tick
     	WdBreakerIconComponent,
     WdFileInputComponent,
     CollinCashTicketComponent,
+    CcMoneyBagComponent,
+    CcSymbolComponent,
 	],
 	imports: [
 		IonicModule,
@@ -44,6 +48,8 @@ import { CollinCashTicketComponent } from './collin-cash-ticket/collin-cash-tick
     	WdBreakerIconComponent,
     WdFileInputComponent,
     CollinCashTicketComponent,
+    CcMoneyBagComponent,
+    CcSymbolComponent,
 	]
 })
 export class ComponentsModule {}

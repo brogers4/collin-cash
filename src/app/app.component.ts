@@ -30,7 +30,7 @@ export class MyApp {
   numActiveFaultBreakers: number = 0;
   numAlerts: number = 0;
   alerts: Array<any> = [];
-  minifyMenu: boolean = false;
+  minifyMenu: boolean = true;
 
   constructor(
     public platform: Platform, 
@@ -85,11 +85,16 @@ export class MyApp {
     return (this.nav.getActive().component === page.component);
   }
 
+  logoutClicked() {
+    this.logout();
+  }
+
   logout() {
     this.afAuth.auth.signOut().then(function(error){
       if(error){
         console.log("Error signing out:",error);
       } else {
+        this.user = null;
         this.nav.setRoot(LoginPage);
       }
     }.bind(this));

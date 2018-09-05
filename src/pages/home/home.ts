@@ -30,11 +30,11 @@ import 'rxjs/add/operator/debounceTime';
     trigger('totalTicket',[
       state('active', style({
         filter: 'brightness(1.2)',
-        transform: 'rotate3d(1,-1,1,45deg) scale(1.2)'
+        transform: 'rotate3d(1,-1,1,45deg) scale(3.2)'
       })),
       state('inactive', style({
         filter: 'brightness(1)',
-        transform: 'rotate3d(1,-1,1,35deg) scale(1)'
+        transform: 'rotate3d(1,-1,1,35deg) scale(3)'
       })),
       transition('inactive <=> active', animate('0.9s ease-in-out'))
     ])
@@ -43,6 +43,8 @@ import 'rxjs/add/operator/debounceTime';
 export class HomePage {
 
   bankTotal: number = 0;
+  chaChingFX = new Audio('../../assets/audio/Cha_Ching_Register.mp3');
+  holePunchFX = new Audio('../../assets/audio/Hole_Punch.mp3');
 
   _tickets = [
     {'value': 1, 'class': 'cc-ticket-green', state: 'inactive'},
@@ -52,13 +54,6 @@ export class HomePage {
     { 'value': 100, 'class': 'cc-ticket-orange', state: 'inactive' },
   ]
   _totalTicketState = "inactive";
-  _valueClasses = {
-    1: "cc-ticket-green",
-    5: "cc-ticket-red",
-    10: "cc-ticket-blue",
-    25: "cc-ticket-yellow",
-    100: "cc-ticket-orange"
-  }
 
   constructor(
     public renderer: Renderer,
@@ -75,6 +70,8 @@ export class HomePage {
   addToBank = function(val: number, index: number){
     this._tickets[index].state = 'active';
     this._totalTicketState = 'active';
+    this.holePunchFX.currentTime = 0;
+    this.holePunchFX.play();
     // ticket.classList.add("pocket-ticket-animation");
     // this.renderer.addClass("pocket-ticket-animation");
     // this.renderer.set
@@ -82,8 +79,9 @@ export class HomePage {
   }
 
   finishTicketToBank = function(val: number, index: number, event: any){
-    console.log("event = ",event);
     if(event.fromState == "inactive" && event.toState == "active"){
+      this.chaChingFX.currentTime = 0;
+      this.chaChingFX.play();
       this._tickets[index].state = "finished";
       this.bankTotal += val;
     } else if(event.fromState == "active" && event.toState == "finished"){

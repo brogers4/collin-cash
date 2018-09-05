@@ -1,6 +1,34 @@
+<div *ngIf="user" class="menu-container">
+  <div *ngIf="user && user.photoURL;else empty_avatar" class="account-avatar" [ngStyle]="{'background-image': 'url('+user.photoURL+')'}">
+    <!-- <img *ngIf="user && user.photoURL" src="{{user.photoURL}}"> -->
+  </div>
+  <ng-template #empty_avatar>
+    <div class="account-avatar account-avatar-empty"></div>
+  </ng-template>
+  <div class="menu-contents">
+    <div class="account-info">
+      <div *ngIf="user && user.displayName" class="account-name">{{user.displayName}}</div>
+      <!-- <div *ngIf="user && user.email" class="account-email">{{user.email}}</div> -->
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="accountMenu" class="account-more-button">
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="account-more-menu">
+      <button mat-menu-item>
+        <ion-icon name="contact" item-start></ion-icon>
+        <span>Account Settings</span>
+      </button>
+      <button mat-menu-item (click)="logoutClicked()">
+        <ion-icon name="log-out" item-start></ion-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+
 <ion-split-pane>
 
-  <ion-menu [content]="content" class="main-menu" [ngClass]="{'minify-menu': minifyMenu}">
+  <!-- <ion-menu [content]="content" class="main-menu" [ngClass]="{'minify-menu': minifyMenu}">
     <ion-header>
 
       <div class="menu-container">
@@ -15,7 +43,6 @@
           <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" [ngClass]="{'active-page': isActive(p)}">
             <ion-icon name="{{p.icon}}" item-start></ion-icon>
             {{p.title}}
-            <!-- <ion-badge class="active-faults-badge" item-end color="danger" *ngIf="p.title == 'Events' && numActiveFaultBreakers > 0">{{ numActiveFaultBreakers }}</ion-badge> -->
           </button>
           <button menuClose ion-item detail-none (click)="logout()">
             <ion-icon name="log-out" item-start></ion-icon>
@@ -26,7 +53,8 @@
       </div>
     </ion-content>
 
-  </ion-menu>
+  </ion-menu> -->
+  
 
   <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
   <ion-nav [root]="rootPage" main #content swipeBackEnabled="false"></ion-nav>

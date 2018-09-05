@@ -29,6 +29,7 @@ $ticket-text-orange: rgb(141, 93, 22);
 
 collin-cash-ticket {
     .ticket-container {
+        position: relative;
         height: $ticket-height * $ticket-size-multiplier;
         width: $ticket-width * $ticket-size-multiplier;
         background-size: 51% 100%;
@@ -48,7 +49,7 @@ collin-cash-ticket {
         .value-container {
             flex: 0 0 auto;
             // background: $ticket-border;
-            border: (1px * $ticket-size-multiplier) solid $ticket-text;
+            border: (1px * $ticket-size-multiplier) solid rgba($ticket-text,0.35);
             color: $ticket-text;
             font-weight: bold;
             width: 40%;
@@ -58,8 +59,21 @@ collin-cash-ticket {
             justify-content: center;
             align-items: center;
             .value {
-                font-size: 1em * $ticket-size-multiplier;
-                background: $ticket-color;
+                font-size: 0.9em * $ticket-size-multiplier;
+                background: rgba($ticket-color,0.5);
+            }
+            cc-symbol {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                height: 80%;
+                padding-top: 10%;
+                #cc_symbol_path {
+                    fill: rgba($ticket-text,0.2);
+                }
             }
         }
     }
@@ -74,10 +88,13 @@ collin-cash-ticket {
                 drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-green)
                 drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
             .value-container {
-                border: (1px * $ticket-size-multiplier) solid $ticket-text-green;
+                border: (1px * $ticket-size-multiplier) solid rgba($ticket-text-green,0.35);
                 color: $ticket-text-green;
                 .value {
-                    background: $ticket-color-green;
+                    background: rgba($ticket-color-green,0.5);
+                }
+                #cc_symbol_path {
+                    fill: rgba($ticket-text-green,0.2);
                 }
             }
         }
@@ -93,10 +110,13 @@ collin-cash-ticket {
                 drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-red)
                 drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
             .value-container {
-                border: (1px * $ticket-size-multiplier) solid $ticket-text-red;
+                border: (1px * $ticket-size-multiplier) solid rgba($ticket-text-red,0.35);
                 color: $ticket-text-red;
                 .value {
-                    background: $ticket-color-red;
+                    background: rgba($ticket-color-red,0.5);
+                }
+                #cc_symbol_path {
+                    fill: rgba($ticket-text-red,0.2);
                 }
             }
         }
@@ -112,10 +132,13 @@ collin-cash-ticket {
                 drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-blue)
                 drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
             .value-container {
-                border: (1px * $ticket-size-multiplier) solid $ticket-text-blue;
+                border: (1px * $ticket-size-multiplier) solid rgba($ticket-text-blue,0.35);
                 color: $ticket-text-blue;
                 .value {
-                    background: $ticket-color-blue;
+                    background: rgba($ticket-color-blue,0.5);
+                }
+                #cc_symbol_path {
+                    fill: rgba($ticket-text-blue,0.2);
                 }
             }
         }
@@ -131,10 +154,13 @@ collin-cash-ticket {
                 drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-yellow)
                 drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
             .value-container {
-                border: (1px * $ticket-size-multiplier) solid $ticket-text-yellow;
+                border: (1px * $ticket-size-multiplier) solid rgba($ticket-text-yellow,0.35);
                 color: $ticket-text-yellow;
                 .value {
-                    background: $ticket-color-yellow;
+                    background: rgba($ticket-color-yellow,0.5);
+                }
+                #cc_symbol_path {
+                    fill: rgba($ticket-text-yellow,0.2);
                 }
             }
         }
@@ -150,10 +176,13 @@ collin-cash-ticket {
                 drop-shadow(0 (-1px * $ticket-size-multiplier) 0 $ticket-border-orange)
                 drop-shadow((1px * $ticket-size-multiplier) (2px * $ticket-size-multiplier) (3px * $ticket-size-multiplier) rgba(0,0,0,0.4));
             .value-container {
-                border: (1px * $ticket-size-multiplier) solid $ticket-text-orange;
+                border: (1px * $ticket-size-multiplier) solid rgba($ticket-text-orange,0.35);
                 color: $ticket-text-orange;
                 .value {
-                    background: $ticket-color-orange;
+                    background: rgba($ticket-color-orange,0.5);
+                }
+                #cc_symbol_path {
+                    fill: rgba($ticket-text-orange,0.2);
                 }
             }
         }

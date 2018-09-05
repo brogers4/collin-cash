@@ -14,24 +14,30 @@
 
 
 <ion-content padding ion-fixed no-bounce class="login-content">
+  <cc-symbol class="bg-symbol"></cc-symbol>
   <div ion-fixed class="login-container">
     <ion-card class="no-shadow">
       <ion-card-header class="login-header">
-        <img src="../../assets/imgs/etn_pbw_logo_color.png">
+        <!-- <img src="../../assets/imgs/etn_pbw_logo_color.png"> -->
+        <cc-symbol></cc-symbol>
+        <h1>Collin Cash</h1>
       </ion-card-header>
       <ion-card-content>
-        <ion-item>
-          <ion-label floating>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="email"></ion-input>
+        <ion-item class="round-input">
+          <!-- <ion-label fixed>E-mail</ion-label> -->
+          <ion-input placeholder="E-mail" type="email" [(ngModel)]="email"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label floating>Password</ion-label>
-          <ion-input type="password" [(ngModel)]="password"></ion-input>
+        <ion-item class="round-input">
+          <!-- <ion-label fixed>Password</ion-label> -->
+          <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
         </ion-item>
         <div class="login-error">{{errorMessage}}</div>
         <div class="card-footer">
-          <button ion-button block (click)="signIn()">SIGN IN</button>
-          <button ion-button block outline (click)="signUp()">SIGN UP</button>
+          <button ion-button block round outline (click)="signIn()">SIGN IN</button>
+          <!-- <button ion-button block round outline (click)="signUp()">SIGN UP</button> -->
+          <p class="register-text">
+            Need to create an account? Click <a (click)="signUp()">here</a> to register.
+          </p>
         </div>
       </ion-card-content>
     </ion-card>

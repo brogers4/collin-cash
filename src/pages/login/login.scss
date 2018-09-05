@@ -6,13 +6,26 @@ page-login {
         margin: 0;
     }
     ion-content {
-        background-color: color($colors,primary);
-        background: $primary-background;
-        background-size: 36px 36px, cover;
-        background-position: 8px 8px, 0 0;
+        // background-color: color($colors,primary);
+        // background: $primary-background;
+        // background-size: 36px 36px, cover;
+        // background-position: 8px 8px, 0 0;
+        background-color: rgba(0,0,0,0.5);
+        background: radial-gradient(circle farthest-corner, #777, #222);
         .fixed-content {
             display: flex;
             justify-content: center;
+        }
+        .bg-symbol {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            margin-top: 20vh;
+            // opacity: 0.5;
+            fill: url(#cc_symbol_gradient_bg);
+            filter: blur(5px);
         }
         .login-container {
             display: flex;
@@ -27,10 +40,21 @@ page-login {
                 display: flex;
                 flex-direction: column;
                 align-items: stretch;
+                background: none;
                 ion-card-header {
                     &.login-header {
                         max-width: 240px;
                         align-self: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        color: color($colors,primary);
+                        h1 {
+                            color: rgba(color($colors,primary),0.5);
+                        }
+                        cc-symbol {
+                            fill: rgba(color($colors,primary),8);
+                        }
                     }
                 }
                 ion-card-content {
@@ -44,6 +68,13 @@ page-login {
                     }
                     .card-footer {
                         margin-top: 12px;
+                        p.register-text {
+                            margin: 24px 64px;
+                            color: rgba(255,255,255,0.5);
+                            a:hover {
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             }
@@ -54,17 +85,36 @@ page-login {
             }
         }
     }
-    ion-item.item-input {
-        
-        padding-left: 0;
-        // This is required due to bug in Ionic causing the line to not show up underneath the input
-        box-shadow: inset 0 -1px 0 0 #c8c7cc;
-        &.item-ios {
-            &.input-has-focus {
-                box-shadow: inset 0 -1px 0 0 color($colors,primary);
+    ion-item {
+        &.round-input {
+            margin: 8px 0;
+            border-radius: 23px;
+            background: rgba(255,255,255,0.6);
+            transition: all 0.2s ease-in;
+            // border: 2px solid transparent;
+            &.item-input-has-focus {
+                background: rgba(255,255,255,0.8);
+            }
+            &.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) {
+                // border: 2px solid color($colors,success);
+            }
+            .item-inner {
+                border: none !important;
+                box-shadow: none !important;
             }
         }
+        &.item-input {
+            // padding-left: 0;
+            // // This is required due to bug in Ionic causing the line to not show up underneath the input
+            // box-shadow: inset 0 -1px 0 0 #c8c7cc;
+            // &.item-ios {
+            //     &.input-has-focus {
+            //         box-shadow: inset 0 -1px 0 0 color($colors,primary);
+            //     }
+            // }
+        }
     }
+    
 
 }
 
