@@ -1,10 +1,10 @@
-# px-ionic-seed-app
+# collin-cash
 
 ## Overview
 
-This is app is a seed app for PX-Blue design system using Ionic and Firebase.
+This app utilizes a reward system for my son.
 
-This app leverages the Ionic Framework, Firebase, and Eaton's PX Blue 2.0 design system.
+This app leverages the Ionic Framework, Angular, and Firebase.
 
 ## Getting Started
 

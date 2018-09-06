@@ -21,9 +21,6 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { SitesPage } from '../pages/sites/sites';
-import { EnergyPage } from '../pages/energy/energy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,10 +33,7 @@ import { ApiProvider } from '../providers/api/api';
     MyApp,
     LoginPage,
     SignupPage,
-    HomePage,
-    ListPage,
-    SitesPage,
-    EnergyPage,
+    HomePage
     // HighchartsChartComponent
   ],
   imports: [
@@ -61,10 +55,7 @@ import { ApiProvider } from '../providers/api/api';
     MyApp,
     LoginPage,
     SignupPage,
-    HomePage,
-    ListPage,
-    SitesPage,
-    EnergyPage
+    HomePage
   ],
   providers: [
     StatusBar,
