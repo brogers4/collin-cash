@@ -1,27 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   id="svg2985"
-   height="800"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
    width="800"
-   version="1.1">
+   height="800"
+   id="svg2985"
+   sodipodi:docname="collin-cash.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview837"
+     showgrid="false"
+     inkscape:zoom="0.1325"
+     inkscape:cx="-1514.8283"
+     inkscape:cy="704.6922"
+     inkscape:window-x="3832"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2985"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid839" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,800"
+       id="guide841"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="400,800"
+       orientation="-800,0"
+       id="guide843"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="920,400"
+       orientation="0,-800"
+       id="guide845"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0,800"
+       orientation="800,0"
+       id="guide847"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
   <defs
      id="defs2987">
     <marker
-       style="overflow:visible"
-       id="DotL"
-       orient="auto"
+       refX="0"
        refY="0"
-       refX="0">
+       orient="auto"
+       id="DotL"
+       style="overflow:visible">
       <path
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
-         id="path3871"
+         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z"
          transform="matrix(0.8,0,0,0.8,5.92,0.8)"
-         d="m -2.5,-1 c 0,2.76 -2.24,5 -5,5 -2.76,0 -5,-2.24 -5,-5 0,-2.76 2.24,-5 5,-5 2.76,0 5,2.24 5,5 z" />
+         id="path3871"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt" />
     </marker>
   </defs>
   <metadata
@@ -37,21 +88,22 @@
     </rdf:RDF>
   </metadata>
   <path
-     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+     d="M 0,0 A 0,0 0 1 1 0,0 0,0 0 1 1 0,0 z"
      id="path3951"
-     d="M 0,0 A 0,0 0 1 1 0,0 0,0 0 1 1 0,0 z" />
+     style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
   <text
-     id="text851"
-     y="320"
-     x="200"
+     xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     xml:space="preserve"><tspan
-       rotate="0"
-       y="356.49323"
+     x="200"
+     y="320"
+     id="text851"><tspan
+       sodipodi:role="line"
+       id="tspan849"
        x="200"
-       id="tspan849" /></text>
+       y="356.49323"
+       rotate="0" /></text>
   <path
-     id="path878"
+     style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1"
      d="M 320 60 L 320 128.43359 C 235.75477 146.45571 120 204.98141 120 400 C 120 594.55634 235.86167 653.91023 320 672.02734 L 320 740 L 380 740 L 380 679.60352 C 388.66152 679.97685 395.59744 680 400 680 C 406.74943 680 413.39893 679.95294 420 679.88477 L 420 740 L 480 740 L 480 678.36133 C 598.35252 673.59182 680 660 680 660 L 660 600 C 660 600 582.78632 612.85715 480 617.95117 L 480 577.38867 C 568.11797 571.97187 640 560 640 560 L 620 500 C 620 500 554.52031 510.90547 480 516.60938 L 480 286.7832 C 554.52025 298.19102 620 320 620 320 L 640 260 C 640 260 568.11801 236.05431 480 225.2207 L 480 184.09766 C 582.78634 194.28569 660 220 660 220 L 680 160 C 680 160 598.35256 132.8144 480 123.27539 L 480 60 L 420 60 L 420 120.21289 C 413.40626 120.07684 406.74176 120 400 120 C 395.50947 120.14486 388.58385 120.27917 380 120.72461 L 380 60 L 320 60 z M 400 180 C 406.7169 180 413.38621 180.09422 420 180.26953 L 420 220.36328 C 413.3468 220.1296 406.67384 220 400 220 C 396.70446 220 389.55576 220.01891 380 220.82422 L 380 181.2207 C 387.44346 180.38093 394.19381 180 400 180 z M 320 195.65039 L 320 234.48047 C 271.70179 253.53568 220 297.67709 220 400 C 220 502.32291 271.70179 546.46432 320 565.51953 L 320 604.34961 C 253.83441 579.9368 180 522.27926 180 400 C 180 277.72074 253.83441 220.0632 320 195.65039 z M 400 280 C 406.59247 280 413.27379 280.18305 420 280.50781 L 420 519.74609 C 413.27379 519.90848 406.59248 520 400 520 C 396.02807 520 388.87252 519.9829 380 519.04297 L 380 280.95703 C 388.87252 280.0171 396.02807 280 400 280 z M 320 303.09766 L 320 496.90234 C 297.86387 479.9962 280 450.717 280 400 C 280 349.283 297.86387 320.0038 320 303.09766 z M 380 579.17578 C 389.55576 579.98109 396.70446 580 400 580 C 406.67457 580 413.34608 579.92937 420 579.8125 L 420 619.85352 C 413.38087 619.94131 406.72243 620 400 620 C 394.19381 620 387.44346 619.61907 380 618.7793 L 380 579.17578 z "
-     style="fill:#000000;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1" />
+     id="path878" />
 </svg>
