@@ -6,8 +6,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { SitesPage } from '../pages/sites/sites';
-import { EnergyPage } from '../pages/energy/energy';
 
 import { DevicesProvider } from '../providers/devices/devices';
 

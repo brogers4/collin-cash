@@ -33,7 +33,7 @@
     "@ionic/storage": "2.1.3",
     "angularfire2": "^5.0.0-rc.6",
     "cordova-plugin-telerik-imagepicker": "^2.1.9",
-    "firebase": "^4.10.0",
+    "firebase": "^5.5.0",
     "hammerjs": "^2.0.8",
     "highcharts": "^6.0.7",
     "highcharts-angular": "^1.0.2",

@@ -68,10 +68,11 @@ export class SignupPage {
   submitRegistration() {
     if(this.emailForm.valid && this.profileForm.valid){
       this.afAuth.auth.createUserWithEmailAndPassword(this.emailForm.value.email,this.emailForm.value.password).then(
-        user => {
+        result => {
           // User is created; now upload profile image
           //TODO: Handle if error uploading profile image;
           //TODO: Create user tree in RTDB
+          var user = result.user;
           console.log("Successfully created user.");
           const fileRef = this.afStorage.ref(`${user.uid}/images/profile-image/original`);
           const task = fileRef.put(this.profileImageFile);
